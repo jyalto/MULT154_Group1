@@ -9,6 +9,9 @@ public class PlayerController : MonoBehaviour
     public float verticalRotationLimit = 90.0f;
     public float gravity = -40.0f;
     public float jumpForce = 20.0f;
+    public GameObject pistol;
+    public GameObject assaultRifle;
+    public AudioSource audioSource;
 
     private GameManager gameManager;
     private CharacterController controller;
@@ -85,5 +88,16 @@ public class PlayerController : MonoBehaviour
         yRotation += mouseX;
 
         transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0);
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Pistol PickUp"))
+        {
+            audioSource.Play();
+            assaultRifle.SetActive(false);
+            pistol.SetActive(true);
+        }
+        Destroy(other.gameObject);
     }
 }
