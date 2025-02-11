@@ -8,6 +8,8 @@ TagManager:
   - Pistol
   - Assault Rifle
   - Pistol PickUp
+  - Ammo PickUp
+  - Assault Rifle PickUp
   layers:
   - Default
   - TransparentFX

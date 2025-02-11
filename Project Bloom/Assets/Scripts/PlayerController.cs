@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Weapon;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,10 +10,12 @@ public class PlayerController : MonoBehaviour
     public float verticalRotationLimit = 90.0f;
     public float gravity = -40.0f;
     public float jumpForce = 20.0f;
+    public int health = 25;
     public GameObject pistol;
     public GameObject assaultRifle;
-    public AudioSource audioSource;
-
+    
+    private AudioSource[] audioSources;
+    private Weapon weapon;
     private GameManager gameManager;
     private CharacterController controller;
     private float xRotation = 0;
@@ -30,6 +33,9 @@ public class PlayerController : MonoBehaviour
         }
 
         controller = GetComponent<CharacterController>();
+        audioSources = GetComponents<AudioSource>();
+
+        EquipWeapon(assaultRifle);
     }
 
     // Update is called once per frame
@@ -94,10 +100,52 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("Pistol PickUp"))
         {
-            audioSource.Play();
-            assaultRifle.SetActive(false);
-            pistol.SetActive(true);
+            if (weapon.typeOfWeapon != Weapon.WeaponType.PISTOL)
+            {
+                audioSources[0].Play();
+                EquipWeapon(pistol);
+            }
+            else
+            {
+                audioSources[1].Play();
+                weapon.ammo[(int)AmmoType.PISTOL] += 8;
+            }
+        }
+        if (other.CompareTag("Assault Rifle PickUp"))
+        {
+            if (weapon.typeOfWeapon != Weapon.WeaponType.ASSAULTRIFLE)
+            {
+                audioSources[0].Play();
+                EquipWeapon(assaultRifle);
+            }
+            else
+            {
+                audioSources[1].Play();
+                weapon.ammo[(int)AmmoType.ASSAULTRIFLE] += 25;
+            }
+        }
+        if (other.CompareTag("Ammo PickUp"))
+        {
+            audioSources[1].Play();
+            if (weapon.typeOfWeapon == Weapon.WeaponType.PISTOL)
+            {
+                weapon.ammo[(int)AmmoType.PISTOL] += 15;
+            }
+            else if (weapon.typeOfWeapon == Weapon.WeaponType.ASSAULTRIFLE)
+            {
+                weapon.ammo[(int)AmmoType.ASSAULTRIFLE] += 50;
+            }
         }
         Destroy(other.gameObject);
+    }
+
+    void EquipWeapon(GameObject newWeapon)
+    {
+        pistol.SetActive(false);
+        assaultRifle.SetActive(false);
+
+        newWeapon.SetActive(true);
+
+        weapon = newWeapon.GetComponent<Weapon>();
     }
 }

@@ -20,31 +20,34 @@ public class Weapon : MonoBehaviour
         SHOTGUN
     }
 
+    public enum AmmoType
+    {
+        PISTOL,
+        ASSAULTRIFLE,
+        SHOTGUN
+    }
+
     public WeaponType typeOfWeapon;
+    public int[] ammo;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (gameObject.CompareTag("Pistol"))
+        ammo = new int[3];
+        if (typeOfWeapon == WeaponType.PISTOL)
         {
-            typeOfWeapon = WeaponType.PISTOL;
             fireRate = 0.25f;
         }
-        else if (gameObject.CompareTag("Assault Rifle"))
+        else if (typeOfWeapon == WeaponType.ASSAULTRIFLE)
         {
-            typeOfWeapon = WeaponType.ASSAULTRIFLE;
             fireRate = 0.1f;
-        }
-        else
-        {
-            typeOfWeapon = WeaponType.SHOTGUN;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (typeOfWeapon == WeaponType.PISTOL)
+        if (typeOfWeapon == WeaponType.PISTOL && ammo[(int)AmmoType.PISTOL] > 0)
         {
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
@@ -55,7 +58,7 @@ public class Weapon : MonoBehaviour
                 }
             }
         }
-        else if (typeOfWeapon == WeaponType.ASSAULTRIFLE)
+        else if (typeOfWeapon == WeaponType.ASSAULTRIFLE && ammo[(int)AmmoType.ASSAULTRIFLE] > 0)
         {
             if (Input.GetMouseButton(0))
             {
@@ -73,24 +76,34 @@ public class Weapon : MonoBehaviour
                 }
             }
         }
+        else if (typeOfWeapon == WeaponType.ASSAULTRIFLE && ammo[(int)AmmoType.ASSAULTRIFLE] <= 0)
+        {
+            if (audioSource.isPlaying)
+            {
+                audioSource.Stop();
+            }
+        }
     }
 
     private void FireWeapon()
     {
-        if (typeOfWeapon == WeaponType.ASSAULTRIFLE)
+        GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, Quaternion.identity);
+        bullet.GetComponent<Rigidbody>().AddForce(bulletSpawn.forward.normalized * bulletVelocity, ForceMode.Impulse);
+
+        if (typeOfWeapon == WeaponType.PISTOL)
+        {
+            audioSource.Play();
+            ammo[(int)AmmoType.PISTOL] -= 1;
+        }
+        else if (typeOfWeapon == WeaponType.ASSAULTRIFLE)
         {
             if (!audioSource.isPlaying)
             {
                 audioSource.Play();
             }
+            ammo[(int)AmmoType.ASSAULTRIFLE] -= 1;
         }
-        else if (typeOfWeapon == WeaponType.PISTOL)
-        {
-            audioSource.Play();
-        }
-        GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, Quaternion.identity);
-        bullet.GetComponent<Rigidbody>().AddForce(bulletSpawn.forward.normalized * bulletVelocity, ForceMode.Impulse);
-
+        
         StartCoroutine(DestroyBullet(bullet, bulletPrefabLifeTime));
     }
 
