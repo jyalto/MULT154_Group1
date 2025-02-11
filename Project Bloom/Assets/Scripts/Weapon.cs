@@ -13,6 +13,8 @@ public class Weapon : MonoBehaviour
 
     private float nextFireTime = 0f;
 
+    public PlayerController player;
+
     public enum WeaponType
     {
         PISTOL,
@@ -20,20 +22,13 @@ public class Weapon : MonoBehaviour
         SHOTGUN
     }
 
-    public enum AmmoType
-    {
-        PISTOL,
-        ASSAULTRIFLE,
-        SHOTGUN
-    }
-
     public WeaponType typeOfWeapon;
-    public int[] ammo;
 
     // Start is called before the first frame update
     void Start()
     {
-        ammo = new int[3];
+        player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+
         if (typeOfWeapon == WeaponType.PISTOL)
         {
             fireRate = 0.25f;
@@ -47,7 +42,7 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (typeOfWeapon == WeaponType.PISTOL && ammo[(int)AmmoType.PISTOL] > 0)
+        if (typeOfWeapon == WeaponType.PISTOL && player.ammo[(int)PlayerController.AmmoType.PISTOL] > 0)
         {
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
@@ -58,7 +53,7 @@ public class Weapon : MonoBehaviour
                 }
             }
         }
-        else if (typeOfWeapon == WeaponType.ASSAULTRIFLE && ammo[(int)AmmoType.ASSAULTRIFLE] > 0)
+        else if (typeOfWeapon == WeaponType.ASSAULTRIFLE && player.ammo[(int)PlayerController.AmmoType.ASSAULTRIFLE] > 0)
         {
             if (Input.GetMouseButton(0))
             {
@@ -76,7 +71,7 @@ public class Weapon : MonoBehaviour
                 }
             }
         }
-        else if (typeOfWeapon == WeaponType.ASSAULTRIFLE && ammo[(int)AmmoType.ASSAULTRIFLE] <= 0)
+        else if (typeOfWeapon == WeaponType.ASSAULTRIFLE && player.ammo[(int)PlayerController.AmmoType.ASSAULTRIFLE] <= 0)
         {
             if (audioSource.isPlaying)
             {
@@ -93,7 +88,7 @@ public class Weapon : MonoBehaviour
         if (typeOfWeapon == WeaponType.PISTOL)
         {
             audioSource.Play();
-            ammo[(int)AmmoType.PISTOL] -= 1;
+            player.ammo[(int)PlayerController.AmmoType.PISTOL] -= 1;
         }
         else if (typeOfWeapon == WeaponType.ASSAULTRIFLE)
         {
@@ -101,7 +96,7 @@ public class Weapon : MonoBehaviour
             {
                 audioSource.Play();
             }
-            ammo[(int)AmmoType.ASSAULTRIFLE] -= 1;
+            player.ammo[(int)PlayerController.AmmoType.ASSAULTRIFLE] -= 1;
         }
         
         StartCoroutine(DestroyBullet(bullet, bulletPrefabLifeTime));

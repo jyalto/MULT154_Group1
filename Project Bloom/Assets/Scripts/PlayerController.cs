@@ -20,7 +20,21 @@ public class PlayerController : MonoBehaviour
     private CharacterController controller;
     private float xRotation = 0;
     private float yRotation = 0;
+    private bool weaponSwitchEnable = true;
+    private Coroutine switchWeaponCoroutine = null;
     private Vector3 velocity;
+
+    private List<GameObject> weapons = new List<GameObject>();
+    private int currentWeaponIndex = 0;
+
+    public enum AmmoType
+    {
+        PISTOL,
+        ASSAULTRIFLE,
+        SHOTGUN
+    }
+
+    public int[] ammo = new int[3];
 
     // Start is called before the first frame update
     void Start()
@@ -34,8 +48,6 @@ public class PlayerController : MonoBehaviour
 
         controller = GetComponent<CharacterController>();
         audioSources = GetComponents<AudioSource>();
-
-        EquipWeapon(assaultRifle);
     }
 
     // Update is called once per frame
@@ -94,55 +106,92 @@ public class PlayerController : MonoBehaviour
         yRotation += mouseX;
 
         transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0);
+
+        float scroll = Input.GetAxis("Mouse ScrollWheel");
+
+        if (Mathf.Abs(scroll) == 0.1f && weaponSwitchEnable)
+        {
+            SwitchWeapon();
+            weaponSwitchEnable = false;
+            if (switchWeaponCoroutine == null)
+            {
+                switchWeaponCoroutine = StartCoroutine(SwitchWeaponTime(0.15f));
+            }
+        }
+
+        print("Pistol Ammo: " + ammo[(int)AmmoType.PISTOL]);
+        print("AR Ammo: " + ammo[(int)AmmoType.ASSAULTRIFLE]);
+    }
+
+    void SwitchWeapon()
+    {
+        if (weapons.Count > 1)
+        {
+            currentWeaponIndex = (currentWeaponIndex + 1) % weapons.Count;
+            EquipWeapon(weapons[currentWeaponIndex]);
+        }
+    }
+
+    private IEnumerator SwitchWeaponTime(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        weaponSwitchEnable = true;
+        switchWeaponCoroutine = null;
     }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Pistol PickUp"))
         {
-            if (weapon.typeOfWeapon != Weapon.WeaponType.PISTOL)
+            if (weapon == null || !weapons.Contains(pistol))
             {
+                weapons.Add(pistol);
                 audioSources[0].Play();
                 EquipWeapon(pistol);
             }
             else
             {
                 audioSources[1].Play();
-                weapon.ammo[(int)AmmoType.PISTOL] += 8;
+                ammo[(int)AmmoType.PISTOL] += 8;
             }
+            Destroy(other.gameObject);
         }
         if (other.CompareTag("Assault Rifle PickUp"))
         {
-            if (weapon.typeOfWeapon != Weapon.WeaponType.ASSAULTRIFLE)
+            if (weapon == null || !weapons.Contains(assaultRifle))
             {
+                weapons.Add(assaultRifle);
                 audioSources[0].Play();
                 EquipWeapon(assaultRifle);
             }
             else
             {
                 audioSources[1].Play();
-                weapon.ammo[(int)AmmoType.ASSAULTRIFLE] += 25;
+                ammo[(int)AmmoType.ASSAULTRIFLE] += 25;
             }
+            Destroy(other.gameObject);
         }
-        if (other.CompareTag("Ammo PickUp"))
+        if (other.CompareTag("Ammo PickUp") && weapon != null)
         {
             audioSources[1].Play();
             if (weapon.typeOfWeapon == Weapon.WeaponType.PISTOL)
             {
-                weapon.ammo[(int)AmmoType.PISTOL] += 15;
+                ammo[(int)AmmoType.PISTOL] += 15;
             }
             else if (weapon.typeOfWeapon == Weapon.WeaponType.ASSAULTRIFLE)
             {
-                weapon.ammo[(int)AmmoType.ASSAULTRIFLE] += 50;
+                ammo[(int)AmmoType.ASSAULTRIFLE] += 50;
             }
+            Destroy(other.gameObject);
         }
-        Destroy(other.gameObject);
     }
 
     void EquipWeapon(GameObject newWeapon)
     {
-        pistol.SetActive(false);
-        assaultRifle.SetActive(false);
+        foreach (var weaponInInventory in weapons)
+        {
+            weaponInInventory.SetActive(false);
+        }
 
         newWeapon.SetActive(true);
 
