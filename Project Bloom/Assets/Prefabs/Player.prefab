@@ -165,8 +165,10 @@ MonoBehaviour:
   verticalRotationLimit: 90
   gravity: -40
   jumpForce: 20
+  health: 25
   pistol: {fileID: 5368922330823352395}
   assaultRifle: {fileID: 2181412260683531264}
+  ammo: 000000000000000000000000
 --- !u!136 &1891372799752151913
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -602,7 +604,7 @@ MonoBehaviour:
   bulletVelocity: 30
   bulletPrefabLifeTime: 3
   fireRate: 0.1
-  ammo: 0
+  player: {fileID: 0}
   typeOfWeapon: 0
 --- !u!82 &9009351916926965602
 AudioSource:
@@ -759,7 +761,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7706246817930554310, guid: 72fdcd3646d27ce40b10b9e46e305ee3, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7706246817930554310, guid: 72fdcd3646d27ce40b10b9e46e305ee3, type: 3}
       propertyPath: m_TagString
@@ -803,7 +805,7 @@ MonoBehaviour:
   bulletVelocity: 30
   bulletPrefabLifeTime: 3
   fireRate: 0.1
-  ammo: 0
+  player: {fileID: 0}
   typeOfWeapon: 1
 --- !u!82 &6897906330244444964
 AudioSource:
