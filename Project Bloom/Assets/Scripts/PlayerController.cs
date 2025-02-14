@@ -13,7 +13,11 @@ public class PlayerController : MonoBehaviour
     public int health = 25;
     public GameObject pistol;
     public GameObject assaultRifle;
-    
+    public GameObject keyGreen;
+    public GameObject keyRed;
+    public TreasureChest chestGreen;
+    public TreasureChest chestRed;
+
     private AudioSource[] audioSources;
     private Weapon weapon;
     private GameManager gameManager;
@@ -21,10 +25,14 @@ public class PlayerController : MonoBehaviour
     private float xRotation = 0;
     private float yRotation = 0;
     private bool weaponSwitchEnable = true;
+    private bool canOpenChestGreen = false;
+    private bool canOpenChestRed = false;
     private Coroutine switchWeaponCoroutine = null;
     private Vector3 velocity;
 
     private List<GameObject> weapons = new List<GameObject>();
+    private List<GameObject> inventory = new List<GameObject>();
+
     private int currentWeaponIndex = 0;
 
     public enum AmmoType
@@ -121,6 +129,32 @@ public class PlayerController : MonoBehaviour
 
         print("Pistol Ammo: " + ammo[(int)AmmoType.PISTOL]);
         print("AR Ammo: " + ammo[(int)AmmoType.ASSAULTRIFLE]);
+
+        if (canOpenChestGreen && Input.GetButtonDown("Interact"))
+        {
+            if (inventory.Contains(keyGreen))
+            {
+                chestGreen.OpenChest();
+                inventory.Remove(keyGreen);
+            }
+            else if (!chestGreen.opened)
+            {
+                chestGreen.LockedChest();
+            }
+        }
+
+        if (canOpenChestRed && Input.GetButtonDown("Interact"))
+        {
+            if (inventory.Contains(keyRed))
+            {
+                chestRed.OpenChest();
+                inventory.Remove(keyRed);
+            }
+            else if (!chestRed.opened)
+            {
+                chestRed.LockedChest();
+            }
+        }
     }
 
     void SwitchWeapon()
@@ -183,6 +217,39 @@ public class PlayerController : MonoBehaviour
                 ammo[(int)AmmoType.ASSAULTRIFLE] += 50;
             }
             Destroy(other.gameObject);
+        }
+        if (other.CompareTag("Key Green"))
+        {
+            inventory.Add(keyGreen);
+            audioSources[2].Play();
+            Destroy(other.gameObject);
+        }
+        if (other.CompareTag("Chest Green"))
+        {
+            canOpenChestGreen = true;
+        }
+
+        if (other.CompareTag("Key Red"))
+        {
+            inventory.Add(keyRed);
+            audioSources[2].Play();
+            Destroy(other.gameObject);
+        }
+        if (other.CompareTag("Chest Red"))
+        {
+            canOpenChestRed = true;
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Chest Green"))
+        {
+            canOpenChestGreen = false;
+        }
+        if (other.CompareTag("Chest Red"))
+        {
+            canOpenChestRed = false;
         }
     }
 

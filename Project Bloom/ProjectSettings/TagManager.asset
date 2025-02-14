@@ -10,6 +10,10 @@ TagManager:
   - Pistol PickUp
   - Ammo PickUp
   - Assault Rifle PickUp
+  - Key Green
+  - Chest Green
+  - Key Red
+  - Chest Red
   layers:
   - Default
   - TransparentFX
