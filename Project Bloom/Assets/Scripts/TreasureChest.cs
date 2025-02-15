@@ -7,6 +7,7 @@ public class TreasureChest : MonoBehaviour
     private Animator animChest;
     private AudioSource[] audioSources;
 
+    public GameObject chestItem;
     public bool opened = false;
 
     void Start()
@@ -25,6 +26,7 @@ public class TreasureChest : MonoBehaviour
     {
         animChest.SetBool("Open", true);
         audioSources[0].Play();
+        StartCoroutine(ItemVisible(1.25f));
         opened = true;
     }
 
@@ -34,5 +36,11 @@ public class TreasureChest : MonoBehaviour
         {
             audioSources[1].Play();
         }
+    }
+
+    private IEnumerator ItemVisible(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        chestItem.SetActive(true);
     }
 }
