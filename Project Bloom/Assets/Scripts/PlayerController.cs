@@ -136,7 +136,8 @@ public class PlayerController : MonoBehaviour
 
         print("Pistol Ammo: " + ammo[(int)AmmoType.PISTOL]);
         print("AR Ammo: " + ammo[(int)AmmoType.ASSAULTRIFLE]);
-        
+        print("Shotgun Ammo: " + ammo[(int)AmmoType.SHOTGUN]);
+
 
         if (canOpenChestGreen && Input.GetButtonDown("Interact"))
         {
@@ -197,6 +198,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (!weapons.Contains(shotgun))
                 {
+                    ammo[(int)AmmoType.SHOTGUN] += 4;
                     weapons.Add(shotgun);
                     audioSources[0].Play();
                     EquipWeapon(shotgun);
@@ -312,8 +314,9 @@ public class PlayerController : MonoBehaviour
                 else
                 {
                     audioSources[1].Play();
-                    ammo[(int)AmmoType.SHOTGUN] += 4;
+                    //ammo[(int)AmmoType.SHOTGUN] += 4;
                 }
+                ammo[(int)AmmoType.SHOTGUN] += 4;
                 Destroy(other.gameObject);
             }
             else
@@ -341,6 +344,10 @@ public class PlayerController : MonoBehaviour
             else if (weapon.typeOfWeapon == Weapon.WeaponType.ASSAULTRIFLE)
             {
                 ammo[(int)AmmoType.ASSAULTRIFLE] += 50;
+            }
+            else if (weapon.typeOfWeapon == Weapon.WeaponType.SHOTGUN)
+            {
+                ammo[(int)AmmoType.SHOTGUN] += 8;
             }
             Destroy(other.gameObject);
         }

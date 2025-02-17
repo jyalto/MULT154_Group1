@@ -37,6 +37,10 @@ public class Weapon : MonoBehaviour
         {
             fireRate = 0.1f;
         }
+        else if (typeOfWeapon == WeaponType.SHOTGUN)
+        {
+            fireRate = 3f;
+        }
     }
 
     // Update is called once per frame
@@ -78,6 +82,17 @@ public class Weapon : MonoBehaviour
                 audioSource.Stop();
             }
         }
+        else if (typeOfWeapon == WeaponType.SHOTGUN && player.ammo[(int)PlayerController.AmmoType.SHOTGUN] > 0)
+        {
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                if (Time.time >= nextFireTime)
+                {
+                    FireWeapon();
+                    nextFireTime = Time.time + fireRate;
+                }
+            }
+        }
     }
 
     private void FireWeapon()
@@ -98,7 +113,13 @@ public class Weapon : MonoBehaviour
             }
             player.ammo[(int)PlayerController.AmmoType.ASSAULTRIFLE] -= 1;
         }
-        
+        else if (typeOfWeapon == WeaponType.SHOTGUN)
+        {
+            audioSource.Play();
+            player.ammo[(int)PlayerController.AmmoType.SHOTGUN] -= 1;
+            bulletPrefabLifeTime = 0.35f;
+        }
+
         StartCoroutine(DestroyBullet(bullet, bulletPrefabLifeTime));
     }
 
