@@ -975,7 +975,7 @@ GameObject:
   - component: {fileID: 535883807}
   - component: {fileID: 535883806}
   m_Layer: 0
-  m_Name: DestroyedHouse2
+  m_Name: HardwareStore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4418,7 +4418,7 @@ GameObject:
   - component: {fileID: 1848480220}
   - component: {fileID: 1848480219}
   m_Layer: 0
-  m_Name: HardwareStore
+  m_Name: DestroyedHouse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
