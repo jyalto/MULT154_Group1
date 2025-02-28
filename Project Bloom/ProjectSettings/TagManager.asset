@@ -17,6 +17,7 @@ TagManager:
   - Shotgun
   - Shotgun PickUp
   - Gas Can PickUp
+  - Enemy
   layers:
   - Default
   - TransparentFX
