@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 3.4.0 commit date:2022-12-06, commit time:18:46, hash:a95bf1ac01be</authoring_tool>
+    </contributor>
+    <created>2025-02-03T22:00:35</created>
+    <modified>2025-02-03T22:00:35</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_effects>
+    <effect id="barricade_hr_2-effect">
+      <profile_COMMON>
+        <newparam sid="barricade_hr_2_png-surface">
+          <surface type="2D">
+            <init_from>barricade_hr_2_png</init_from>
+          </surface>
+        </newparam>
+        <newparam sid="barricade_hr_2_png-sampler">
+          <sampler2D>
+            <source>barricade_hr_2_png-surface</source>
+          </sampler2D>
+        </newparam>
+        <technique sid="common">
+          <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <diffuse>
+              <texture texture="barricade_hr_2_png-sampler" texcoord="UVMap"/>
+            </diffuse>
+            <index_of_refraction>
+              <float sid="ior">1.45</float>
+            </index_of_refraction>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_images>
+    <image id="barricade_hr_2_png" name="barricade_hr_2_png">
+      <init_from>barricade_hr_2.png</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="barricade_hr_2-material" name="barricade_hr_2">
+      <instance_effect url="#barricade_hr_2-effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="barricade_a_3-mesh" name="barricade_a_3">
+      <mesh>
+        <source id="barricade_a_3-mesh-positions">
+          <float_array id="barricade_a_3-mesh-positions-array" count="60">-1.47 -7.24e-7 -0.2000007 -1.47 1.6 -0.05000644 1.47 -7.24001e-7 -0.2000008 1.47 1.6 -0.05000668 -1.47 7.23996e-7 0.1999993 -1.47 1.6 0.04999345 1.47 7.23995e-7 0.1999991 1.47 1.6 0.04999327 -1.47 0.7659999 -0.0500034 1.47 0.7659999 -0.05000364 1.47 0.7660002 0.04999625 -1.47 0.7660002 0.04999649 1.47 0.2829998 -0.05000191 1.47 0.2830002 0.04999804 -1.47 0.2830002 0.04999822 -1.47 0.2829998 -0.05000168 1.47 0.07149928 -0.2000011 1.47 0.07150071 0.1999988 -1.47 0.07150071 0.199999 -1.47 0.07149928 -0.2000009</float_array>
+          <technique_common>
+            <accessor source="#barricade_a_3-mesh-positions-array" count="20" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="barricade_a_3-mesh-normals">
+          <float_array id="barricade_a_3-mesh-normals-array" count="93">0 -3.62255e-6 -1 1 0 0 0 3.62255e-6 1 -1 0 0 0 -1 3.61999e-6 0 1 -6.48758e-6 -1 0 0 0 3.61731e-6 1 0 -3.61731e-6 -1 0 0.5784958 -0.8156855 1 3.52273e-7 0 0 0.5785019 0.8156811 -1 5.19977e-6 0 0 3.54293e-6 1 1 4.16816e-6 0 0 -3.54293e-6 -1 0 -3.62256e-6 -1 1 0 0 0 3.62255e-6 1 0 -1 3.61999e-6 0 1 -3.24379e-6 -1 2.20585e-7 0 1 -2.20585e-7 0 0 -3.61731e-6 -1 0 0.5784958 -0.8156854 0 0.5785018 0.8156812 -1 1.40909e-6 0 -1 -4.16816e-6 0 0 3.54293e-6 1 1 -5.19978e-6 0 0 -3.54293e-6 -1</float_array>
+          <technique_common>
+            <accessor source="#barricade_a_3-mesh-normals-array" count="31" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="barricade_a_3-mesh-map-0">
+          <float_array id="barricade_a_3-mesh-map-0-array" count="216">0.886611 1 0 0.47875 0.886611 0.4787499 0.9329901 1 0.9539497 0.4787501 0.9329902 0.4787501 0.886611 1 0 0.47875 0.8866111 0.4787499 0.9539497 0.4787501 0.9329901 1 0.9329902 0.4787501 0 0.4701247 0.8740686 0.1900078 0 0.1900079 0.8866084 1 0 0.9301205 0.8866084 0.9301205 0.9539496 0.4787499 0.9232613 0.176875 0.9656741 0.176875 0.886611 0.4787499 0 0.1768749 0.8866109 0.1768749 0.9329901 0.47875 0.9656741 0.176875 0.9232612 0.176875 0.886611 0.4787499 0 0.1768749 0.886611 0.1768749 0.886611 0.1768749 0 0.04468756 0.886611 0.0446875 0.8915476 0.08959442 0.9656741 0.176875 1 0.08959442 0.886611 0.1889508 0 0.0446875 0.8866109 0.0446875 0.9656741 0.176875 0.8915476 0.08959442 1 0.08959442 1 0 0.8915476 0.08959442 0.8915476 0 0.886611 0.0446875 0 0 0.886611 0 0.8915476 0.08959442 1 0 0.8915476 0 0.886611 0.0446875 0 0 0.886611 0 0.886611 1 0 1 0 0.47875 0.9329901 1 0.9539496 1 0.9539497 0.4787501 0.886611 1 0 1 0 0.47875 0.9539497 0.4787501 0.9539496 1 0.9329901 1 0 0.4701247 0.8740686 0.4701246 0.8740686 0.1900078 0.8866084 1 0 1 0 0.9301205 0.9539496 0.4787499 0.9329901 0.47875 0.9232613 0.176875 0.886611 0.4787499 0 0.47875 0 0.1768749 0.9329901 0.47875 0.9539496 0.47875 0.9656741 0.176875 0.886611 0.4787499 0 0.47875 0 0.1768749 0.886611 0.1768749 0 0.1768749 0 0.04468756 0.8915476 0.08959442 0.9232612 0.176875 0.9656741 0.176875 0.886611 0.1889508 0 0.1889508 0 0.0446875 0.9656741 0.176875 0.9232612 0.176875 0.8915476 0.08959442 1 0 1 0.08959442 0.8915476 0.08959442 0.886611 0.0446875 0 0.0446875 0 0 0.8915476 0.08959442 1 0.08959442 1 0 0.886611 0.0446875 0 0.04468756 0 0</float_array>
+          <technique_common>
+            <accessor source="#barricade_a_3-mesh-map-0-array" count="108" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="barricade_a_3-mesh-vertices">
+          <input semantic="POSITION" source="#barricade_a_3-mesh-positions"/>
+        </vertices>
+        <triangles material="barricade_hr_2-material" count="36">
+          <input semantic="VERTEX" source="#barricade_a_3-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#barricade_a_3-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#barricade_a_3-mesh-map-0" offset="2" set="0"/>
+          <p>1 0 0 9 0 1 8 0 2 3 1 3 10 1 4 9 1 5 7 2 6 11 2 7 10 2 8 11 3 9 1 3 10 8 3 11 6 4 12 0 4 13 2 4 14 3 5 15 5 5 16 7 5 17 11 6 18 15 6 19 14 6 20 10 7 21 14 7 22 13 7 23 9 1 24 13 1 25 12 1 26 8 8 27 12 8 28 15 8 29 15 9 30 16 9 31 19 9 32 16 10 33 13 10 34 17 10 35 13 11 36 18 11 37 17 11 38 14 6 39 19 6 40 18 6 41 4 12 42 19 12 43 0 12 44 17 13 45 4 13 46 6 13 47 16 14 48 6 14 49 2 14 50 19 15 51 2 15 52 0 15 53 1 16 54 3 16 55 9 16 56 3 17 57 7 17 58 10 17 59 7 18 60 5 18 61 11 18 62 11 6 63 5 6 64 1 6 65 6 19 66 4 19 67 0 19 68 3 20 69 1 20 70 5 20 71 11 21 72 8 21 73 15 21 74 10 7 75 11 7 76 14 7 77 9 22 78 10 22 79 13 22 80 8 23 81 9 23 82 12 23 83 15 24 84 12 24 85 16 24 86 16 1 87 12 1 88 13 1 89 13 25 90 14 25 91 18 25 92 14 26 93 15 26 94 19 26 95 4 27 96 18 27 97 19 27 98 17 28 99 18 28 100 4 28 101 16 29 102 17 29 103 6 29 104 19 30 105 16 30 106 2 30 107</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="barricade_a_3" name="barricade_a_3" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 -3.61999e-6 -1 0 0 1 -3.61999e-6 0 0 0 0 1</matrix>
+        <instance_geometry url="#barricade_a_3-mesh" name="barricade_a_3">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="barricade_hr_2-material" target="#barricade_hr_2-material">
+                <bind_vertex_input semantic="UVMap" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

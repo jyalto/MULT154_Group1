@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 3.4.0 commit date:2022-12-06, commit time:18:46, hash:a95bf1ac01be</authoring_tool>
+    </contributor>
+    <created>2025-02-03T22:00:20</created>
+    <modified>2025-02-03T22:00:20</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_effects>
+    <effect id="gate_hr_1-effect">
+      <profile_COMMON>
+        <newparam sid="gate_hr_1_png-surface">
+          <surface type="2D">
+            <init_from>gate_hr_1_png</init_from>
+          </surface>
+        </newparam>
+        <newparam sid="gate_hr_1_png-sampler">
+          <sampler2D>
+            <source>gate_hr_1_png-surface</source>
+          </sampler2D>
+        </newparam>
+        <technique sid="common">
+          <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <diffuse>
+              <texture texture="gate_hr_1_png-sampler" texcoord="UVMap"/>
+            </diffuse>
+            <index_of_refraction>
+              <float sid="ior">1.45</float>
+            </index_of_refraction>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_images>
+    <image id="gate_hr_1_png" name="gate_hr_1_png">
+      <init_from>gate_hr_1.png</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="gate_hr_1-material" name="gate_hr_1">
+      <instance_effect url="#gate_hr_1-effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="gate_1-mesh" name="gate_1">
+      <mesh>
+        <source id="gate_1-mesh-positions">
+          <float_array id="gate_1-mesh-positions-array" count="96">-3 0.133 -2.54965e-7 -3 1.6 -5.56549e-6 2 0.133 -6.32454e-7 2 1.6 -5.94298e-6 -3 0.1330001 0.04999971 -3 1.6 0.04999434 2 0.1330001 0.04999929 2 1.6 0.04999399 -3 0.133 -2.54965e-7 2 0.133 -6.32454e-7 -3 0.1330001 0.04999971 2 0.1330001 0.04999929 0.54 0.133 -5.22228e-7 0.54 0.1330001 0.04999941 1.913 0.1330001 0.04999929 1.913 0.133 -6.25886e-7 -2.9085 0.133 -2.61873e-7 -2.9085 0.1330001 0.04999965 0.447075 0.1330001 0.04999941 0.447075 0.133 -5.15212e-7 -2.9085 0 2.19586e-7 -3 0 2.26494e-7 2 1.77274e-7 0.04999977 2 0 -1.50996e-7 1.913 1.77274e-7 0.04999977 -3 1.77275e-7 0.05000019 0.447075 1.77274e-7 0.04999989 0.54 1.77274e-7 0.04999989 0.54 0 0 1.913 0 -1.44427e-7 -2.9085 1.77275e-7 0.05000013 0.447075 0 0</float_array>
+          <technique_common>
+            <accessor source="#gate_1-mesh-positions-array" count="32" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="gate_1-mesh-normals">
+          <float_array id="gate_1-mesh-normals-array" count="90">-1 -3.45348e-7 0 0 1 -7.6294e-6 0 -3.61999e-6 -1 1 0 0 0 3.62118e-6 1 0 -1 3.8147e-6 0 -3.61999e-6 -1 -1 0 0 -1 -4.48155e-6 0 0 3.61324e-6 1 0 3.61325e-6 1 0 3.61324e-6 1 0 -3.61999e-6 -1 1 -9.00229e-7 0 0 -3.61998e-6 -1 1 3.80928e-7 0 0 1 0 0 -3.61999e-6 -1 1 0 0 0 3.62118e-6 1 0 -1 3.33786e-6 0 -3.61998e-6 -1 -1 -1.38619e-6 0 -1 4.1698e-6 0 -1 -3.13964e-7 0 1.60975e-7 3.61327e-6 1 1.50711e-7 3.61325e-6 1 1.53058e-7 3.61326e-6 1 0 -3.61999e-6 -1 0 -3.61998e-6 -1</float_array>
+          <technique_common>
+            <accessor source="#gate_1-mesh-normals-array" count="30" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="gate_1-mesh-map-0">
+          <float_array id="gate_1-mesh-map-0-array" count="216">0.07421875 0.08312493 0.06588542 1 0.06588542 0.08312493 0 0.9731861 1 1 1 0.9731861 0 0.08312499 1 1 1 0.08312493 0.07421875 0.08312499 0.06588542 1 0.07421875 1 1 0.08312499 0 1 0 0.08312493 1 0.9999995 0 0.9731861 0 1 0.97825 0.08312493 0.9941406 0 0.97825 0 0.01957756 0.08044159 0.009765625 0 0.01957756 0 0.01957756 0.08044159 0.009765625 0 0.01957756 0 0.01957756 0.08044159 0.009765625 0 0.01957756 0 0.9941406 0.08312499 0.97825 0 0.9941406 0 0.7075001 0.08312499 0.6881751 0 0.7075 0 0.02272725 0.08359616 0.005928814 0 0.02272725 0 0.688175 0.08312499 0.7075 0 0.688175 0 0.009765625 0 0.01957756 0.08044159 0.01957756 0 0.009765625 0 0.01957756 0.08044159 0.01957756 0 0.005928814 0.08359616 0.02272725 0 0.005928814 0 0.009765625 0 0.01957756 0.08044159 0.01957756 0 0.07421875 0.08312493 0.07421875 1 0.06588542 1 0 0.9731861 0 0.9999999 1 1 0 0.08312499 0 1 1 1 0.07421875 0.08312499 0.06588542 0.08312499 0.06588542 1 1 0.08312499 1 1 0 1 1 0.9999995 1 0.9731861 0 0.9731861 0.97825 0.08312493 0.9941406 0.08312499 0.9941406 0 0.01957756 0.08044159 0.009765625 0.08044159 0.009765625 0 0.01957756 0.08044159 0.009765625 0.08044159 0.009765625 0 0.01957756 0.08044159 0.009765625 0.08044159 0.009765625 0 0.9941406 0.08312499 0.97825 0.08312499 0.97825 0 0.7075001 0.08312499 0.6881751 0.08312499 0.6881751 0 0.02272725 0.08359616 0.005928814 0.08359616 0.005928814 0 0.688175 0.08312499 0.7075 0.08312499 0.7075 0 0.009765625 0 0.009765625 0.08044159 0.01957756 0.08044159 0.009765625 0 0.009765625 0.08044159 0.01957756 0.08044159 0.005928814 0.08359616 0.02272725 0.08359616 0.02272725 0 0.009765625 0 0.009765625 0.08044159 0.01957756 0.08044159</float_array>
+          <technique_common>
+            <accessor source="#gate_1-mesh-map-0-array" count="108" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="gate_1-mesh-vertices">
+          <input semantic="POSITION" source="#gate_1-mesh-positions"/>
+        </vertices>
+        <triangles material="gate_hr_1-material" count="36">
+          <input semantic="VERTEX" source="#gate_1-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#gate_1-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#gate_1-mesh-map-0" offset="2" set="0"/>
+          <p>4 0 0 1 0 1 0 0 2 1 1 3 7 1 4 3 1 5 0 2 6 3 2 7 2 2 8 6 3 9 3 3 10 7 3 11 6 4 12 5 4 13 4 4 14 4 5 15 2 5 16 6 5 17 15 6 18 23 6 19 29 6 20 14 7 21 29 7 22 24 7 23 10 8 24 21 8 25 25 8 26 18 7 27 31 7 28 26 7 29 11 9 30 24 9 31 22 9 32 13 10 33 26 10 34 27 10 35 17 11 36 25 11 37 30 11 38 19 12 39 28 12 40 31 12 41 23 3 42 11 3 43 22 3 44 20 13 45 17 13 46 30 13 47 8 14 48 20 14 49 21 14 50 28 15 51 13 15 52 27 15 53 4 7 54 5 7 55 1 7 56 1 16 57 5 16 58 7 16 59 0 17 60 1 17 61 3 17 62 6 18 63 2 18 64 3 18 65 6 19 66 7 19 67 5 19 68 4 20 69 0 20 70 2 20 71 15 21 72 9 21 73 23 21 74 14 22 75 15 22 76 29 22 77 10 23 78 8 23 79 21 23 80 18 24 81 19 24 82 31 24 83 11 25 84 14 25 85 24 25 86 13 26 87 18 26 88 26 26 89 17 27 90 10 27 91 25 27 92 19 28 93 12 28 94 28 28 95 23 3 96 9 3 97 11 3 98 20 3 99 16 3 100 17 3 101 8 29 102 16 29 103 20 29 104 28 3 105 12 3 106 13 3 107</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="gate_1" name="gate_1" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 -3.61999e-6 -1 0 0 1 -3.61999e-6 0 0 0 0 1</matrix>
+        <instance_geometry url="#gate_1-mesh" name="gate_1">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="gate_hr_1-material" target="#gate_hr_1-material">
+                <bind_vertex_input semantic="UVMap" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>
