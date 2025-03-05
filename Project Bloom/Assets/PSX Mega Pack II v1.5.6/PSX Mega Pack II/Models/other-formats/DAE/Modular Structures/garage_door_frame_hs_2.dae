@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 3.4.0 commit date:2022-12-06, commit time:18:46, hash:a95bf1ac01be</authoring_tool>
+    </contributor>
+    <created>2025-02-03T21:57:39</created>
+    <modified>2025-02-03T21:57:39</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_effects>
+    <effect id="garage_door_hm_7-effect">
+      <profile_COMMON>
+        <newparam sid="garage_door_hm_7_png-surface">
+          <surface type="2D">
+            <init_from>garage_door_hm_7_png</init_from>
+          </surface>
+        </newparam>
+        <newparam sid="garage_door_hm_7_png-sampler">
+          <sampler2D>
+            <source>garage_door_hm_7_png-surface</source>
+          </sampler2D>
+        </newparam>
+        <technique sid="common">
+          <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <diffuse>
+              <texture texture="garage_door_hm_7_png-sampler" texcoord="UVMap"/>
+            </diffuse>
+            <index_of_refraction>
+              <float sid="ior">1.45</float>
+            </index_of_refraction>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="wall_hs_1-effect">
+      <profile_COMMON>
+        <newparam sid="wall_hs_1_png-surface">
+          <surface type="2D">
+            <init_from>wall_hs_1_png</init_from>
+          </surface>
+        </newparam>
+        <newparam sid="wall_hs_1_png-sampler">
+          <sampler2D>
+            <source>wall_hs_1_png-surface</source>
+          </sampler2D>
+        </newparam>
+        <technique sid="common">
+          <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <diffuse>
+              <texture texture="wall_hs_1_png-sampler" texcoord="UVMap"/>
+            </diffuse>
+            <index_of_refraction>
+              <float sid="ior">1.45</float>
+            </index_of_refraction>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="concrete_hr_3-effect">
+      <profile_COMMON>
+        <newparam sid="concrete_hr_3_png-surface">
+          <surface type="2D">
+            <init_from>concrete_hr_3_png</init_from>
+          </surface>
+        </newparam>
+        <newparam sid="concrete_hr_3_png-sampler">
+          <sampler2D>
+            <source>concrete_hr_3_png-surface</source>
+          </sampler2D>
+        </newparam>
+        <technique sid="common">
+          <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <diffuse>
+              <texture texture="concrete_hr_3_png-sampler" texcoord="UVMap"/>
+            </diffuse>
+            <index_of_refraction>
+              <float sid="ior">1.45</float>
+            </index_of_refraction>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_images>
+    <image id="concrete_hr_3_png" name="concrete_hr_3_png">
+      <init_from>concrete_hr_3.png</init_from>
+    </image>
+    <image id="garage_door_hm_7_png" name="garage_door_hm_7_png">
+      <init_from>garage_door_hm_7.png</init_from>
+    </image>
+    <image id="wall_hs_1_png" name="wall_hs_1_png">
+      <init_from>wall_hs_1.png</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="garage_door_hm_7-material" name="garage_door_hm_7">
+      <instance_effect url="#garage_door_hm_7-effect"/>
+    </material>
+    <material id="wall_hs_1-material" name="wall_hs_1">
+      <instance_effect url="#wall_hs_1-effect"/>
+    </material>
+    <material id="concrete_hr_3-material" name="concrete_hr_3">
+      <instance_effect url="#concrete_hr_3-effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="garage_door_hm_7-mesh" name="garage_door_hm_7">
+      <mesh>
+        <source id="garage_door_hm_7-mesh-positions">
+          <float_array id="garage_door_hm_7-mesh-positions-array" count="24">-1.5 0.02000039 -1.65664e-7 1.5 0.02000027 -1.65663e-7 1.5 0.01998186 -2.5 -1.5 0.01998192 -2.5 -1.5 -0.01999956 1.33472e-7 1.5 -0.01999968 1.33472e-7 1.5 -0.0200181 -2.5 -1.5 -0.02001798 -2.5</float_array>
+          <technique_common>
+            <accessor source="#garage_door_hm_7-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="garage_door_hm_7-mesh-normals">
+          <float_array id="garage_door_hm_7-mesh-normals-array" count="48">0 1 -7.37122e-6 0 1 -7.37099e-6 0 1 -7.37011e-6 0 -1 7.37099e-6 0 -1 7.37122e-6 0 -1 7.37011e-6 0.7071077 -8.39501e-6 -0.7071059 -0.7071049 -8.42939e-6 -0.7071087 0.7071057 -8.42938e-6 -0.7071079 0.7071067 8.62543e-6 0.7071069 -0.7071086 -8.39095e-6 -0.7071051 -0.7071076 9.01924e-6 0.707106 -0.7071059 9.05764e-6 0.7071077 0 1 -7.3721e-6 0 -1 7.3721e-6 0.7071068 8.65978e-6 0.7071068</float_array>
+          <technique_common>
+            <accessor source="#garage_door_hm_7-mesh-normals-array" count="16" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="garage_door_hm_7-mesh-map-0">
+          <float_array id="garage_door_hm_7-mesh-map-0-array" count="72">1 0 0 1 0 0 0 1 1 0 0 0 1 1 0 1 1 1 1 0 1 1 1 1 0 1 0 0 0 1 0 0 1 0 0 0 1 0 1 1 0 1 0 1 1 1 1 0 1 1 0 1 0 1 1 0 1 0 1 1 0 1 0 0 0 0 0 0 1 0 1 0</float_array>
+          <technique_common>
+            <accessor source="#garage_door_hm_7-mesh-map-0-array" count="36" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="garage_door_hm_7-mesh-vertices">
+          <input semantic="POSITION" source="#garage_door_hm_7-mesh-positions"/>
+        </vertices>
+        <triangles material="garage_door_hm_7-material" count="12">
+          <input semantic="VERTEX" source="#garage_door_hm_7-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#garage_door_hm_7-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#garage_door_hm_7-mesh-map-0" offset="2" set="0"/>
+          <p>1 0 0 3 1 1 0 2 2 7 3 3 5 4 4 4 5 5 6 6 6 3 7 7 2 8 8 1 9 9 6 6 10 2 8 11 7 10 12 0 11 13 3 7 14 4 12 15 1 9 16 0 11 17 1 0 18 2 13 19 3 1 20 7 3 21 6 14 22 5 4 23 6 6 24 7 10 25 3 7 26 1 9 27 5 15 28 6 6 29 7 10 30 4 12 31 0 11 32 4 12 33 5 15 34 1 9 35</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="garage_door_frame_hs_2-mesh" name="garage_door_frame_hs_2">
+      <mesh>
+        <source id="garage_door_frame_hs_2-mesh-positions">
+          <float_array id="garage_door_frame_hs_2-mesh-positions-array" count="48">2 7.09693e-7 0.2000001 2 3.000001 0.1999897 -2 7.09695e-7 0.2000005 1.5 7.09694e-7 0.2000003 -1.5 7.09694e-7 0.2000004 1.5 2.500001 0.1999915 -1.5 2.500001 0.1999916 -1.5 -7.07903e-7 -0.1999995 1.5 2.499999 -0.2000085 -1.5 2.499999 -0.2000083 -2 -7.38304e-7 -0.2000004 2 -7.38304e-7 -0.2000002 2 2.999999 -0.2000116 1.5 -7.38304e-7 -0.2000002 -2 3.000001 0.1999902 -2 2.999999 -0.2000111</float_array>
+          <technique_common>
+            <accessor source="#garage_door_frame_hs_2-mesh-positions-array" count="16" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="garage_door_frame_hs_2-mesh-normals">
+          <float_array id="garage_door_frame_hs_2-mesh-normals-array" count="84">2.7587e-7 3.50856e-6 1 2.75605e-7 3.19155e-6 1 2.94595e-7 3.23753e-6 1 0 -1 3.17891e-6 0 -1 3.17891e-6 1 0 0 1 0 0 1 0 0 -1 0 0 -1 0 0 -1 0 0 -4.05465e-7 -3.37382e-6 -1 -1.198e-6 -4.98686e-6 -1 -1.3072e-6 -4.95811e-6 -1 0 1 -3.57627e-6 0 1 -3.57627e-6 4.35641e-7 3.50856e-6 1 1.41949e-7 3.44479e-6 1 4.76837e-7 3.51667e-6 1 1.67218e-6 -3.52604e-6 -1 9.46091e-7 -4.65109e-6 -1 1.62125e-6 -3.51667e-6 -1 2.38419e-7 3.51667e-6 1 1 0 0 -1 0 0 0 -3.31402e-6 -1 1.30385e-7 3.45831e-6 1 9.61125e-7 -4.63799e-6 -1</float_array>
+          <technique_common>
+            <accessor source="#garage_door_frame_hs_2-mesh-normals-array" count="28" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="garage_door_frame_hs_2-mesh-map-0">
+          <float_array id="garage_door_frame_hs_2-mesh-map-0-array" count="120">0 0 0.125 0.8333334 0 1 0.125 0.6066666 0.875 0.7666667 0.875 0.6066666 0.4500001 0 0.5833333 0.8335767 0.4499999 0.8335768 0.4500001 0 0.5833334 0.8335767 0.5833334 0 1 0 0.8750001 0.8333334 1 1 1.5 0.4499999 0.5 0.5500001 0.5 0.4499998 1 0 0.875 0.8333334 0.875 0 0.875 0.8333333 0 1 0.125 0.8333333 0 0 0.125 0.8333334 0.125 0 0.125 0.8333333 1 1 0.8750001 0.8333333 0 0 0.125 0 0.125 0.8333334 0.125 0.6066666 0.125 0.7666665 0.875 0.7666667 0.4500001 0 0.5833334 0 0.5833333 0.8335767 0.4500001 0 0.45 0.8335768 0.5833334 0.8335767 1 0 0.8750001 0 0.8750001 0.8333334 1.5 0.4499999 1.5 0.5500003 0.5 0.5500001 1 0 1 1 0.875 0.8333334 0.875 0.8333333 1 1 0 1 0 0 0 1 0.125 0.8333334 0.125 0.8333333 0 1 1 1</float_array>
+          <technique_common>
+            <accessor source="#garage_door_frame_hs_2-mesh-map-0-array" count="60" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="garage_door_frame_hs_2-mesh-vertices">
+          <input semantic="POSITION" source="#garage_door_frame_hs_2-mesh-positions"/>
+        </vertices>
+        <triangles material="wall_hs_1-material" count="18">
+          <input semantic="VERTEX" source="#garage_door_frame_hs_2-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#garage_door_frame_hs_2-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#garage_door_frame_hs_2-mesh-map-0" offset="2" set="0"/>
+          <p>2 0 0 6 1 1 14 2 2 6 3 3 8 3 4 5 4 5 4 5 6 9 6 7 6 7 8 3 8 9 8 9 10 13 10 11 11 11 12 8 12 13 12 13 14 0 16 18 5 17 19 3 18 20 5 17 21 14 2 22 6 1 23 10 19 24 9 20 25 7 21 26 9 20 27 12 13 28 8 12 29 2 0 30 4 22 31 6 1 32 6 3 33 9 4 34 8 3 35 4 5 36 7 23 37 9 6 38 3 8 39 5 24 40 8 9 41 11 11 42 13 25 43 8 12 44 0 16 48 1 26 49 5 17 50 5 17 51 1 26 52 14 2 53 10 19 54 15 27 55 9 20 56 9 20 57 15 27 58 12 13 59</p>
+        </triangles>
+        <triangles material="concrete_hr_3-material" count="2">
+          <input semantic="VERTEX" source="#garage_door_frame_hs_2-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#garage_door_frame_hs_2-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#garage_door_frame_hs_2-mesh-map-0" offset="2" set="0"/>
+          <p>1 14 15 15 14 16 14 15 17 1 14 45 12 15 46 15 14 47</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="garage_door_frame_hs_2" name="garage_door_frame_hs_2" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 -3.61999e-6 -1 0 0 1 -3.61999e-6 0 0 0 0 1</matrix>
+        <instance_geometry url="#garage_door_frame_hs_2-mesh" name="garage_door_frame_hs_2">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="wall_hs_1-material" target="#wall_hs_1-material">
+                <bind_vertex_input semantic="UVMap" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+              <instance_material symbol="concrete_hr_3-material" target="#concrete_hr_3-material">
+                <bind_vertex_input semantic="UVMap" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+        <node id="garage_door_hm_7" name="garage_door_hm_7" type="NODE">
+          <matrix sid="transform">1 0 0 0 0 -3.61999e-6 -1 1.07884e-13 0 1 -3.61999e-6 0 0 0 0 1</matrix>
+          <instance_geometry url="#garage_door_hm_7-mesh" name="garage_door_hm_7">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="garage_door_hm_7-material" target="#garage_door_hm_7-material">
+                  <bind_vertex_input semantic="UVMap" input_semantic="TEXCOORD" input_set="0"/>
+                </instance_material>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>
