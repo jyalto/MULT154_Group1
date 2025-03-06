@@ -134,9 +134,9 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        print("Pistol Ammo: " + ammo[(int)AmmoType.PISTOL]);
+        /*print("Pistol Ammo: " + ammo[(int)AmmoType.PISTOL]);
         print("AR Ammo: " + ammo[(int)AmmoType.ASSAULTRIFLE]);
-        print("Shotgun Ammo: " + ammo[(int)AmmoType.SHOTGUN]);
+        print("Shotgun Ammo: " + ammo[(int)AmmoType.SHOTGUN]);*/
 
 
         if (canOpenChestGreen && Input.GetButtonDown("Interact"))
