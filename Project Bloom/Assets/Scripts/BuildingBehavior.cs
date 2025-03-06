@@ -4,18 +4,17 @@ using System.Collections.Generic;
 using System.Resources;
 using UnityEngine;
 
-// Having all building utilities in the same script gives extra functionality
+// A behavior script for all building prefabs. Often accompanied by a type-specific behavior script
 public class BuildingBehavior : MonoBehaviour
 {
-    // Common Attributes
+    [Header("Common Attributes")]
     [SerializeField] BuildingType buildingType;     // Refer to enum "BuildingType"
-    [SerializeField] bool isActivatable;            // Whether a remote activator can be applied
-    [SerializeField] bool hasActivator;             // Whether a remote activator is applied
-    public int remoteChannel;                       // The channel that triggers the building when fired
+    public float durability;                        // Condition of building %
+
+    [Header("Building Costs")]
+
 
     private Collider colliderComponent;
-    [SerializeField] float durability;              // Condition of building
-
 
     public enum BuildingType // For type-checking
     {
@@ -29,6 +28,8 @@ public class BuildingBehavior : MonoBehaviour
     {
         colliderComponent = GetComponent<Collider>();
 
+        durability = 100.0f;
+
         switch (buildingType)
         {
             case BuildingType.BARRICADE:
@@ -38,34 +39,5 @@ public class BuildingBehavior : MonoBehaviour
             case BuildingType.TRAP:
                 break;
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    public void Activate(int channel)
-    {
-        if (hasActivator && remoteChannel == channel)
-        {
-            switch (buildingType)
-            {
-                case BuildingType.BARRICADE:
-                    break;
-                case BuildingType.SENTRY:
-                    break;
-                case BuildingType.TRAP:
-                    break;
-            }
-        }
-        // Fire Coroutine to set IsActivatable back to true
-    }
-
-    private void ApplyRemoteActivator(int channel)
-    {
-        hasActivator = true;
-        remoteChannel = channel;
     }
 }
