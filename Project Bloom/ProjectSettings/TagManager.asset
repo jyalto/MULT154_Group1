@@ -10,6 +10,14 @@ TagManager:
   - Pistol PickUp
   - Ammo PickUp
   - Assault Rifle PickUp
+  - Key Green
+  - Chest Green
+  - Key Red
+  - Chest Red
+  - Shotgun
+  - Shotgun PickUp
+  - Gas Can PickUp
+  - Enemy
   layers:
   - Default
   - TransparentFX
