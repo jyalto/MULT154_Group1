@@ -18,6 +18,6 @@ public class GameManager : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        GameObject newEnemy = Instantiate(enemy, new Vector3(Random.Range(-47.6f, 47.6f), 0, Random.Range(-48.3f, 47.5f)), Quaternion.identity);
+        //GameObject newEnemy = Instantiate(enemy, new Vector3(Random.Range(-47.6f, 47.6f), 0, Random.Range(-48.3f, 47.5f)), Quaternion.identity);
     }
 }
