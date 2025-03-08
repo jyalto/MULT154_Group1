@@ -8689,7 +8689,7 @@ Transform:
   m_GameObject: {fileID: 843592261}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.110901, y: -14.5706215, z: -17.54422}
+  m_LocalPosition: {x: 8.123093, y: -13.570623, z: -15.610138}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9732,8 +9732,8 @@ Transform:
   m_GameObject: {fileID: 928089101}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 204.67441, y: -14.577766, z: -456.4307}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalPosition: {x: 195.2041, y: -14.577749, z: -453.75967}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1496452804}
@@ -10006,7 +10006,7 @@ Transform:
   m_GameObject: {fileID: 968728271}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 333.7175, y: -14.832956, z: -196.2088}
+  m_LocalPosition: {x: 327.54105, y: -13.570618, z: -191.85185}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11029,6 +11029,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 8519815910072036747, guid: f01bb510e4f9dc14c853f883fd01d666, type: 3}
   enemyCount: 0
+  spawnPoints:
+  - {fileID: 843592262}
+  - {fileID: 968728272}
+  - {fileID: 928089102}
 --- !u!4 &1074783298
 Transform:
   m_ObjectHideFlags: 0
@@ -21360,7 +21364,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: c4e4de68f2891bc428c64b0cf7645551, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 5e5856393f6b6e24e879da0714d336c7, type: 2}
 --- !u!4 &2076538587
 Transform:
   m_ObjectHideFlags: 0
