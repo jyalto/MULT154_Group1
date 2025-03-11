@@ -6,23 +6,84 @@ public class GameManager : MonoBehaviour
 {
     public GameObject enemy;
     public int enemyCount = 0;
+    public int wave = 1;
+    public int killedEnemies = 0;
 
     public Transform[] spawnPoints;
+
+    private Coroutine myCoroutine = null;
 
     // Update is called once per frame
     void Update()
     {
-        if (enemyCount < 1)
+        if (wave == 1)
         {
-            SpawnEnemy();
+            if (enemyCount < 5 && killedEnemies < 15 && myCoroutine == null)
+            {
+                myCoroutine = StartCoroutine(WaveOneSpawnEnemy());
+            }
+            if (killedEnemies == 15)
+            {
+                wave = 2;
+            }
+        }
+        else if (wave == 2)
+        {
+            if (enemyCount < 7 && killedEnemies < 20 && myCoroutine == null)
+            {
+                myCoroutine = StartCoroutine(WaveTwoSpawnEnemy());
+            }
+            if (killedEnemies == 20)
+            {
+                wave = 3;
+            }
+        }
+        else if (wave == 3)
+        {
+            if (enemyCount < 10 && killedEnemies < 30 && myCoroutine == null)
+            {
+                myCoroutine = StartCoroutine(WaveThreeSpawnEnemy());
+            }
+            if (killedEnemies == 30)
+            {
+                wave = 4;
+            }
         }
     }
 
-    private void SpawnEnemy()
+    private IEnumerator WaveOneSpawnEnemy()
     {
-        //GameObject newEnemy = Instantiate(enemy, new Vector3(Random.Range(-47.6f, 47.6f), 0, Random.Range(-48.3f, 47.5f)), Quaternion.identity);
-        int randomPoint = Random.Range(0, spawnPoints.Length);
+        while (enemyCount < 5)
+        {
+            int randomPoint = Random.Range(0, spawnPoints.Length);
+            Instantiate(enemy, spawnPoints[randomPoint].position, Quaternion.identity);
+            yield return new WaitForSeconds(3f);
+        }
 
-        GameObject newEnemy = Instantiate(enemy, spawnPoints[randomPoint].position, Quaternion.identity);
+        myCoroutine = null;
+    }
+
+    private IEnumerator WaveTwoSpawnEnemy()
+    {
+        while (enemyCount < 7)
+        {
+            int randomPoint = Random.Range(0, spawnPoints.Length);
+            Instantiate(enemy, spawnPoints[randomPoint].position, Quaternion.identity);
+            yield return new WaitForSeconds(2.75f);
+        }
+
+        myCoroutine = null;
+    }
+
+    private IEnumerator WaveThreeSpawnEnemy()
+    {
+        while (enemyCount < 10)
+        {
+            int randomPoint = Random.Range(0, spawnPoints.Length);
+            Instantiate(enemy, spawnPoints[randomPoint].position, Quaternion.identity);
+            yield return new WaitForSeconds(2.5f);
+        }
+
+        myCoroutine = null;
     }
 }
