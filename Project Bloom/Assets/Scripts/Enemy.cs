@@ -55,6 +55,7 @@ public class Enemy : MonoBehaviour
 
     private void OnDestroy()
     {
+        gameManager.killedEnemies++;
         gameManager.enemyCount--;
     }
 }
