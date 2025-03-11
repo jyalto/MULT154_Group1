@@ -49,6 +49,18 @@ public class GameManager : MonoBehaviour
                 wave = 4;
             }
         }
+        else if (wave == 4)
+        {
+            if (enemyCount < 15 && killedEnemies < 40 && myCoroutine == null)
+            {
+                myCoroutine = StartCoroutine(WaveFourSpawnEnemy());
+            }
+            if (killedEnemies == 40)
+            {
+                wave = 5;
+            }
+        }
+        print("Current wave: " + wave);
     }
 
     private IEnumerator WaveOneSpawnEnemy()
@@ -82,6 +94,18 @@ public class GameManager : MonoBehaviour
             int randomPoint = Random.Range(0, spawnPoints.Length);
             Instantiate(enemy, spawnPoints[randomPoint].position, Quaternion.identity);
             yield return new WaitForSeconds(2.5f);
+        }
+
+        myCoroutine = null;
+    }
+
+    private IEnumerator WaveFourSpawnEnemy()
+    {
+        while (enemyCount < 15)
+        {
+            int randomPoint = Random.Range(0, spawnPoints.Length);
+            Instantiate(enemy, spawnPoints[randomPoint].position, Quaternion.identity);
+            yield return new WaitForSeconds(2f);
         }
 
         myCoroutine = null;

@@ -125,6 +125,11 @@ MonoBehaviour:
   agent: {fileID: 4510651296602036111}
   gameManager: {fileID: 0}
   player: {fileID: 0}
+  randomDrop:
+  - {fileID: 9144164244080005112, guid: 5ba1ae649eb66174ba9a3200668f5937, type: 3}
+  - {fileID: 72417088088033304, guid: d256898718dde2c48b53833279d09759, type: 3}
+  - {fileID: 2574026887304345406, guid: d30726c1678cc674f9c0b7289cc0767a, type: 3}
+  - {fileID: 927894897820252096, guid: b32629ec71f96db439483f8c2bea2c14, type: 3}
   health: 10
 --- !u!195 &4510651296602036111
 NavMeshAgent:

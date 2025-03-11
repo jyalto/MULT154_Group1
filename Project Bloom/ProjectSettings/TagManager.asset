@@ -18,6 +18,8 @@ TagManager:
   - Shotgun PickUp
   - Gas Can PickUp
   - Enemy
+  - RPG
+  - RPG PickUp
   layers:
   - Default
   - TransparentFX

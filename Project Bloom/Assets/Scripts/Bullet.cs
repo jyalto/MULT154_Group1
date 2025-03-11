@@ -6,7 +6,7 @@ public class Bullet : MonoBehaviour
 {
     private Weapon weapon;
 
-    public int damage = 0;
+    public float damage = 0;
 
     void Start()
     {
@@ -16,7 +16,7 @@ public class Bullet : MonoBehaviour
         {
             if (weapon.typeOfWeapon == Weapon.WeaponType.PISTOL)
             {
-                damage = 5;
+                damage = 3.5f;
             }
             else if (weapon.typeOfWeapon == Weapon.WeaponType.ASSAULTRIFLE)
             {
