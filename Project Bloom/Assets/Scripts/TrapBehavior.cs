@@ -6,9 +6,10 @@ using static UnityEngine.GraphicsBuffer;
 public class TrapBehavior : MonoBehaviour
 {
     [Header("Trap Attributes")]
-    [SerializeField] float damage;                  // Damage dealt
+    [SerializeField] int damage;                  // Damage dealt
     [SerializeField] float triggerRate;             // Damage interval (If <=0, trap is single use)
     [SerializeField] float uses;                    // Total use time is triggerRate * uses
+    public AudioClip activationSound;
 
     [Header("Remote Activation")]
     [SerializeField] bool isActivatable;            // Whether a remote activator can be applied
@@ -31,6 +32,7 @@ public class TrapBehavior : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Hit! " + other);
         if (buildingBehavior.durability > 0 && other.gameObject.CompareTag("Enemy"))
         {
             targets.Add(other.gameObject);
@@ -70,8 +72,15 @@ public class TrapBehavior : MonoBehaviour
         {
             foreach (GameObject target in targets)
             {
-                // Reduce HP here
-                Debug.Log("Damaged " + target.name + " for " + damage + " damage!");
+                // Remove dead enemies
+                if (target.GetComponent<Enemy>().health - damage <= 0)
+                {
+                    targets.Remove(target);
+                }
+                // Damage targets
+                target.GetComponent<Enemy>().health -= damage;
+                gameObject.GetComponent<AudioSource>().pitch = UnityEngine.Random.Range(0.8f, 1.2f);
+                gameObject.GetComponent<AudioSource>().PlayOneShot(activationSound);
             }
             uses--;
         }

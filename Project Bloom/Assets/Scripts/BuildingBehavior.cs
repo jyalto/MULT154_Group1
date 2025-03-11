@@ -9,10 +9,11 @@ public class BuildingBehavior : MonoBehaviour
 {
     [Header("Common Attributes")]
     [SerializeField] BuildingType buildingType;     // Refer to enum "BuildingType"
-    public float durability;                        // Condition of building %
+    public float durability;
+    public AudioClip constructionSound;
 
     [Header("Building Costs")]
-
+    // TO BE IMPLEMENTED
 
     private Collider colliderComponent;
 
@@ -26,7 +27,8 @@ public class BuildingBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        colliderComponent = GetComponent<Collider>();
+        gameObject.GetComponent<AudioSource>().pitch = UnityEngine.Random.Range(0.8f, 1.2f);
+        gameObject.GetComponent<AudioSource>().PlayOneShot(constructionSound);
 
         durability = 100.0f;
 
