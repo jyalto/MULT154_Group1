@@ -44,12 +44,13 @@ GameObject:
   - component: {fileID: 2769942273249566050}
   - component: {fileID: 5957934705450832631}
   - component: {fileID: 3938967582853834804}
+  - component: {fileID: 1974972879992441805}
   - component: {fileID: 1891372799752151913}
   - component: {fileID: 4462395432768674561}
   - component: {fileID: 4599690803529651602}
   - component: {fileID: 2383053381387445342}
   - component: {fileID: 1746233515953041332}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -178,6 +179,27 @@ MonoBehaviour:
   chestGreen: {fileID: 0}
   chestRed: {fileID: 0}
   ammo: 000000000000000000000000
+--- !u!114 &1974972879992441805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3166527255515278652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1311f1282708b44abb149d2890c6424, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCamera: {fileID: 6682040707953005592}
+  buildingPreviews:
+  - {fileID: 3111088430545699166, guid: cf4c3237fd0e11048b453729d8b6b7fe, type: 3}
+  buildingModeActive: 0
+  selectedIndex: 0
+  buildRange: 5
+  placementMask:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!136 &1891372799752151913
 CapsuleCollider:
   m_ObjectHideFlags: 0

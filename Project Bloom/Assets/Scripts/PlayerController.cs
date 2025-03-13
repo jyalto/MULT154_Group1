@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     public GameObject shotgun;
     public GameObject keyGreen;
     public GameObject keyRed;
-    public GameObject gasCan;
+    public GameObject rpg;
     public TreasureChest chestGreen;
     public TreasureChest chestRed;
 
@@ -31,14 +31,16 @@ public class PlayerController : MonoBehaviour
     private bool pistolInteractable = false;
     private bool assaultRifleInteractable = false;
     private bool shotgunInteractable = false;
+    private bool rpgInteractable = false;
     private bool canOpenChestGreen = false;
     private bool canOpenChestRed = false;
-    private bool canCollectGasCan = false;
     private Coroutine switchWeaponCoroutine = null;
     private Vector3 velocity;
 
     private List<GameObject> weapons = new List<GameObject>();
-    private List<GameObject> inventory = new List<GameObject>();
+    private List<GameObject> keyItems = new List<GameObject>();
+
+    private Dictionary<string, int> resources = new Dictionary<string, int>();
 
     private int currentWeaponIndex = 0;
 
@@ -46,14 +48,16 @@ public class PlayerController : MonoBehaviour
     {
         PISTOL,
         ASSAULTRIFLE,
-        SHOTGUN
+        SHOTGUN,
+        RPG
     }
 
-    public int[] ammo = new int[3];
+    public int[] ammo = new int[4];
 
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         GameObject gameManagerObject = GameObject.Find("Game Manager");
 
         if (gameManagerObject != null)
@@ -136,15 +140,21 @@ public class PlayerController : MonoBehaviour
 
         /*print("Pistol Ammo: " + ammo[(int)AmmoType.PISTOL]);
         print("AR Ammo: " + ammo[(int)AmmoType.ASSAULTRIFLE]);
-        print("Shotgun Ammo: " + ammo[(int)AmmoType.SHOTGUN]);*/
+        print("Shotgun Ammo: " + ammo[(int)AmmoType.SHOTGUN]);
+        print("RPG Ammo: " + ammo[(int)AmmoType.RPG]);*/
+
+        /*foreach (var resource in resources)
+        {
+            Debug.Log($"Resource: {resource.Key}, Count: {resource.Value}");
+        }*/
 
 
         if (canOpenChestGreen && Input.GetButtonDown("Interact"))
         {
-            if (inventory.Contains(keyGreen))
+            if (keyItems.Contains(keyGreen))
             {
                 chestGreen.OpenChest();
-                inventory.Remove(keyGreen);
+                keyItems.Remove(keyGreen);
             }
             else if (!chestGreen.opened)
             {
@@ -154,10 +164,10 @@ public class PlayerController : MonoBehaviour
 
         if (canOpenChestRed && Input.GetButtonDown("Interact"))
         {
-            if (inventory.Contains(keyRed))
+            if (keyItems.Contains(keyRed))
             {
                 chestRed.OpenChest();
-                inventory.Remove(keyRed);
+                keyItems.Remove(keyRed);
             }
             else if (!chestRed.opened)
             {
@@ -207,14 +217,19 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-
-        if (canCollectGasCan && Input.GetButtonDown("Interact"))
+        if (rpgInteractable)
         {
-            if (!inventory.Contains(gasCan))
+            if (Input.GetButtonDown("Interact"))
             {
-                inventory.Add(gasCan);
-                audioSources[3].Play();
-                Destroy(gasCan);
+                if (!weapons.Contains(rpg))
+                {
+                    ammo[(int)AmmoType.RPG] += 2;
+                    weapons.Add(rpg);
+                    audioSources[0].Play();
+                    EquipWeapon(rpg);
+                    Destroy(currentWeaponPickup);
+                    rpgInteractable = false;
+                }
             }
         }
     }
@@ -334,6 +349,39 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+        if (other.CompareTag("RPG PickUp"))
+        {
+            if (weapons.Count < 2)
+            {
+                if (weapon == null || !weapons.Contains(rpg))
+                {
+                    weapons.Add(rpg);
+                    audioSources[0].Play();
+                    EquipWeapon(rpg);
+                }
+                else
+                {
+                    audioSources[1].Play();
+                }
+                ammo[(int)AmmoType.RPG] += 2;
+                Destroy(other.gameObject);
+            }
+            else
+            {
+                if (weapons.Contains(rpg))
+                {
+                    audioSources[1].Play();
+                    ammo[(int)AmmoType.RPG] += 2;
+                    Destroy(other.gameObject);
+                }
+                else
+                {
+                    currentWeaponPickup = other.gameObject;
+                    rpgInteractable = true;
+                }
+            }
+        }
+
         if (other.CompareTag("Ammo PickUp") && weapon != null)
         {
             audioSources[1].Play();
@@ -349,11 +397,15 @@ public class PlayerController : MonoBehaviour
             {
                 ammo[(int)AmmoType.SHOTGUN] += 8;
             }
+            else if (weapon.typeOfWeapon == Weapon.WeaponType.RPG)
+            {
+                ammo[(int)AmmoType.RPG] += 1;
+            }
             Destroy(other.gameObject);
         }
         if (other.CompareTag("Key Green"))
         {
-            inventory.Add(keyGreen);
+            keyItems.Add(keyGreen);
             audioSources[2].Play();
             Destroy(other.gameObject);
         }
@@ -364,7 +416,7 @@ public class PlayerController : MonoBehaviour
 
         if (other.CompareTag("Key Red"))
         {
-            inventory.Add(keyRed);
+            keyItems.Add(keyRed);
             audioSources[2].Play();
             Destroy(other.gameObject);
         }
@@ -375,7 +427,9 @@ public class PlayerController : MonoBehaviour
 
         if (other.CompareTag("Gas Can PickUp"))
         {
-            canCollectGasCan = true;
+            AddResource("Gas Can");
+            audioSources[3].Play();
+            Destroy(other.gameObject);
         }
     }
 
@@ -396,6 +450,11 @@ public class PlayerController : MonoBehaviour
             shotgunInteractable = false;
             currentWeaponPickup = null;
         }
+        else if (other.CompareTag("RPG PickUp"))
+        {
+            rpgInteractable = false;
+            currentWeaponPickup = null;
+        }
         if (other.CompareTag("Chest Green"))
         {
             canOpenChestGreen = false;
@@ -403,10 +462,6 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("Chest Red"))
         {
             canOpenChestRed = false;
-        }
-        if (other.CompareTag("Gas Can PickUp"))
-        {
-            canCollectGasCan = false;
         }
     }
 
@@ -431,10 +486,40 @@ public class PlayerController : MonoBehaviour
             {
                 weapons.Remove(shotgun);
             }
+            else if (weapon.typeOfWeapon == Weapon.WeaponType.RPG)
+            {
+                weapons.Remove(rpg);
+            }
         }
 
         newWeapon.SetActive(true);
 
         weapon = newWeapon.GetComponent<Weapon>();
+    }
+
+    public void AddResource(string resourceName)
+    {
+        if (resources.ContainsKey(resourceName))
+        {
+            resources[resourceName]++;
+        }
+        else
+        {
+            resources[resourceName] = 1;
+        }
+
+        Debug.Log($"{resourceName} collected. Total: {resources[resourceName]}");
+    }
+
+    public void RemoveResource(string resourceName)
+    {
+        if (resources.ContainsKey(resourceName))
+        {
+            resources[resourceName]--;
+            if (resources[resourceName] <= 0)
+            {
+                resources.Remove(resourceName);
+            }
+        }
     }
 }

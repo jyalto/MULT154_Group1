@@ -19,7 +19,8 @@ public class Weapon : MonoBehaviour
     {
         PISTOL,
         ASSAULTRIFLE,
-        SHOTGUN
+        SHOTGUN,
+        RPG
     }
 
     public WeaponType typeOfWeapon;
