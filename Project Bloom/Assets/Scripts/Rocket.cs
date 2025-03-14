@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Rocket : MonoBehaviour
 {
+    public GameObject explosion;
+
     void Start()
     {
         
@@ -11,6 +13,7 @@ public class Rocket : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        Instantiate(explosion, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 }

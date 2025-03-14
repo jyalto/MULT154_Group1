@@ -26229,6 +26229,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RPG
       objectReference: {fileID: 0}
+    - target: {fileID: 1411512464560164, guid: 02baef62b1bfedf40bb369fb7542b9e7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4071463830363502, guid: 02baef62b1bfedf40bb369fb7542b9e7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.251
@@ -26269,6 +26273,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4825977690069263628, guid: 02baef62b1bfedf40bb369fb7542b9e7, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 27c5bfc730728324ebd7f9c433d8f0b3, type: 3}
     - target: {fileID: 8049388776111472577, guid: 02baef62b1bfedf40bb369fb7542b9e7, type: 3}
       propertyPath: fireRate
       value: 10
@@ -31527,7 +31535,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3938967582853834804, guid: 828880a0150f50547b0d2c0c9cfb82b3, type: 3}
       propertyPath: ammo.Array.data[3]
-      value: 20
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8016583785791845779, guid: 828880a0150f50547b0d2c0c9cfb82b3, type: 3}
       propertyPath: m_LocalScale.x

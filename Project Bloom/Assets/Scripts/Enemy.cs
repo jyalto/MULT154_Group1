@@ -52,7 +52,11 @@ public class Enemy : MonoBehaviour
                 Destroy(other.gameObject);
             }
         }
-        
+
+        if (other.CompareTag("Explosion"))
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnDestroy()

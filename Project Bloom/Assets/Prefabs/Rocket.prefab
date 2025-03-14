@@ -115,6 +115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6514854314440986744}
   - component: {fileID: 7201314479087559320}
+  - component: {fileID: 6123540895003119034}
   m_Layer: 0
   m_Name: Rocket
   m_TagString: Rocket
@@ -165,3 +166,16 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 2
+--- !u!114 &6123540895003119034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7410973418651961534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 201b0f9670187a2449df3d573530495c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosion: {fileID: 1121192042590650, guid: e1b08032bec16ba4eb1ae23cbd572664, type: 3}

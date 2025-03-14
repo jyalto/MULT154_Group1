@@ -22,6 +22,7 @@ TagManager:
   - Chest Gold
   - Key Gold
   - Rocket
+  - Explosion
   layers:
   - Default
   - TransparentFX
