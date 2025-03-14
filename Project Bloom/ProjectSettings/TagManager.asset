@@ -21,6 +21,7 @@ TagManager:
   - RPG PickUp
   - Chest Gold
   - Key Gold
+  - Rocket
   layers:
   - Default
   - TransparentFX

@@ -113,7 +113,7 @@ public class Weapon : MonoBehaviour
 
     private void FireWeapon()
     {
-        GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, Quaternion.identity);
+        GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
         bullet.GetComponent<Rigidbody>().AddForce(bulletSpawn.forward.normalized * bulletVelocity, ForceMode.Impulse);
 
         if (typeOfWeapon == WeaponType.PISTOL)
@@ -140,6 +140,7 @@ public class Weapon : MonoBehaviour
             audioSource.Play();
             player.ammo[(int)PlayerController.AmmoType.RPG] -= 1;
             bulletPrefabLifeTime = 10f;
+            bulletVelocity = 10f;
         }
 
         StartCoroutine(DestroyBullet(bullet, bulletPrefabLifeTime));
