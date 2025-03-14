@@ -141,6 +141,7 @@ public class Weapon : MonoBehaviour
 
             if (typeOfWeapon == WeaponType.PISTOL)
             {
+                gameObject.GetComponent<AudioSource>().pitch = UnityEngine.Random.Range(0.8f, 1.2f);
                 audioSource.Play();
                 player.ammo[(int)PlayerController.AmmoType.PISTOL] -= 1;
             }
@@ -154,6 +155,7 @@ public class Weapon : MonoBehaviour
             }
             else if (typeOfWeapon == WeaponType.SHOTGUN)
             {
+                gameObject.GetComponent<AudioSource>().pitch = UnityEngine.Random.Range(0.8f, 1.2f);
                 audioSource.Play();
                 player.ammo[(int)PlayerController.AmmoType.SHOTGUN] -= 1;
                 bulletPrefabLifeTime = 0.35f;
