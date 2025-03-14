@@ -42,6 +42,10 @@ public class Weapon : MonoBehaviour
         {
             fireRate = 3f;
         }
+        else if (typeOfWeapon == WeaponType.RPG)
+        {
+            fireRate = 10f;
+        }
     }
 
     // Update is called once per frame
@@ -94,6 +98,17 @@ public class Weapon : MonoBehaviour
                 }
             }
         }
+        else if (typeOfWeapon == WeaponType.RPG && player.ammo[(int)PlayerController.AmmoType.RPG] > 0)
+        {
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                if (Time.time >= nextFireTime)
+                {
+                    FireWeapon();
+                    nextFireTime = Time.time + fireRate;
+                }
+            }
+        }
     }
 
     private void FireWeapon()
@@ -119,6 +134,12 @@ public class Weapon : MonoBehaviour
             audioSource.Play();
             player.ammo[(int)PlayerController.AmmoType.SHOTGUN] -= 1;
             bulletPrefabLifeTime = 0.35f;
+        }
+        else if (typeOfWeapon == WeaponType.RPG)
+        {
+            audioSource.Play();
+            player.ammo[(int)PlayerController.AmmoType.RPG] -= 1;
+            bulletPrefabLifeTime = 10f;
         }
 
         StartCoroutine(DestroyBullet(bullet, bulletPrefabLifeTime));

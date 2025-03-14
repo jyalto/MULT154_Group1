@@ -144,6 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8de9c38235f124643a9c2284680da109, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chestItem: {fileID: 0}
   opened: 0
 --- !u!82 &2530702260654469838
 AudioSource:

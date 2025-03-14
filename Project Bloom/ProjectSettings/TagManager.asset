@@ -13,13 +13,14 @@ TagManager:
   - Key Green
   - Chest Green
   - Key Red
-  - Chest Red
   - Shotgun
   - Shotgun PickUp
   - Gas Can PickUp
   - Enemy
   - RPG
   - RPG PickUp
+  - Chest Gold
+  - Key Gold
   layers:
   - Default
   - TransparentFX

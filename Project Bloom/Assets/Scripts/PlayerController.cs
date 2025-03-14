@@ -15,10 +15,10 @@ public class PlayerController : MonoBehaviour
     public GameObject assaultRifle;
     public GameObject shotgun;
     public GameObject keyGreen;
-    public GameObject keyRed;
+    public GameObject keyGold;
     public GameObject rpg;
     public TreasureChest chestGreen;
-    public TreasureChest chestRed;
+    public TreasureChest ChestGold;
 
     private AudioSource[] audioSources;
     private Weapon weapon;
@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
     private bool shotgunInteractable = false;
     private bool rpgInteractable = false;
     private bool canOpenChestGreen = false;
-    private bool canOpenChestRed = false;
+    private bool canOpenChestGold = false;
     private Coroutine switchWeaponCoroutine = null;
     private Vector3 velocity;
 
@@ -162,16 +162,16 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (canOpenChestRed && Input.GetButtonDown("Interact"))
+        if (canOpenChestGold && Input.GetButtonDown("Interact"))
         {
-            if (keyItems.Contains(keyRed))
+            if (keyItems.Contains(keyGold))
             {
-                chestRed.OpenChest();
-                keyItems.Remove(keyRed);
+                ChestGold.OpenChest();
+                keyItems.Remove(keyGold);
             }
-            else if (!chestRed.opened)
+            else if (!ChestGold.opened)
             {
-                chestRed.LockedChest();
+                ChestGold.LockedChest();
             }
         }
         if (pistolInteractable)
@@ -414,15 +414,15 @@ public class PlayerController : MonoBehaviour
             canOpenChestGreen = true;
         }
 
-        if (other.CompareTag("Key Red"))
+        if (other.CompareTag("Key Gold"))
         {
-            keyItems.Add(keyRed);
+            keyItems.Add(keyGold);
             audioSources[2].Play();
             Destroy(other.gameObject);
         }
-        if (other.CompareTag("Chest Red"))
+        if (other.CompareTag("Chest Gold"))
         {
-            canOpenChestRed = true;
+            canOpenChestGold = true;
         }
 
         if (other.CompareTag("Gas Can PickUp"))
@@ -459,9 +459,9 @@ public class PlayerController : MonoBehaviour
         {
             canOpenChestGreen = false;
         }
-        if (other.CompareTag("Chest Red"))
+        if (other.CompareTag("Chest Gold"))
         {
-            canOpenChestRed = false;
+            canOpenChestGold = false;
         }
     }
 
