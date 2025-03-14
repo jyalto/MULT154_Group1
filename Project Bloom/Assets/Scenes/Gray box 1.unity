@@ -23791,6 +23791,11 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.2497689, y: 2.1360168, z: 1.8282163}
   m_Center: {x: -0.045187645, y: 0.5679896, z: -0.5613567}
+--- !u!1 &1568259523 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1269384682211878, guid: 02baef62b1bfedf40bb369fb7542b9e7, type: 3}
+  m_PrefabInstance: {fileID: 1714204436}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1572051011
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31529,6 +31534,10 @@ PrefabInstance:
       propertyPath: chestGreen
       value: 
       objectReference: {fileID: 1630005104}
+    - target: {fileID: 3938967582853834804, guid: 828880a0150f50547b0d2c0c9cfb82b3, type: 3}
+      propertyPath: rocketShell
+      value: 
+      objectReference: {fileID: 1568259523}
     - target: {fileID: 3938967582853834804, guid: 828880a0150f50547b0d2c0c9cfb82b3, type: 3}
       propertyPath: ammo.Array.size
       value: 4

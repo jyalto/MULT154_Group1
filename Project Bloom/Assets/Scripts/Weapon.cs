@@ -113,37 +113,54 @@ public class Weapon : MonoBehaviour
 
     private void FireWeapon()
     {
-        GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
-        bullet.GetComponent<Rigidbody>().AddForce(bulletSpawn.forward.normalized * bulletVelocity, ForceMode.Impulse);
+        if (typeOfWeapon == WeaponType.RPG)
+        {
+            if (player.rocketShell.activeSelf)
+            {
+                GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
+                bullet.GetComponent<Rigidbody>().AddForce(bulletSpawn.forward.normalized * bulletVelocity, ForceMode.Impulse);
 
-        if (typeOfWeapon == WeaponType.PISTOL)
-        {
-            audioSource.Play();
-            player.ammo[(int)PlayerController.AmmoType.PISTOL] -= 1;
+                player.rocketShell.SetActive(false);
+                audioSource.Play();
+                player.ammo[(int)PlayerController.AmmoType.RPG] -= 1;
+                bulletPrefabLifeTime = 10f;
+                bulletVelocity = 10f;
+                if (player.ammo[(int)PlayerController.AmmoType.RPG] >= 1)
+                {
+                    player.StartCoroutine(player.ReloadRocket());
+                }
+
+                StartCoroutine(DestroyBullet(bullet, bulletPrefabLifeTime));
+            }
         }
-        else if (typeOfWeapon == WeaponType.ASSAULTRIFLE)
+
+        else
         {
-            if (!audioSource.isPlaying)
+            GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
+            bullet.GetComponent<Rigidbody>().AddForce(bulletSpawn.forward.normalized * bulletVelocity, ForceMode.Impulse);
+
+            if (typeOfWeapon == WeaponType.PISTOL)
             {
                 audioSource.Play();
+                player.ammo[(int)PlayerController.AmmoType.PISTOL] -= 1;
             }
-            player.ammo[(int)PlayerController.AmmoType.ASSAULTRIFLE] -= 1;
-        }
-        else if (typeOfWeapon == WeaponType.SHOTGUN)
-        {
-            audioSource.Play();
-            player.ammo[(int)PlayerController.AmmoType.SHOTGUN] -= 1;
-            bulletPrefabLifeTime = 0.35f;
-        }
-        else if (typeOfWeapon == WeaponType.RPG)
-        {
-            audioSource.Play();
-            player.ammo[(int)PlayerController.AmmoType.RPG] -= 1;
-            bulletPrefabLifeTime = 10f;
-            bulletVelocity = 10f;
-        }
+            else if (typeOfWeapon == WeaponType.ASSAULTRIFLE)
+            {
+                if (!audioSource.isPlaying)
+                {
+                    audioSource.Play();
+                }
+                player.ammo[(int)PlayerController.AmmoType.ASSAULTRIFLE] -= 1;
+            }
+            else if (typeOfWeapon == WeaponType.SHOTGUN)
+            {
+                audioSource.Play();
+                player.ammo[(int)PlayerController.AmmoType.SHOTGUN] -= 1;
+                bulletPrefabLifeTime = 0.35f;
+            }
 
-        StartCoroutine(DestroyBullet(bullet, bulletPrefabLifeTime));
+            StartCoroutine(DestroyBullet(bullet, bulletPrefabLifeTime));
+        }
     }
 
     private IEnumerator DestroyBullet(GameObject bullet, float delay)

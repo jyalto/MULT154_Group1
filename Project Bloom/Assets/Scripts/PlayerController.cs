@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public GameObject keyGreen;
     public GameObject keyGold;
     public GameObject rpg;
+    public GameObject rocketShell;
     public TreasureChest chestGreen;
     public TreasureChest ChestGold;
 
@@ -400,6 +401,10 @@ public class PlayerController : MonoBehaviour
             else if (weapon.typeOfWeapon == Weapon.WeaponType.RPG)
             {
                 ammo[(int)AmmoType.RPG] += 1;
+                if (!rocketShell.activeSelf)
+                {
+                    StartCoroutine(ReloadRocket());
+                }
             }
             Destroy(other.gameObject);
         }
@@ -463,6 +468,12 @@ public class PlayerController : MonoBehaviour
         {
             canOpenChestGold = false;
         }
+    }
+
+    public IEnumerator ReloadRocket()
+    {
+        yield return new WaitForSeconds(10f);
+        rocketShell.SetActive(true);
     }
 
     void EquipWeapon(GameObject newWeapon)
