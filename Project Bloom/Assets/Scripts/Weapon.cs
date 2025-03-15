@@ -121,6 +121,7 @@ public class Weapon : MonoBehaviour
                 bullet.GetComponent<Rigidbody>().AddForce(bulletSpawn.forward.normalized * bulletVelocity, ForceMode.Impulse);
 
                 player.rocketShell.SetActive(false);
+                gameObject.GetComponent<AudioSource>().pitch = UnityEngine.Random.Range(0.8f, 1.2f);
                 audioSource.Play();
                 player.ammo[(int)PlayerController.AmmoType.RPG] -= 1;
                 bulletPrefabLifeTime = 10f;
@@ -149,6 +150,7 @@ public class Weapon : MonoBehaviour
             {
                 if (!audioSource.isPlaying)
                 {
+                    gameObject.GetComponent<AudioSource>().pitch = UnityEngine.Random.Range(0.8f, 1.2f);
                     audioSource.Play();
                 }
                 player.ammo[(int)PlayerController.AmmoType.ASSAULTRIFLE] -= 1;

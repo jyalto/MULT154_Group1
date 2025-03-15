@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
     private bool canOpenChestGold = false;
     private Coroutine switchWeaponCoroutine = null;
     private Vector3 velocity;
+    private Coroutine reloadRocketRoutine = null;
 
     private List<GameObject> weapons = new List<GameObject>();
     private List<GameObject> keyItems = new List<GameObject>();
@@ -182,6 +183,7 @@ public class PlayerController : MonoBehaviour
                 if (!weapons.Contains(pistol))
                 {
                     weapons.Add(pistol);
+                    ammo[(int)AmmoType.PISTOL] += 8;
                     audioSources[0].Play();
                     EquipWeapon(pistol);
                     Destroy(currentWeaponPickup);
@@ -196,6 +198,7 @@ public class PlayerController : MonoBehaviour
                 if (!weapons.Contains(assaultRifle))
                 {
                     weapons.Add(assaultRifle);
+                    ammo[(int)AmmoType.ASSAULTRIFLE] += 25;
                     audioSources[0].Play();
                     EquipWeapon(assaultRifle);
                     Destroy(currentWeaponPickup);
@@ -209,8 +212,9 @@ public class PlayerController : MonoBehaviour
             {
                 if (!weapons.Contains(shotgun))
                 {
-                    ammo[(int)AmmoType.SHOTGUN] += 4;
+                    gameManager.shotgunDrop = true;
                     weapons.Add(shotgun);
+                    ammo[(int)AmmoType.SHOTGUN] += 4;
                     audioSources[0].Play();
                     EquipWeapon(shotgun);
                     Destroy(currentWeaponPickup);
@@ -224,7 +228,19 @@ public class PlayerController : MonoBehaviour
             {
                 if (!weapons.Contains(rpg))
                 {
-                    ammo[(int)AmmoType.RPG] += 2;
+                    if (gameManager.rpgDrop == false)
+                    {
+                        ammo[(int)AmmoType.RPG] += 2;
+                        gameManager.rpgDrop = true;
+                    }
+                    else
+                    {
+                        ammo[(int)AmmoType.RPG] += 1;
+                        if (!rocketShell.activeSelf && reloadRocketRoutine == null)
+                        {
+                            reloadRocketRoutine = StartCoroutine(ReloadRocket());
+                        }
+                    }
                     weapons.Add(rpg);
                     audioSources[0].Play();
                     EquipWeapon(rpg);
@@ -266,8 +282,8 @@ public class PlayerController : MonoBehaviour
                 else
                 {
                     audioSources[1].Play();
-                    ammo[(int)AmmoType.PISTOL] += 8;
                 }
+                ammo[(int)AmmoType.PISTOL] += 8;
                 Destroy(other.gameObject);
             }
             else
@@ -298,8 +314,8 @@ public class PlayerController : MonoBehaviour
                 else
                 {
                     audioSources[1].Play();
-                    ammo[(int)AmmoType.ASSAULTRIFLE] += 25;
                 }
+                ammo[(int)AmmoType.ASSAULTRIFLE] += 25;
                 Destroy(other.gameObject);
             }
             else
@@ -333,6 +349,7 @@ public class PlayerController : MonoBehaviour
                     //ammo[(int)AmmoType.SHOTGUN] += 4;
                 }
                 ammo[(int)AmmoType.SHOTGUN] += 4;
+                gameManager.shotgunDrop = true;
                 Destroy(other.gameObject);
             }
             else
@@ -341,6 +358,7 @@ public class PlayerController : MonoBehaviour
                 {
                     audioSources[1].Play();
                     ammo[(int)AmmoType.SHOTGUN] += 4;
+                    gameManager.shotgunDrop = true;
                     Destroy(other.gameObject);
                 }
                 else
@@ -364,7 +382,20 @@ public class PlayerController : MonoBehaviour
                 {
                     audioSources[1].Play();
                 }
-                ammo[(int)AmmoType.RPG] += 2;
+
+                if (gameManager.rpgDrop == false)
+                {
+                    ammo[(int)AmmoType.RPG] += 2;
+                    gameManager.rpgDrop = true;
+                }
+                else
+                {
+                    ammo[(int)AmmoType.RPG] += 1;
+                    if (!rocketShell.activeSelf && reloadRocketRoutine == null)
+                    {
+                        reloadRocketRoutine = StartCoroutine(ReloadRocket());
+                    }
+                }
                 Destroy(other.gameObject);
             }
             else
@@ -372,7 +403,11 @@ public class PlayerController : MonoBehaviour
                 if (weapons.Contains(rpg))
                 {
                     audioSources[1].Play();
-                    ammo[(int)AmmoType.RPG] += 2;
+                    ammo[(int)AmmoType.RPG] += 1;
+                    if (!rocketShell.activeSelf && reloadRocketRoutine == null)
+                    {
+                        reloadRocketRoutine = StartCoroutine(ReloadRocket());
+                    }
                     Destroy(other.gameObject);
                 }
                 else
@@ -474,6 +509,7 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(10f);
         rocketShell.SetActive(true);
+        reloadRocketRoutine = null;
     }
 
     void EquipWeapon(GameObject newWeapon)

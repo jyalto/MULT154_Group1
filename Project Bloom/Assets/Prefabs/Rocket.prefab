@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8079345052972841595}
   - component: {fileID: 4909405158258048167}
   - component: {fileID: 8696319025221380056}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Rocket Shell
   m_TagString: Bullet
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ GameObject:
   - component: {fileID: 6514854314440986744}
   - component: {fileID: 7201314479087559320}
   - component: {fileID: 6123540895003119034}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Rocket
   m_TagString: Rocket
   m_Icon: {fileID: 0}

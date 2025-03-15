@@ -10,8 +10,16 @@ public class Enemy : MonoBehaviour
     public Transform player;
 
     public GameObject[] randomDrop;
+    public GameObject[] rareDrop;
+    public GameObject shotgunItem;
+    public GameObject rpgItem;
 
     public float health = 10;
+
+    private bool shotgunAdded = false;
+    private bool rpgAdded = false;
+
+    private List<GameObject> rareDropList;
 
     void Awake()
     {
@@ -20,6 +28,21 @@ public class Enemy : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
 
         gameManager.enemyCount++;
+
+        rareDropList = new List<GameObject>(rareDrop);
+
+        if (gameManager.shotgunDrop)
+        {
+            rareDropList.Add(shotgunItem);
+            shotgunAdded = true;
+        }
+        if (gameManager.rpgDrop)
+        {
+            rareDropList.Add(rpgItem);
+            rpgAdded = true;
+        }
+
+        rareDrop = rareDropList.ToArray();
     }
 
     void Update()
@@ -33,6 +56,22 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
         //print(health);
+
+        if (gameManager.shotgunDrop && !shotgunAdded)
+        {
+            rareDropList.Add(shotgunItem);
+            rareDrop = rareDropList.ToArray();
+            shotgunAdded = true;
+        }
+
+        if (gameManager.rpgDrop && !rpgAdded)
+        {
+            rareDropList.Add(rpgItem);
+            rareDrop = rareDropList.ToArray();
+            rpgAdded = true;
+        }
+
+        
     }
 
     private void Chase()
@@ -75,9 +114,22 @@ public class Enemy : MonoBehaviour
             }
             else if (randomNum == 2 || randomNum == 3)
             {
-                Instantiate(randomDrop[randomNum], new Vector3(transform.position.x, 10.17471f, transform.position.z), Quaternion.identity);
+                int randomChance = Random.Range(0, 2);
+
+                if (randomChance == 1 && rareDrop.Length > 0)
+                {
+                    int randomNum2 = Random.Range(0, rareDrop.Length);
+                    Instantiate(rareDrop[randomNum2], new Vector3(transform.position.x, 10.17471f, transform.position.z), Quaternion.identity);
+                }
+
+                else
+                {
+                    Instantiate(randomDrop[randomNum], new Vector3(transform.position.x, 10.17471f, transform.position.z), Quaternion.identity);
+                }
+                
             }
         }
+
         gameManager.killedEnemies++;
         gameManager.enemyCount--;
     }

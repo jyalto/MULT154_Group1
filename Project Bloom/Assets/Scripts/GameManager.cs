@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     public int enemyCount = 0;
     public int wave = 1;
     public int killedEnemies = 0;
+    public bool shotgunDrop = false;
+    public bool rpgDrop = false;
 
     public Transform[] spawnPoints;
 
@@ -29,38 +31,38 @@ public class GameManager : MonoBehaviour
         }
         else if (wave == 2)
         {
-            if (enemyCount < 7 && killedEnemies < 20 && myCoroutine == null)
+            if (enemyCount < 7 && killedEnemies < 35 && myCoroutine == null)
             {
                 myCoroutine = StartCoroutine(WaveTwoSpawnEnemy());
             }
-            if (killedEnemies == 20)
+            if (killedEnemies == 35)
             {
                 wave = 3;
             }
         }
         else if (wave == 3)
         {
-            if (enemyCount < 10 && killedEnemies < 30 && myCoroutine == null)
+            if (enemyCount < 10 && killedEnemies < 75 && myCoroutine == null)
             {
                 myCoroutine = StartCoroutine(WaveThreeSpawnEnemy());
             }
-            if (killedEnemies == 30)
+            if (killedEnemies == 75)
             {
                 wave = 4;
             }
         }
         else if (wave == 4)
         {
-            if (enemyCount < 15 && killedEnemies < 40 && myCoroutine == null)
+            if (enemyCount < 15 && killedEnemies < 200 && myCoroutine == null)
             {
                 myCoroutine = StartCoroutine(WaveFourSpawnEnemy());
             }
-            if (killedEnemies == 40)
+            if (killedEnemies == 200)
             {
                 wave = 5;
             }
         }
-        print("Current wave: " + wave);
+        //print("Current wave: " + wave);
     }
 
     private IEnumerator WaveOneSpawnEnemy()
