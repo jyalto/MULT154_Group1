@@ -150,14 +150,14 @@ public class Weapon : MonoBehaviour
             {
                 if (!audioSource.isPlaying)
                 {
-                    gameObject.GetComponent<AudioSource>().pitch = UnityEngine.Random.Range(0.8f, 1.2f);
+                    gameObject.GetComponent<AudioSource>().pitch = UnityEngine.Random.Range(0.95f, 1.2f);
                     audioSource.Play();
                 }
                 player.ammo[(int)PlayerController.AmmoType.ASSAULTRIFLE] -= 1;
             }
             else if (typeOfWeapon == WeaponType.SHOTGUN)
             {
-                gameObject.GetComponent<AudioSource>().pitch = UnityEngine.Random.Range(0.8f, 1.2f);
+                gameObject.GetComponent<AudioSource>().pitch = UnityEngine.Random.Range(0.9f, 1.2f);
                 audioSource.Play();
                 player.ammo[(int)PlayerController.AmmoType.SHOTGUN] -= 1;
                 bulletPrefabLifeTime = 0.35f;

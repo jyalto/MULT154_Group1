@@ -12,7 +12,10 @@ public class Explosion : MonoBehaviour
 
     private IEnumerator DestroySelf()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.1f);
+        Collider myCollider = GetComponent<Collider>();
+        myCollider.enabled = false;
+        yield return new WaitForSeconds(1.9f);
         Destroy(gameObject);
     }
 }

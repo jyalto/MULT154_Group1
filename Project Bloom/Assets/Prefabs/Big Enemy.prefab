@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4510651296602036111}
   - component: {fileID: 3398644058041280680}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Big Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -47.7, y: 1.51, z: -48.3}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 6, y: 6, z: 6}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -133,8 +133,8 @@ MonoBehaviour:
   rareDrop: []
   shotgunItem: {fileID: 927894897820252096, guid: c7b53dd23904b764e809cb7e65ca3bae, type: 3}
   rpgItem: {fileID: 927894897820252096, guid: 07f1733a436524645becfbaf2ac0a0a9, type: 3}
-  bigEnemyActive: 0
-  health: 10
+  bigEnemyActive: 1
+  health: 50
 --- !u!195 &4510651296602036111
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -145,7 +145,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 10
+  m_Speed: 6
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
