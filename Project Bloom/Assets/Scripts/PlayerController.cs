@@ -234,9 +234,16 @@ public class PlayerController : MonoBehaviour
             {
                 if (!weapons.Contains(shotgun))
                 {
-                    gameManager.shotgunDrop = true;
+                    if (gameManager.shotgunDrop == false)
+                    {
+                        ammo[(int)AmmoType.SHOTGUN] += 6;
+                        gameManager.shotgunDrop = true;
+                    }
+                    else
+                    {
+                        ammo[(int)AmmoType.SHOTGUN] += 4;
+                    }    
                     weapons.Add(shotgun);
-                    ammo[(int)AmmoType.SHOTGUN] += 4;
                     audioSources[0].Play();
                     EquipWeapon(shotgun);
                     Destroy(currentWeaponPickup);
@@ -384,10 +391,17 @@ public class PlayerController : MonoBehaviour
                 else
                 {
                     audioSources[1].Play();
-                    //ammo[(int)AmmoType.SHOTGUN] += 4;
                 }
-                ammo[(int)AmmoType.SHOTGUN] += 4;
-                gameManager.shotgunDrop = true;
+
+                if (gameManager.shotgunDrop == false)
+                {
+                    ammo[(int)AmmoType.SHOTGUN] += 6;
+                    gameManager.shotgunDrop = true;
+                }
+                else
+                {
+                    ammo[(int)AmmoType.SHOTGUN] += 4;
+                }
                 Destroy(other.gameObject);
             }
             else
@@ -511,7 +525,7 @@ public class PlayerController : MonoBehaviour
             }
             else if (weapon.typeOfWeapon == Weapon.WeaponType.SHOTGUN)
             {
-                ammo[(int)AmmoType.SHOTGUN] += 8;
+                ammo[(int)AmmoType.SHOTGUN] += 4;
             }
             else if (weapon.typeOfWeapon == Weapon.WeaponType.RPG)
             {

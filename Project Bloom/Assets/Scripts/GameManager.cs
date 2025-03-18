@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -18,6 +19,8 @@ public class GameManager : MonoBehaviour
 
     public Transform[] spawnPoints;
     public Transform[] bigspawnPoints;
+
+    public TMP_Text waveText;
 
     private Coroutine myCoroutine = null;
 
@@ -73,7 +76,8 @@ public class GameManager : MonoBehaviour
                 wave = 5;
             }
         }
-        //print("Current wave: " + wave);
+
+        waveText.SetText("Wave: " + wave);
     }
 
     private IEnumerator WaveOneSpawnEnemy()
