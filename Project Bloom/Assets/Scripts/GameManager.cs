@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public int killedEnemies = 0;
     public bool shotgunDrop = false;
     public bool rpgDrop = false;
+    public bool flamethrowerDrop = false;
 
     private int randomBigSpawn = 0;
 

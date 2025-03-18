@@ -13,6 +13,8 @@ public class Weapon : MonoBehaviour
 
     private float nextFireTime = 0f;
 
+    private Coroutine flameThrowerAmmoCoroutine = null;
+
     public PlayerController player;
 
     public enum WeaponType
@@ -20,7 +22,8 @@ public class Weapon : MonoBehaviour
         PISTOL,
         ASSAULTRIFLE,
         SHOTGUN,
-        RPG
+        RPG,
+        FLAMETHROWER
     }
 
     public WeaponType typeOfWeapon;
@@ -109,6 +112,71 @@ public class Weapon : MonoBehaviour
                 }
             }
         }
+        else if (typeOfWeapon == WeaponType.FLAMETHROWER && player.ammo[(int)PlayerController.AmmoType.FLAMETHROWER] > 0)
+        {
+            if (Input.GetMouseButton(0))
+            {
+                player.flameActive = true;
+                if (!player.flamethrowerParticles.isPlaying)
+                {
+                    player.flamethrowerParticles.Play();
+                }
+                else
+                {
+                    if (flameThrowerAmmoCoroutine == null)
+                    {
+                        flameThrowerAmmoCoroutine = StartCoroutine(FlameThrowerAmmo());
+                    }
+
+                    if (player.GetComponent<CharacterController>().velocity.magnitude > 0.1f)
+                    {
+                        var main = player.flamethrowerParticles.main;
+                        main.startLifetime = 0.5f;
+                        main.startSpeed = 24f;
+                    }
+                    else
+                    {
+                        var main = player.flamethrowerParticles.main;
+                        main.startLifetime = 1.25f;
+                        main.startSpeed = 8f;
+                    }
+                }
+            }
+            else
+            {
+                if (player.flamethrowerParticles.isPlaying)
+                {
+                    player.flameActive = false;
+                    if (flameThrowerAmmoCoroutine != null)
+                    {
+                        StopCoroutine(flameThrowerAmmoCoroutine);
+                        flameThrowerAmmoCoroutine = null;
+                    }
+                    player.flamethrowerParticles.Stop();
+                }
+            }
+        }
+
+        if (player.flamethrowerParticles.isPlaying && player.ammo[(int)PlayerController.AmmoType.FLAMETHROWER] == 0)
+        {
+            player.flameActive = false;
+            if (flameThrowerAmmoCoroutine != null)
+            {
+                StopCoroutine(flameThrowerAmmoCoroutine);
+                flameThrowerAmmoCoroutine = null;
+            }
+            player.flamethrowerParticles.Stop();
+        }
+    }
+
+    private IEnumerator FlameThrowerAmmo()
+    {
+        if (player.ammo[(int)PlayerController.AmmoType.FLAMETHROWER] > 0)
+        {
+            player.ammo[(int)PlayerController.AmmoType.FLAMETHROWER] -= 1;
+        }
+        yield return new WaitForSeconds(0.1f);
+        flameThrowerAmmoCoroutine = null;
     }
 
     private void FireWeapon()

@@ -11,15 +11,20 @@ public class PlayerController : MonoBehaviour
     public float gravity = -40.0f;
     public float jumpForce = 20.0f;
     public int health = 25;
+    public bool flameActive = false;
     public GameObject pistol;
     public GameObject assaultRifle;
     public GameObject shotgun;
     public GameObject keyGreen;
     public GameObject keyGold;
+    public GameObject keyRed;
     public GameObject rpg;
     public GameObject rocketShell;
+    public GameObject flamethrower;
+    public ParticleSystem flamethrowerParticles;
     public TreasureChest chestGreen;
     public TreasureChest ChestGold;
+    public TreasureChest ChestRed;
 
     private AudioSource[] audioSources;
     private Weapon weapon;
@@ -33,11 +38,13 @@ public class PlayerController : MonoBehaviour
     private bool assaultRifleInteractable = false;
     private bool shotgunInteractable = false;
     private bool rpgInteractable = false;
+    private bool flamethrowerInteractable = false;
     private bool canOpenChestGreen = false;
     private bool canOpenChestGold = false;
+    private bool canOpenChestRed = false;
     private Coroutine switchWeaponCoroutine = null;
-    private Vector3 velocity;
     private Coroutine reloadRocketRoutine = null;
+    private Vector3 velocity;
 
     private List<GameObject> weapons = new List<GameObject>();
     private List<GameObject> keyItems = new List<GameObject>();
@@ -51,7 +58,8 @@ public class PlayerController : MonoBehaviour
         PISTOL,
         ASSAULTRIFLE,
         SHOTGUN,
-        RPG
+        RPG,
+        FLAMETHROWER
     }
 
     public int[] ammo = new int[4];
@@ -95,7 +103,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (move.magnitude > 0)
                 {
-                    if (Input.GetKey(KeyCode.LeftShift))
+                    if (Input.GetKey(KeyCode.LeftShift) && !flamethrowerParticles.isPlaying)
                     {
                         speed = 30;
                     }
@@ -176,6 +184,20 @@ public class PlayerController : MonoBehaviour
                 ChestGold.LockedChest();
             }
         }
+
+        if (canOpenChestRed && Input.GetButtonDown("Interact"))
+        {
+            if (keyItems.Contains(keyRed))
+            {
+                ChestRed.OpenChest();
+                keyItems.Remove(keyRed);
+            }
+            else if (!ChestRed.opened)
+            {
+                ChestRed.LockedChest();
+            }
+        }
+
         if (pistolInteractable)
         {
             if (Input.GetButtonDown("Interact"))
@@ -246,6 +268,22 @@ public class PlayerController : MonoBehaviour
                     EquipWeapon(rpg);
                     Destroy(currentWeaponPickup);
                     rpgInteractable = false;
+                }
+            }
+        }
+        if (flamethrowerInteractable)
+        {
+            if (Input.GetButtonDown("Interact"))
+            {
+                if (!weapons.Contains(flamethrower))
+                {
+                    gameManager.flamethrowerDrop = true;
+                    weapons.Add(flamethrower);
+                    ammo[(int)AmmoType.FLAMETHROWER] += 50;
+                    audioSources[0].Play();
+                    EquipWeapon(flamethrower);
+                    Destroy(currentWeaponPickup);
+                    flamethrowerInteractable = false;
                 }
             }
         }
@@ -417,6 +455,48 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+        if (other.CompareTag("Flamethrower PickUp"))
+        {
+            if (weapons.Count < 2)
+            {
+                if (weapon == null || !weapons.Contains(flamethrower))
+                {
+                    weapons.Add(flamethrower);
+                    audioSources[0].Play();
+                    EquipWeapon(flamethrower);
+                }
+                else
+                {
+                    audioSources[1].Play();
+                }
+
+                if (gameManager.flamethrowerDrop == false)
+                {
+                    ammo[(int)AmmoType.FLAMETHROWER] += 50;
+                    gameManager.flamethrowerDrop = true;
+                }
+                else
+                {
+                    ammo[(int)AmmoType.FLAMETHROWER] += 35;
+                }
+                Destroy(other.gameObject);
+            }
+            else
+            {
+                if (weapons.Contains(flamethrower))
+                {
+                    audioSources[1].Play();
+                    ammo[(int)AmmoType.FLAMETHROWER] += 35;
+                    gameManager.flamethrowerDrop = true;
+                    Destroy(other.gameObject);
+                }
+                else
+                {
+                    currentWeaponPickup = other.gameObject;
+                    flamethrowerInteractable = true;
+                }
+            }
+        }
 
         if (other.CompareTag("Ammo PickUp") && weapon != null)
         {
@@ -441,6 +521,10 @@ public class PlayerController : MonoBehaviour
                     StartCoroutine(ReloadRocket());
                 }
             }
+            else if (weapon.typeOfWeapon == Weapon.WeaponType.FLAMETHROWER)
+            {
+                ammo[(int)AmmoType.FLAMETHROWER] += 50;
+            }
             Destroy(other.gameObject);
         }
         if (other.CompareTag("Key Green"))
@@ -463,6 +547,17 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("Chest Gold"))
         {
             canOpenChestGold = true;
+        }
+
+        if (other.CompareTag("Key Red"))
+        {
+            keyItems.Add(keyRed);
+            audioSources[2].Play();
+            Destroy(other.gameObject);
+        }
+        if (other.CompareTag("Chest Red"))
+        {
+            canOpenChestRed = true;
         }
 
         if (other.CompareTag("Gas Can PickUp"))
@@ -495,6 +590,11 @@ public class PlayerController : MonoBehaviour
             rpgInteractable = false;
             currentWeaponPickup = null;
         }
+        else if (other.CompareTag("Flamethrower PickUp"))
+        {
+            flamethrowerInteractable = false;
+            currentWeaponPickup = null;
+        }
         if (other.CompareTag("Chest Green"))
         {
             canOpenChestGreen = false;
@@ -502,6 +602,10 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("Chest Gold"))
         {
             canOpenChestGold = false;
+        }
+        if (other.CompareTag("Chest Red"))
+        {
+            canOpenChestRed = false;
         }
     }
 
@@ -536,6 +640,10 @@ public class PlayerController : MonoBehaviour
             else if (weapon.typeOfWeapon == Weapon.WeaponType.RPG)
             {
                 weapons.Remove(rpg);
+            }
+            else if (weapon.typeOfWeapon == Weapon.WeaponType.FLAMETHROWER)
+            {
+                weapons.Remove(flamethrower);
             }
         }
 

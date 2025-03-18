@@ -133,6 +133,7 @@ MonoBehaviour:
   rareDrop: []
   shotgunItem: {fileID: 927894897820252096, guid: c7b53dd23904b764e809cb7e65ca3bae, type: 3}
   rpgItem: {fileID: 927894897820252096, guid: 07f1733a436524645becfbaf2ac0a0a9, type: 3}
+  flamethrowerItem: {fileID: 927894897820252096, guid: 5410455c1efc16d48be49f6443a32abe, type: 3}
   bigEnemyActive: 0
   health: 10
 --- !u!195 &4510651296602036111

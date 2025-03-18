@@ -23,6 +23,9 @@ TagManager:
   - Key Gold
   - Rocket
   - Explosion
+  - Flamethrower
+  - Flamethrower PickUp
+  - Chest Red
   layers:
   - Default
   - TransparentFX

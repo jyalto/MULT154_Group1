@@ -7,12 +7,14 @@ public class Enemy : MonoBehaviour
 {
     public NavMeshAgent agent;
     public GameManager gameManager;
+    public PlayerController playerObject;
     public Transform player;
 
     public GameObject[] randomDrop;
     public GameObject[] rareDrop;
     public GameObject shotgunItem;
     public GameObject rpgItem;
+    public GameObject flamethrowerItem;
 
     public bool bigEnemyActive = false;
 
@@ -20,15 +22,20 @@ public class Enemy : MonoBehaviour
 
     private bool shotgunAdded = false;
     private bool rpgAdded = false;
+    private bool flamethrowerAdded = false;
+    private bool takingFireDamage = false;
 
     private float updateRate = 0.2f;
     private float nextUpdate = 0f;
+
+    private Coroutine fireDamageCoroutine = null;
 
     private List<GameObject> rareDropList;
 
     void Awake()
     {
         gameManager = FindObjectOfType<GameManager>();
+        playerObject = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
 
@@ -86,6 +93,13 @@ public class Enemy : MonoBehaviour
             rareDrop = rareDropList.ToArray();
             rpgAdded = true;
         }
+
+        if (gameManager.flamethrowerDrop && !flamethrowerAdded)
+        {
+            rareDropList.Add(flamethrowerItem);
+            rareDrop = rareDropList.ToArray();
+            flamethrowerAdded = true;
+        }
     }
 
     private void Chase()
@@ -101,7 +115,7 @@ public class Enemy : MonoBehaviour
 
             if (bullet != null)
             {
-                health -= bullet.damage; 
+                health -= bullet.damage;
                 Destroy(other.gameObject);
             }
         }
@@ -117,6 +131,35 @@ public class Enemy : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+
+        if (other.CompareTag("Flamethrower") && takingFireDamage == false && playerObject.flameActive)
+        {
+            fireDamageCoroutine = StartCoroutine(FireDamage());
+            takingFireDamage = true;
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Flamethrower"))
+        {
+            takingFireDamage = false;
+            if (fireDamageCoroutine != null)
+            {
+                StopCoroutine(fireDamageCoroutine);
+                fireDamageCoroutine = null;
+            }
+        }
+    }
+
+    private IEnumerator FireDamage()
+    {
+        while (takingFireDamage)
+        {
+            health -= 1;
+            yield return new WaitForSeconds(0.2f);  
+        }
+        fireDamageCoroutine = null;
     }
 
     private void OnDestroy()
