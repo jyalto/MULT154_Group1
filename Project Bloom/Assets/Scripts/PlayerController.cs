@@ -663,7 +663,7 @@ public class PlayerController : MonoBehaviour
             resources[resourceName] = 1;
         }
 
-        Debug.Log($"{resourceName} collected. Total: {resources[resourceName]}");
+        //Debug.Log($"{resourceName} collected. Total: {resources[resourceName]}");
     }
 
     public void RemoveResource(string resourceName)

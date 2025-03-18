@@ -100,6 +100,23 @@ public class Enemy : MonoBehaviour
             rareDrop = rareDropList.ToArray();
             flamethrowerAdded = true;
         }
+
+        if (playerObject.flameActive)
+        {
+            if (fireDamageCoroutine == null && takingFireDamage)
+            {
+                fireDamageCoroutine = StartCoroutine(FireDamage());
+            }
+        }
+        else
+        {
+            takingFireDamage = false;
+            if (fireDamageCoroutine != null)
+            {
+                StopCoroutine(fireDamageCoroutine);
+                fireDamageCoroutine = null;
+            }
+        }
     }
 
     private void Chase()
@@ -154,11 +171,8 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator FireDamage()
     {
-        while (takingFireDamage)
-        {
-            health -= 1;
-            yield return new WaitForSeconds(0.2f);  
-        }
+        health -= 1;
+        yield return new WaitForSeconds(0.2f);  
         fireDamageCoroutine = null;
     }
 

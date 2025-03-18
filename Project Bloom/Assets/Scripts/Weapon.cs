@@ -7,6 +7,7 @@ public class Weapon : MonoBehaviour
     public AudioSource audioSource;
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
+    public Collider flamethrowerCollider = null;
     public float bulletVelocity = 30f;
     public float bulletPrefabLifeTime = 3f;
     public float fireRate = 0.1f;
@@ -48,6 +49,13 @@ public class Weapon : MonoBehaviour
         else if (typeOfWeapon == WeaponType.RPG)
         {
             fireRate = 10f;
+        }
+        else if (typeOfWeapon == WeaponType.FLAMETHROWER)
+        {
+            if (flamethrowerCollider != null)
+            {
+                flamethrowerCollider.enabled = false;
+            }
         }
     }
 
@@ -166,6 +174,21 @@ public class Weapon : MonoBehaviour
                 flameThrowerAmmoCoroutine = null;
             }
             player.flamethrowerParticles.Stop();
+        }
+
+        if (player.flameActive)
+        {
+            if (flamethrowerCollider != null)
+            {
+                flamethrowerCollider.enabled = true;
+            }
+        }
+        else
+        {
+            if (flamethrowerCollider != null)
+            {
+                flamethrowerCollider.enabled = false;
+            }
         }
     }
 

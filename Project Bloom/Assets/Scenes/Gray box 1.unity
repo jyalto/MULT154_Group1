@@ -3028,7 +3028,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 931348167466727381, guid: 43bf424751fd4a746a21685cd385f729, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2861892045626742036, guid: 43bf424751fd4a746a21685cd385f729, type: 3}
       propertyPath: m_TagString
@@ -4064,6 +4064,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2015498719}
+  weaponAudioSources:
+  - {fileID: 1409141947}
 --- !u!4 &243683654
 Transform:
   m_ObjectHideFlags: 0
@@ -5966,63 +5968,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 53e0b7b61a424d5458307a7816d7b038, type: 3}
   m_PrefabInstance: {fileID: 344409488}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &346098815
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 927894897820252096, guid: 5410455c1efc16d48be49f6443a32abe, type: 3}
-      propertyPath: m_Name
-      value: Flamethrower Drop
-      objectReference: {fileID: 0}
-    - target: {fileID: 9192209424301111576, guid: 5410455c1efc16d48be49f6443a32abe, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 284.17352
-      objectReference: {fileID: 0}
-    - target: {fileID: 9192209424301111576, guid: 5410455c1efc16d48be49f6443a32abe, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 10.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 9192209424301111576, guid: 5410455c1efc16d48be49f6443a32abe, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 128.01758
-      objectReference: {fileID: 0}
-    - target: {fileID: 9192209424301111576, guid: 5410455c1efc16d48be49f6443a32abe, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9192209424301111576, guid: 5410455c1efc16d48be49f6443a32abe, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9192209424301111576, guid: 5410455c1efc16d48be49f6443a32abe, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9192209424301111576, guid: 5410455c1efc16d48be49f6443a32abe, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9192209424301111576, guid: 5410455c1efc16d48be49f6443a32abe, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9192209424301111576, guid: 5410455c1efc16d48be49f6443a32abe, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 9192209424301111576, guid: 5410455c1efc16d48be49f6443a32abe, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 5410455c1efc16d48be49f6443a32abe, type: 3}
 --- !u!1001 &346403175
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23015,6 +22960,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2286079083137035439, guid: f674081994e80324ea9ab7c6633bbd6d, type: 3}
   m_PrefabInstance: {fileID: 5274983848245528130}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &1409141947 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 620804575861235308, guid: f674081994e80324ea9ab7c6633bbd6d, type: 3}
+  m_PrefabInstance: {fileID: 5274983848245528130}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1409808311
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34929,17 +34879,16 @@ SceneRoots:
   m_Roots:
   - {fileID: 1509427250}
   - {fileID: 1699290881}
+  - {fileID: 1074783298}
+  - {fileID: 243683654}
   - {fileID: 2065442529}
   - {fileID: 151625027}
   - {fileID: 916144694}
   - {fileID: 1723372422}
   - {fileID: 361845097}
   - {fileID: 896324877}
-  - {fileID: 1074783298}
   - {fileID: 2076538587}
   - {fileID: 1496452804}
   - {fileID: 906529604}
   - {fileID: 735934999}
   - {fileID: 1675167751}
-  - {fileID: 346098815}
-  - {fileID: 243683654}

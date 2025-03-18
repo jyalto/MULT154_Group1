@@ -6,14 +6,14 @@ public class SoundManager : MonoBehaviour
 {
     public PlayerController player;
 
-    private AudioSource[] audioSources;
+    public AudioSource[] weaponAudioSources;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
 
-        audioSources = GetComponents<AudioSource>();
+        weaponAudioSources = GetComponents<AudioSource>();
     }
 
     // Update is called once per frame
@@ -21,16 +21,16 @@ public class SoundManager : MonoBehaviour
     {
         if (!player.flameActive)
         {
-            if (audioSources[0].isPlaying)
+            if (weaponAudioSources[0].isPlaying)
             {
-                audioSources[0].Stop();
+                weaponAudioSources[0].Stop();
             }
         }
         else
         {
-            if (!audioSources[0].isPlaying)
+            if (!weaponAudioSources[0].isPlaying)
             {
-                audioSources[0].Play();
+                weaponAudioSources[0].Play();
             }
         }
     }
