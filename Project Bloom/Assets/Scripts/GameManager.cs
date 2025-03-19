@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -21,6 +22,8 @@ public class GameManager : MonoBehaviour
     public Transform[] bigspawnPoints;
 
     public TMP_Text waveText;
+    public TMP_Text ammoText;
+    public Image bulletImage;
 
     private Coroutine myCoroutine = null;
 

@@ -30,6 +30,7 @@ public class SoundManager : MonoBehaviour
         {
             if (!weaponAudioSources[0].isPlaying)
             {
+                weaponAudioSources[0].pitch = Random.Range(0.9f, 1.2f);
                 weaponAudioSources[0].Play();
             }
         }

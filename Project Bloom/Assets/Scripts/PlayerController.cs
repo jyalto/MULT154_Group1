@@ -138,7 +138,7 @@ public class PlayerController : MonoBehaviour
 
         float scroll = Input.GetAxis("Mouse ScrollWheel");
 
-        if (Mathf.Abs(scroll) == 0.1f && weaponSwitchEnable)
+        if (Mathf.Abs(scroll) == 0.1f && weaponSwitchEnable && !Input.GetMouseButton(0))
         {
             SwitchWeapon();
             weaponSwitchEnable = false;
@@ -300,6 +300,10 @@ public class PlayerController : MonoBehaviour
     {
         if (weapons.Count > 1)
         {
+            if (weapon.typeOfWeapon == Weapon.WeaponType.FLAMETHROWER)
+            {
+                flameActive = false;
+            }
             currentWeaponIndex = (currentWeaponIndex + 1) % weapons.Count;
             EquipWeapon(weapons[currentWeaponIndex]);
         }
@@ -635,6 +639,10 @@ public class PlayerController : MonoBehaviour
         if (weapon != null)
         {
             weapon.gameObject.SetActive(false);
+        }
+        else
+        {
+            gameManager.bulletImage.gameObject.SetActive(true);
         }
 
         if (weapons.Count > 2)

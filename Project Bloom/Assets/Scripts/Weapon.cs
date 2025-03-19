@@ -12,6 +12,8 @@ public class Weapon : MonoBehaviour
     public float bulletPrefabLifeTime = 3f;
     public float fireRate = 0.1f;
 
+    private GameManager gameManager;
+
     private float nextFireTime = 0f;
 
     private Coroutine flameThrowerAmmoCoroutine = null;
@@ -32,6 +34,13 @@ public class Weapon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameObject gameManagerObject = GameObject.Find("Game Manager");
+
+        if (gameManagerObject != null)
+        {
+            gameManager = gameManagerObject.GetComponent<GameManager>();
+        }
+
         player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
 
         if (typeOfWeapon == WeaponType.PISTOL)
@@ -62,25 +71,40 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (typeOfWeapon == WeaponType.PISTOL && player.ammo[(int)PlayerController.AmmoType.PISTOL] > 0)
+        if (typeOfWeapon == WeaponType.PISTOL)
         {
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            gameManager.ammoText.SetText(player.ammo[(int)PlayerController.AmmoType.PISTOL].ToString());
+            if (player.ammo[(int)PlayerController.AmmoType.PISTOL] > 0)
             {
-                if (Time.time >= nextFireTime)
+                if (Input.GetKeyDown(KeyCode.Mouse0))
                 {
-                    FireWeapon();
-                    nextFireTime = Time.time + fireRate;
+                    if (Time.time >= nextFireTime)
+                    {
+                        FireWeapon();
+                        nextFireTime = Time.time + fireRate;
+                    }
                 }
             }
         }
-        else if (typeOfWeapon == WeaponType.ASSAULTRIFLE && player.ammo[(int)PlayerController.AmmoType.ASSAULTRIFLE] > 0)
+        else if (typeOfWeapon == WeaponType.ASSAULTRIFLE)
         {
-            if (Input.GetMouseButton(0))
+            gameManager.ammoText.SetText(player.ammo[(int)PlayerController.AmmoType.ASSAULTRIFLE].ToString());
+            if (player.ammo[(int)PlayerController.AmmoType.ASSAULTRIFLE] > 0)
             {
-                if (Time.time >= nextFireTime)
+                if (Input.GetMouseButton(0))
                 {
-                    FireWeapon();
-                    nextFireTime = Time.time + fireRate;
+                    if (Time.time >= nextFireTime)
+                    {
+                        FireWeapon();
+                        nextFireTime = Time.time + fireRate;
+                    }
+                }
+                else
+                {
+                    if (audioSource.isPlaying)
+                    {
+                        audioSource.Stop();
+                    }
                 }
             }
             else
@@ -91,76 +115,81 @@ public class Weapon : MonoBehaviour
                 }
             }
         }
-        else if (typeOfWeapon == WeaponType.ASSAULTRIFLE && player.ammo[(int)PlayerController.AmmoType.ASSAULTRIFLE] <= 0)
+        else if (typeOfWeapon == WeaponType.SHOTGUN)
         {
-            if (audioSource.isPlaying)
+            gameManager.ammoText.SetText(player.ammo[(int)PlayerController.AmmoType.SHOTGUN].ToString());
+            if (player.ammo[(int)PlayerController.AmmoType.SHOTGUN] > 0)
             {
-                audioSource.Stop();
-            }
-        }
-        else if (typeOfWeapon == WeaponType.SHOTGUN && player.ammo[(int)PlayerController.AmmoType.SHOTGUN] > 0)
-        {
-            if (Input.GetKeyDown(KeyCode.Mouse0))
-            {
-                if (Time.time >= nextFireTime)
+                if (Input.GetKeyDown(KeyCode.Mouse0))
                 {
-                    FireWeapon();
-                    nextFireTime = Time.time + fireRate;
-                }
-            }
-        }
-        else if (typeOfWeapon == WeaponType.RPG && player.ammo[(int)PlayerController.AmmoType.RPG] > 0)
-        {
-            if (Input.GetKeyDown(KeyCode.Mouse0))
-            {
-                if (Time.time >= nextFireTime)
-                {
-                    FireWeapon();
-                    nextFireTime = Time.time + fireRate;
-                }
-            }
-        }
-        else if (typeOfWeapon == WeaponType.FLAMETHROWER && player.ammo[(int)PlayerController.AmmoType.FLAMETHROWER] > 0)
-        {
-            if (Input.GetMouseButton(0))
-            {
-                player.flameActive = true;
-                if (!player.flamethrowerParticles.isPlaying)
-                {
-                    player.flamethrowerParticles.Play();
-                }
-                else
-                {
-                    if (flameThrowerAmmoCoroutine == null)
+                    if (Time.time >= nextFireTime)
                     {
-                        flameThrowerAmmoCoroutine = StartCoroutine(FlameThrowerAmmo());
+                        FireWeapon();
+                        nextFireTime = Time.time + fireRate;
                     }
-
-                    if (player.GetComponent<CharacterController>().velocity.magnitude > 0.1f)
+                }
+            }
+        }
+        else if (typeOfWeapon == WeaponType.RPG)
+        {
+            gameManager.ammoText.SetText(player.ammo[(int)PlayerController.AmmoType.RPG].ToString());
+            if (player.ammo[(int)PlayerController.AmmoType.RPG] > 0)
+            {
+                if (Input.GetKeyDown(KeyCode.Mouse0))
+                {
+                    if (Time.time >= nextFireTime)
                     {
-                        var main = player.flamethrowerParticles.main;
-                        main.startLifetime = 0.5f;
-                        main.startSpeed = 24f;
+                        FireWeapon();
+                        nextFireTime = Time.time + fireRate;
+                    }
+                }
+            }
+        }
+        else if (typeOfWeapon == WeaponType.FLAMETHROWER)
+        {
+            gameManager.ammoText.SetText(player.ammo[(int)PlayerController.AmmoType.FLAMETHROWER].ToString());
+            if (player.ammo[(int)PlayerController.AmmoType.FLAMETHROWER] > 0)
+            {
+                if (Input.GetMouseButton(0))
+                {
+                    player.flameActive = true;
+                    if (!player.flamethrowerParticles.isPlaying)
+                    {
+                        player.flamethrowerParticles.Play();
                     }
                     else
                     {
-                        var main = player.flamethrowerParticles.main;
-                        main.startLifetime = 1.25f;
-                        main.startSpeed = 8f;
+                        if (flameThrowerAmmoCoroutine == null)
+                        {
+                            flameThrowerAmmoCoroutine = StartCoroutine(FlameThrowerAmmo());
+                        }
+
+                        if (player.GetComponent<CharacterController>().velocity.magnitude > 0.1f)
+                        {
+                            var main = player.flamethrowerParticles.main;
+                            main.startLifetime = 0.5f;
+                            main.startSpeed = 24f;
+                        }
+                        else
+                        {
+                            var main = player.flamethrowerParticles.main;
+                            main.startLifetime = 1.25f;
+                            main.startSpeed = 8f;
+                        }
                     }
                 }
-            }
-            else
-            {
-                if (player.flamethrowerParticles.isPlaying)
+                else
                 {
-                    player.flameActive = false;
-                    if (flameThrowerAmmoCoroutine != null)
+                    if (player.flamethrowerParticles.isPlaying)
                     {
-                        StopCoroutine(flameThrowerAmmoCoroutine);
-                        flameThrowerAmmoCoroutine = null;
+                        player.flameActive = false;
+                        if (flameThrowerAmmoCoroutine != null)
+                        {
+                            StopCoroutine(flameThrowerAmmoCoroutine);
+                            flameThrowerAmmoCoroutine = null;
+                        }
+                        player.flamethrowerParticles.Stop();
                     }
-                    player.flamethrowerParticles.Stop();
                 }
             }
         }
@@ -185,6 +214,11 @@ public class Weapon : MonoBehaviour
         }
         else
         {
+            if (flameThrowerAmmoCoroutine != null)
+            {
+                StopCoroutine(flameThrowerAmmoCoroutine);
+                flameThrowerAmmoCoroutine = null;
+            }
             if (flamethrowerCollider != null)
             {
                 flamethrowerCollider.enabled = false;
