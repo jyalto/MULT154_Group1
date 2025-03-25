@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     public GameManager gameManager;
     public PlayerController playerObject;
     public Transform player;
+    public Transform lure;
 
     public GameObject[] randomDrop;
     public GameObject[] rareDrop;
@@ -38,6 +39,12 @@ public class Enemy : MonoBehaviour
         playerObject = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
+
+        GameObject lureObject = GameObject.Find("Lure Trap");
+        if (lureObject != null)
+        {
+            lure = lureObject.transform;
+        }
 
         gameManager.enemyCount++;
 
@@ -121,7 +128,14 @@ public class Enemy : MonoBehaviour
 
     private void Chase()
     {
-        agent.SetDestination(player.position);
+        if (lure != null)
+        {
+            agent.SetDestination(lure.position);
+        }
+        else
+        {
+            agent.SetDestination(player.position);
+        }
     }
 
     void OnTriggerEnter(Collider other)
