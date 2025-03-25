@@ -73,9 +73,13 @@ public class BuildingManager : MonoBehaviour
             }
 
             // Building Mode Inputs
-            if (Input.mouseScrollDelta.y != 0)
+            if (Input.GetKeyDown(KeyCode.V))
             {
-                UpdateIndex();
+                UpdateIndex(1);
+            }
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                UpdateIndex(-1);
             }
 
             if (Input.GetMouseButtonDown(1) && currentPreview.GetComponent<BuildingPreview>().canPlace)
@@ -90,20 +94,18 @@ public class BuildingManager : MonoBehaviour
         }
     }
 
-    void UpdateIndex()
+    void UpdateIndex(int increment)
     {
-        if (Input.mouseScrollDelta.y > 0)
-        {
-            selectedIndex++;
-        }
-        else
-        {
-            selectedIndex--;
-        }
+        selectedIndex += increment;
 
-        if (selectedIndex < 0 || selectedIndex >= buildingPreviews.Count)
+        if (selectedIndex < 0)
+        {
+            selectedIndex = buildingPreviews.Count - 1;
+        }
+        else if (selectedIndex >= buildingPreviews.Count)
         {
             selectedIndex = selectedIndex % buildingPreviews.Count;
         }
+        Debug.Log("Current trap index: " + selectedIndex + " | Trap Type: " + buildingPreviews[selectedIndex].name);
     }
 }

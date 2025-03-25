@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
@@ -33,6 +34,7 @@ public class TrapBehavior : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Hit! " + other);
+
         if (buildingBehavior.durability > 0 && other.gameObject.CompareTag("Enemy"))
         {
             targets.Add(other.gameObject);
