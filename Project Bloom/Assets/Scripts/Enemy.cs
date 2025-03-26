@@ -40,7 +40,7 @@ public class Enemy : MonoBehaviour
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
 
-        GameObject lureObject = GameObject.Find("Lure Trap");
+        GameObject lureObject = GameObject.FindWithTag("Lure");
         if (lureObject != null)
         {
             lure = lureObject.transform;
@@ -122,6 +122,15 @@ public class Enemy : MonoBehaviour
             {
                 StopCoroutine(fireDamageCoroutine);
                 fireDamageCoroutine = null;
+            }
+        }
+
+        if (lure == null)
+        {
+            GameObject lureObject = GameObject.FindWithTag("Lure");
+            if (lureObject != null)
+            {
+                lure = lureObject.transform;
             }
         }
     }

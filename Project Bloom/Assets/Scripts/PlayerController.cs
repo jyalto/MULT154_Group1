@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public GameObject rpg;
     public GameObject rocketShell;
     public GameObject flamethrower;
+    public GameObject lureDevice;
     public ParticleSystem flamethrowerParticles;
     public TreasureChest chestGreen;
     public TreasureChest ChestGold;
@@ -293,6 +294,11 @@ public class PlayerController : MonoBehaviour
                     flamethrowerInteractable = false;
                 }
             }
+        }
+
+        if (lureDevice == null)
+        {
+            lureDevice = GameObject.FindWithTag("Lure");
         }
     }
 
