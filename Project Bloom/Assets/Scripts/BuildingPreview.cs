@@ -26,7 +26,6 @@ public class BuildingPreview : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        Debug.Log(other);
         mesh.GetComponent<MeshRenderer>().material = red;
         canPlace = false;
     }
