@@ -131,11 +131,14 @@ public class PlayerController : MonoBehaviour
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
 
+        yRotation += mouseX;
+        transform.localEulerAngles = new Vector3(0, yRotation, 0);
+
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -verticalRotationLimit, verticalRotationLimit);
-        yRotation += mouseX;
+        Camera.main.transform.localEulerAngles = new Vector3(xRotation, 0, 0);
 
-        transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0);
+        //transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0);
 
         float scroll = Input.GetAxis("Mouse ScrollWheel");
 
