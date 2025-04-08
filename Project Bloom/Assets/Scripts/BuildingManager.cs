@@ -62,7 +62,8 @@ public class BuildingManager : MonoBehaviour
                 currentPreview.SetActive(true);
             }
 
-            Ray ray = new Ray(transform.position + new Vector3(0, 0.5f, 0), transform.forward);
+            Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+            //Ray ray = new Ray(transform.position + new Vector3(0, 0.5f, 0), transform.forward);
 
             RaycastHit hit;
             Physics.Raycast(ray, out hit, buildRange, placementMask);
