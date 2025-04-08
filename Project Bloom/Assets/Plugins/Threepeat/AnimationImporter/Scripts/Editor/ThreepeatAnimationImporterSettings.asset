@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af1cc726c08545a4cb88d2dfb6283fe8, type: 3}
+  m_Name: ThreepeatAnimationImporterSettings
+  m_EditorClassIdentifier: 
+  avatar: {fileID: 0}
+  removeTPoseAnimIfPresent: 1
+  bakeYForMinimalYMotionClips: 1
+  bakeY_maxPositiveYChange: 0.3
+  bakeY_maxNegativeYChange: -0.5

@@ -25,13 +25,11 @@ public class Enemy : MonoBehaviour
     private bool rpgAdded = false;
     private bool flamethrowerAdded = false;
     private bool takingFireDamage = false;
-    private bool playerTakingDamage = false;
 
     private float updateRate = 0.2f;
     private float nextUpdate = 0f;
 
     private Coroutine fireDamageCoroutine = null;
-    private Coroutine playerDamageCoroutine = null;
 
     private List<GameObject> rareDropList;
 
@@ -135,11 +133,6 @@ public class Enemy : MonoBehaviour
                 lure = lureObject.transform;
             }
         }
-
-        if (playerDamageCoroutine == null && playerTakingDamage)
-        {
-            playerDamageCoroutine = StartCoroutine(DamagePlayer());
-        }
     }
 
     private void Chase()
@@ -184,12 +177,6 @@ public class Enemy : MonoBehaviour
             fireDamageCoroutine = StartCoroutine(FireDamage());
             takingFireDamage = true;
         }
-
-        if (other.CompareTag("Player") && playerTakingDamage == false)
-        {
-            playerDamageCoroutine = StartCoroutine(DamagePlayer());
-            playerTakingDamage = true;
-        }
     }
 
     void OnTriggerExit(Collider other)
@@ -203,30 +190,6 @@ public class Enemy : MonoBehaviour
                 fireDamageCoroutine = null;
             }
         }
-
-        if (other.CompareTag("Player"))
-        {
-            playerTakingDamage = false;
-            if (playerDamageCoroutine != null)
-            {
-                StopCoroutine(playerDamageCoroutine);
-                playerDamageCoroutine = null;
-            }
-        }
-    }
-
-    private IEnumerator DamagePlayer()
-    {
-        if (bigEnemyActive)
-        {
-            playerObject.health -= 5;
-        }
-        else
-        {
-            playerObject.health -= 1;
-        }
-        yield return new WaitForSeconds(0.35f);
-        playerDamageCoroutine = null;
     }
 
     private IEnumerator FireDamage()

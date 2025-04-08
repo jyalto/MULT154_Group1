@@ -83,233 +83,225 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (health > 0)
+        float moveDirectionX = Input.GetAxis("Horizontal");
+        float moveDirectionZ = Input.GetAxis("Vertical");
+
+        Vector3 move = new Vector3(moveDirectionX, 0, moveDirectionZ);
+        move = transform.TransformDirection(move);
+
+        velocity.x = move.x * speed;
+        velocity.z = move.z * speed;
+
+        if (controller.isGrounded)
         {
-            float moveDirectionX = Input.GetAxis("Horizontal");
-            float moveDirectionZ = Input.GetAxis("Vertical");
-
-            Vector3 move = new Vector3(moveDirectionX, 0, moveDirectionZ);
-            move = transform.TransformDirection(move);
-
-            velocity.x = move.x * speed;
-            velocity.z = move.z * speed;
-
-            if (controller.isGrounded)
+            if (Input.GetButtonDown("Jump"))
             {
-                if (Input.GetButtonDown("Jump"))
-                {
-                    velocity.y = jumpForce;
-                    speed = 15;
-                }
+                velocity.y = jumpForce;
+                speed = 15;
+            }
 
-                else
+            else
+            {
+                if (move.magnitude > 0)
                 {
-                    if (move.magnitude > 0)
+                    if (Input.GetKey(KeyCode.LeftShift) && !flamethrowerParticles.isPlaying)
                     {
-                        if (Input.GetKey(KeyCode.LeftShift) && !flamethrowerParticles.isPlaying)
-                        {
-                            speed = 30;
-                        }
-                        else
-                        {
-                            speed = 15;
-                        }
+                        speed = 30;
                     }
                     else
                     {
                         speed = 15;
                     }
                 }
-
-            }
-            else
-            {
-                velocity.y += gravity * Time.deltaTime;
-                speed = 15;
-            }
-
-            controller.Move(velocity * Time.deltaTime);
-
-            float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
-            float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
-
-            yRotation += mouseX;
-            transform.localEulerAngles = new Vector3(0, yRotation, 0);
-
-            xRotation -= mouseY;
-            xRotation = Mathf.Clamp(xRotation, -verticalRotationLimit, verticalRotationLimit);
-            Camera.main.transform.localEulerAngles = new Vector3(xRotation, 0, 0);
-
-            //transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0);
-
-            float scroll = Input.GetAxis("Mouse ScrollWheel");
-
-            if (Mathf.Abs(scroll) == 0.1f && weaponSwitchEnable && !Input.GetMouseButton(0))
-            {
-                SwitchWeapon();
-                weaponSwitchEnable = false;
-                if (switchWeaponCoroutine == null)
+                else
                 {
-                    switchWeaponCoroutine = StartCoroutine(SwitchWeaponTime(0.15f));
+                    speed = 15;
                 }
             }
 
-            /*print("Pistol Ammo: " + ammo[(int)AmmoType.PISTOL]);
-            print("AR Ammo: " + ammo[(int)AmmoType.ASSAULTRIFLE]);
-            print("Shotgun Ammo: " + ammo[(int)AmmoType.SHOTGUN]);
-            print("RPG Ammo: " + ammo[(int)AmmoType.RPG]);*/
+        }
+        else
+        {
+            velocity.y += gravity * Time.deltaTime;
+            speed = 15;
+        }
 
-            /*foreach (var resource in resources)
-            {
-                Debug.Log($"Resource: {resource.Key}, Count: {resource.Value}");
-            }*/
+        controller.Move(velocity * Time.deltaTime);
 
+        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
+        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
 
-            if (canOpenChestGreen && Input.GetButtonDown("Interact"))
-            {
-                if (keyItems.Contains(keyGreen))
-                {
-                    chestGreen.OpenChest();
-                    keyItems.Remove(keyGreen);
-                }
-                else if (!chestGreen.opened)
-                {
-                    chestGreen.LockedChest();
-                }
-            }
+        yRotation += mouseX;
+        transform.localEulerAngles = new Vector3(0, yRotation, 0);
 
-            if (canOpenChestGold && Input.GetButtonDown("Interact"))
-            {
-                if (keyItems.Contains(keyGold))
-                {
-                    ChestGold.OpenChest();
-                    keyItems.Remove(keyGold);
-                }
-                else if (!ChestGold.opened)
-                {
-                    ChestGold.LockedChest();
-                }
-            }
+        xRotation -= mouseY;
+        xRotation = Mathf.Clamp(xRotation, -verticalRotationLimit, verticalRotationLimit);
+        Camera.main.transform.localEulerAngles = new Vector3(xRotation, 0, 0);
 
-            if (canOpenChestRed && Input.GetButtonDown("Interact"))
-            {
-                if (keyItems.Contains(keyRed))
-                {
-                    ChestRed.OpenChest();
-                    keyItems.Remove(keyRed);
-                }
-                else if (!ChestRed.opened)
-                {
-                    ChestRed.LockedChest();
-                }
-            }
+        //transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0);
 
-            if (pistolInteractable)
-            {
-                if (Input.GetButtonDown("Interact"))
-                {
-                    if (!weapons.Contains(pistol))
-                    {
-                        weapons.Add(pistol);
-                        ammo[(int)AmmoType.PISTOL] += 8;
-                        audioSources[0].Play();
-                        EquipWeapon(pistol);
-                        Destroy(currentWeaponPickup);
-                        pistolInteractable = false;
-                    }
-                }
-            }
-            if (assaultRifleInteractable)
-            {
-                if (Input.GetButtonDown("Interact"))
-                {
-                    if (!weapons.Contains(assaultRifle))
-                    {
-                        weapons.Add(assaultRifle);
-                        ammo[(int)AmmoType.ASSAULTRIFLE] += 25;
-                        audioSources[0].Play();
-                        EquipWeapon(assaultRifle);
-                        Destroy(currentWeaponPickup);
-                        assaultRifleInteractable = false;
-                    }
-                }
-            }
-            if (shotgunInteractable)
-            {
-                if (Input.GetButtonDown("Interact"))
-                {
-                    if (!weapons.Contains(shotgun))
-                    {
-                        if (gameManager.shotgunDrop == false)
-                        {
-                            ammo[(int)AmmoType.SHOTGUN] += 6;
-                            gameManager.shotgunDrop = true;
-                        }
-                        else
-                        {
-                            ammo[(int)AmmoType.SHOTGUN] += 4;
-                        }
-                        weapons.Add(shotgun);
-                        audioSources[0].Play();
-                        EquipWeapon(shotgun);
-                        Destroy(currentWeaponPickup);
-                        shotgunInteractable = false;
-                    }
-                }
-            }
-            if (rpgInteractable)
-            {
-                if (Input.GetButtonDown("Interact"))
-                {
-                    if (!weapons.Contains(rpg))
-                    {
-                        if (gameManager.rpgDrop == false)
-                        {
-                            ammo[(int)AmmoType.RPG] += 2;
-                            gameManager.rpgDrop = true;
-                        }
-                        else
-                        {
-                            ammo[(int)AmmoType.RPG] += 1;
-                            if (!rocketShell.activeSelf && reloadRocketRoutine == null)
-                            {
-                                reloadRocketRoutine = StartCoroutine(ReloadRocket());
-                            }
-                        }
-                        weapons.Add(rpg);
-                        audioSources[0].Play();
-                        EquipWeapon(rpg);
-                        Destroy(currentWeaponPickup);
-                        rpgInteractable = false;
-                    }
-                }
-            }
-            if (flamethrowerInteractable)
-            {
-                if (Input.GetButtonDown("Interact"))
-                {
-                    if (!weapons.Contains(flamethrower))
-                    {
-                        gameManager.flamethrowerDrop = true;
-                        weapons.Add(flamethrower);
-                        ammo[(int)AmmoType.FLAMETHROWER] += 50;
-                        audioSources[0].Play();
-                        EquipWeapon(flamethrower);
-                        Destroy(currentWeaponPickup);
-                        flamethrowerInteractable = false;
-                    }
-                }
-            }
+        float scroll = Input.GetAxis("Mouse ScrollWheel");
 
-            if (lureDevice == null)
+        if (Mathf.Abs(scroll) == 0.1f && weaponSwitchEnable && !Input.GetMouseButton(0))
+        {
+            SwitchWeapon();
+            weaponSwitchEnable = false;
+            if (switchWeaponCoroutine == null)
             {
-                lureDevice = GameObject.FindWithTag("Lure");
+                switchWeaponCoroutine = StartCoroutine(SwitchWeaponTime(0.15f));
             }
         }
 
-        else
+        /*print("Pistol Ammo: " + ammo[(int)AmmoType.PISTOL]);
+        print("AR Ammo: " + ammo[(int)AmmoType.ASSAULTRIFLE]);
+        print("Shotgun Ammo: " + ammo[(int)AmmoType.SHOTGUN]);
+        print("RPG Ammo: " + ammo[(int)AmmoType.RPG]);*/
+
+        /*foreach (var resource in resources)
         {
-            gameManager.ReloadScene();
+            Debug.Log($"Resource: {resource.Key}, Count: {resource.Value}");
+        }*/
+
+
+        if (canOpenChestGreen && Input.GetButtonDown("Interact"))
+        {
+            if (keyItems.Contains(keyGreen))
+            {
+                chestGreen.OpenChest();
+                keyItems.Remove(keyGreen);
+            }
+            else if (!chestGreen.opened)
+            {
+                chestGreen.LockedChest();
+            }
+        }
+
+        if (canOpenChestGold && Input.GetButtonDown("Interact"))
+        {
+            if (keyItems.Contains(keyGold))
+            {
+                ChestGold.OpenChest();
+                keyItems.Remove(keyGold);
+            }
+            else if (!ChestGold.opened)
+            {
+                ChestGold.LockedChest();
+            }
+        }
+
+        if (canOpenChestRed && Input.GetButtonDown("Interact"))
+        {
+            if (keyItems.Contains(keyRed))
+            {
+                ChestRed.OpenChest();
+                keyItems.Remove(keyRed);
+            }
+            else if (!ChestRed.opened)
+            {
+                ChestRed.LockedChest();
+            }
+        }
+
+        if (pistolInteractable)
+        {
+            if (Input.GetButtonDown("Interact"))
+            {
+                if (!weapons.Contains(pistol))
+                {
+                    weapons.Add(pistol);
+                    ammo[(int)AmmoType.PISTOL] += 8;
+                    audioSources[0].Play();
+                    EquipWeapon(pistol);
+                    Destroy(currentWeaponPickup);
+                    pistolInteractable = false;
+                }
+            }
+        }
+        if (assaultRifleInteractable)
+        {
+            if (Input.GetButtonDown("Interact"))
+            {
+                if (!weapons.Contains(assaultRifle))
+                {
+                    weapons.Add(assaultRifle);
+                    ammo[(int)AmmoType.ASSAULTRIFLE] += 25;
+                    audioSources[0].Play();
+                    EquipWeapon(assaultRifle);
+                    Destroy(currentWeaponPickup);
+                    assaultRifleInteractable = false;
+                }
+            }
+        }
+        if (shotgunInteractable)
+        {
+            if (Input.GetButtonDown("Interact"))
+            {
+                if (!weapons.Contains(shotgun))
+                {
+                    if (gameManager.shotgunDrop == false)
+                    {
+                        ammo[(int)AmmoType.SHOTGUN] += 6;
+                        gameManager.shotgunDrop = true;
+                    }
+                    else
+                    {
+                        ammo[(int)AmmoType.SHOTGUN] += 4;
+                    }    
+                    weapons.Add(shotgun);
+                    audioSources[0].Play();
+                    EquipWeapon(shotgun);
+                    Destroy(currentWeaponPickup);
+                    shotgunInteractable = false;
+                }
+            }
+        }
+        if (rpgInteractable)
+        {
+            if (Input.GetButtonDown("Interact"))
+            {
+                if (!weapons.Contains(rpg))
+                {
+                    if (gameManager.rpgDrop == false)
+                    {
+                        ammo[(int)AmmoType.RPG] += 2;
+                        gameManager.rpgDrop = true;
+                    }
+                    else
+                    {
+                        ammo[(int)AmmoType.RPG] += 1;
+                        if (!rocketShell.activeSelf && reloadRocketRoutine == null)
+                        {
+                            reloadRocketRoutine = StartCoroutine(ReloadRocket());
+                        }
+                    }
+                    weapons.Add(rpg);
+                    audioSources[0].Play();
+                    EquipWeapon(rpg);
+                    Destroy(currentWeaponPickup);
+                    rpgInteractable = false;
+                }
+            }
+        }
+        if (flamethrowerInteractable)
+        {
+            if (Input.GetButtonDown("Interact"))
+            {
+                if (!weapons.Contains(flamethrower))
+                {
+                    gameManager.flamethrowerDrop = true;
+                    weapons.Add(flamethrower);
+                    ammo[(int)AmmoType.FLAMETHROWER] += 50;
+                    audioSources[0].Play();
+                    EquipWeapon(flamethrower);
+                    Destroy(currentWeaponPickup);
+                    flamethrowerInteractable = false;
+                }
+            }
+        }
+
+        if (lureDevice == null)
+        {
+            lureDevice = GameObject.FindWithTag("Lure");
         }
     }
 
