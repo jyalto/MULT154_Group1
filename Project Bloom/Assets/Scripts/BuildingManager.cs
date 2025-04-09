@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 
 public class BuildingManager : MonoBehaviour
 {
+    public PlayerController playerObject;
     public Camera playerCamera;
     public List<GameObject> buildingPreviews = new List<GameObject>(); // Previews to be used
     private List<GameObject> previewObjects = new List<GameObject>(); // Physical, instantiated preview objects
@@ -24,6 +25,8 @@ public class BuildingManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerObject = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+
         // Pre-load ghosts
         foreach (GameObject building in buildingPreviews)
         {
@@ -40,7 +43,7 @@ public class BuildingManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.B)) // Toggle building mode
+        if (Input.GetKeyDown(KeyCode.B) && playerObject.lureDevice == null) // Toggle building mode
         {
             buildingModeActive = !buildingModeActive;
         }
@@ -91,6 +94,11 @@ public class BuildingManager : MonoBehaviour
         else
         {
             currentPreview.SetActive(false);
+        }
+
+        if (playerObject.lureDevice != null)
+        {
+            buildingModeActive = false;
         }
     }
 
