@@ -24,6 +24,8 @@ public class PlayerAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
         //CheckEquipment();
         if (Input.GetKeyDown(KeyCode.Alpha6) && buildingManager.buildingModeActive == false)
         {
@@ -79,18 +81,9 @@ public class PlayerAnimation : MonoBehaviour
     void MovementAnim()
     {
         // Movement
-        if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D))
-        {
-            playerAnim.SetFloat("playerSpeed", 0f, 0.1f, Time.deltaTime);
-        }
-        else if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)) && !Input.GetKey(KeyCode.LeftShift))
-        {
-            playerAnim.SetFloat("playerSpeed", 0.5f, 0.1f, Time.deltaTime);
-        }
-        else if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)) && Input.GetKey(KeyCode.LeftShift))
-        {
-            playerAnim.SetFloat("playerSpeed", 1.0f, 0.1f, Time.deltaTime);
-        }
+        float playerSpeed = new Vector2(playerCon.velocity.x, playerCon.velocity.z).magnitude;
+        playerAnim.SetFloat("playerSpeed", playerSpeed, 0.1f, Time.deltaTime);
+
         // Attack
         if (Input.GetMouseButtonDown(0))
         {

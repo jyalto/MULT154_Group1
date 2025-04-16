@@ -5,11 +5,13 @@ using static Weapon;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 15.0f;
+    public float speed = 6.0f;
     public float mouseSensitivity = 2.0f;
-    public float verticalRotationLimit = 90.0f;
-    public float gravity = -40.0f;
-    public float jumpForce = 20.0f;
+    //public float verticalRotationLimit = 90.0f;
+    public float lookUp = -90.0f;
+    public float lookDown = 45.0f;
+    public float gravity = -9.81f;
+    public float jumpForce = 5.0f;
     public int health = 25;
     public bool flameActive = false;
     public GameObject pistol;
@@ -45,7 +47,7 @@ public class PlayerController : MonoBehaviour
     private bool canOpenChestRed = false;
     private Coroutine switchWeaponCoroutine = null;
     private Coroutine reloadRocketRoutine = null;
-    private Vector3 velocity;
+    public Vector3 velocity;
 
     private List<GameObject> weapons = new List<GameObject>();
     private List<GameObject> keyItems = new List<GameObject>();
@@ -86,7 +88,7 @@ public class PlayerController : MonoBehaviour
         float moveDirectionX = Input.GetAxis("Horizontal");
         float moveDirectionZ = Input.GetAxis("Vertical");
 
-        Vector3 move = new Vector3(moveDirectionX, 0, moveDirectionZ);
+        Vector3 move = new Vector3(moveDirectionX, 0, moveDirectionZ).normalized;
         move = transform.TransformDirection(move);
 
         velocity.x = move.x * speed;
@@ -97,7 +99,7 @@ public class PlayerController : MonoBehaviour
             if (Input.GetButtonDown("Jump"))
             {
                 velocity.y = jumpForce;
-                speed = 15;
+                speed = 6;
             }
 
             else
@@ -106,16 +108,16 @@ public class PlayerController : MonoBehaviour
                 {
                     if (Input.GetKey(KeyCode.LeftShift) && !flamethrowerParticles.isPlaying)
                     {
-                        speed = 30;
+                        speed = 12.0f;
                     }
                     else
                     {
-                        speed = 15;
+                        speed = 6.0f;
                     }
                 }
                 else
                 {
-                    speed = 15;
+                    speed = 6.0f;
                 }
             }
 
@@ -123,7 +125,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             velocity.y += gravity * Time.deltaTime;
-            speed = 15;
+            speed = 6.0f;
         }
 
         controller.Move(velocity * Time.deltaTime);
@@ -135,7 +137,7 @@ public class PlayerController : MonoBehaviour
         transform.localEulerAngles = new Vector3(0, yRotation, 0);
 
         xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -verticalRotationLimit, verticalRotationLimit);
+        xRotation = Mathf.Clamp(xRotation, lookUp, lookDown);
         Camera.main.transform.localEulerAngles = new Vector3(xRotation, 0, 0);
 
         //transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0);

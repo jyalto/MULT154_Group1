@@ -5695,6 +5695,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1311f1282708b44abb149d2890c6424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerObject: {fileID: 0}
   playerCamera: {fileID: 6682040707060622453}
   buildingPreviews:
   - {fileID: 3111088430545699166, guid: cf4c3237fd0e11048b453729d8b6b7fe, type: 3}
@@ -8014,11 +8015,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06b5ab126de632341841a539a4583c6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 15
+  speed: 6
   mouseSensitivity: 2
-  verticalRotationLimit: 90
-  gravity: -40
-  jumpForce: 20
+  lookUp: -90
+  lookDown: 45
+  gravity: -9.81
+  jumpForce: 5
   health: 25
   flameActive: 0
   pistol: {fileID: 7265288979935322106}
@@ -8035,6 +8037,7 @@ MonoBehaviour:
   chestGreen: {fileID: 0}
   ChestGold: {fileID: 0}
   ChestRed: {fileID: 0}
+  velocity: {x: 0, y: 0, z: 0}
   ammo: 000000000000000000000000
 --- !u!82 &4462395431580724076
 AudioSource:
