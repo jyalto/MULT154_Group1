@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 5.0f;
     public int health = 25;
     public bool flameActive = false;
+    public bool lureActive = false;
     public GameObject pistol;
     public GameObject assaultRifle;
     public GameObject shotgun;
@@ -305,7 +306,15 @@ public class PlayerController : MonoBehaviour
 
             if (lureDevice == null)
             {
+                lureActive = false;
                 lureDevice = GameObject.FindWithTag("Lure");
+            }
+            else
+            {
+                if (Input.GetKeyDown(KeyCode.L) && !lureActive)
+                {
+                    lureActive = true;
+                }
             }
         }
 

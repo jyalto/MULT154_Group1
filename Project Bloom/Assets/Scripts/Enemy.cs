@@ -144,7 +144,7 @@ public class Enemy : MonoBehaviour
 
     private void Chase()
     {
-        if (lure != null)
+        if (lure != null && playerObject.lureActive == true)
         {
             agent.SetDestination(lure.position);
         }

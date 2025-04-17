@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class LureDevice : MonoBehaviour
 {
+    public PlayerController playerObject;
     public GameObject explosion;
 
     private Coroutine myCoroutine = null;
@@ -11,7 +12,7 @@ public class LureDevice : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        playerObject = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -22,7 +23,7 @@ public class LureDevice : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag("Enemy") && playerObject.lureActive == true)
         {
             if (myCoroutine == null)
             {

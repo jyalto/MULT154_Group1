@@ -34,5 +34,20 @@ public class SoundManager : MonoBehaviour
                 weaponAudioSources[0].Play();
             }
         }
+        if (!player.lureActive)
+        {
+            if (weaponAudioSources[1].isPlaying)
+            {
+                weaponAudioSources[1].Stop();
+            }
+        }
+        else
+        {
+            if (!weaponAudioSources[1].isPlaying)
+            {
+                weaponAudioSources[1].pitch = Random.Range(0.8f, 1.2f);
+                weaponAudioSources[1].Play();
+            }
+        }
     }
 }
