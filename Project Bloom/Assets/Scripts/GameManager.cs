@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class GameManager : MonoBehaviour
 
     private int randomBigSpawn = 0;
 
+    public List<GameObject> spawnedItems = new List<GameObject>();
     public Transform[] spawnPoints;
     public Transform[] bigspawnPoints;
 
@@ -26,6 +28,28 @@ public class GameManager : MonoBehaviour
     public Image bulletImage;
 
     private Coroutine myCoroutine = null;
+
+    void Start()
+    {
+        enemyCount = 0;
+        bigEnemyCount = 0;
+        wave = 1;
+        killedEnemies = 0;
+        shotgunDrop = false;
+        rpgDrop = false;
+        flamethrowerDrop = false;
+        randomBigSpawn = 0;
+        myCoroutine = null;
+
+        foreach (GameObject item in spawnedItems)
+        {
+            if (item != null)
+            {
+                Destroy(item);
+            }
+        }
+        spawnedItems.Clear();
+    }
 
     // Update is called once per frame
     void Update()
@@ -217,5 +241,11 @@ public class GameManager : MonoBehaviour
         }
 
         myCoroutine = null;
+    }
+
+    public void ReloadScene()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.name);
     }
 }
