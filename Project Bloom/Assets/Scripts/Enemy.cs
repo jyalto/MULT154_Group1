@@ -238,63 +238,66 @@ public class Enemy : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (!bigEnemyActive)
+        if (playerObject != null)
         {
-            int randomRate = Random.Range(0, 3);
-            if (randomRate == 2)
+            if (!bigEnemyActive)
             {
-                int randomNum = Random.Range(0, randomDrop.Length);
-                if (randomNum == 0)
+                int randomRate = Random.Range(0, 3);
+                if (randomRate == 2)
                 {
-                    gameManager.spawnedItems.Add(Instantiate(randomDrop[randomNum], new Vector3(transform.position.x, 10.17471f, transform.position.z), Quaternion.Euler(90f, 0f, -90f)));
-                }
-                else if (randomNum == 1)
-                {
-                    gameManager.spawnedItems.Add(Instantiate(randomDrop[randomNum], new Vector3(transform.position.x, 9.8f, transform.position.z), Quaternion.Euler(-90f, 0f, 0f)));
-                }
-                else if (randomNum == 2 || randomNum == 3)
-                {
-                    int randomChance = Random.Range(0, 2);
-
-                    if (randomChance == 1 && rareDrop.Length > 0)
+                    int randomNum = Random.Range(0, randomDrop.Length);
+                    if (randomNum == 0)
                     {
-                        int randomNum2 = Random.Range(0, rareDrop.Length);
-                        gameManager.spawnedItems.Add(Instantiate(rareDrop[randomNum2], new Vector3(transform.position.x, 10.17471f, transform.position.z), Quaternion.identity));
+                        gameManager.spawnedItems.Add(Instantiate(randomDrop[randomNum], new Vector3(transform.position.x, 10.17471f, transform.position.z), Quaternion.Euler(90f, 0f, -90f)));
                     }
-
-                    else
+                    else if (randomNum == 1)
                     {
-                        gameManager.spawnedItems.Add(Instantiate(randomDrop[randomNum], new Vector3(transform.position.x, 10.17471f, transform.position.z), Quaternion.identity));
+                        gameManager.spawnedItems.Add(Instantiate(randomDrop[randomNum], new Vector3(transform.position.x, 9.8f, transform.position.z), Quaternion.Euler(-90f, 0f, 0f)));
+                    }
+                    else if (randomNum == 2 || randomNum == 3)
+                    {
+                        int randomChance = Random.Range(0, 2);
+
+                        if (randomChance == 1 && rareDrop.Length > 0)
+                        {
+                            int randomNum2 = Random.Range(0, rareDrop.Length);
+                            gameManager.spawnedItems.Add(Instantiate(rareDrop[randomNum2], new Vector3(transform.position.x, 10.17471f, transform.position.z), Quaternion.identity));
+                        }
+
+                        else
+                        {
+                            gameManager.spawnedItems.Add(Instantiate(randomDrop[randomNum], new Vector3(transform.position.x, 10.17471f, transform.position.z), Quaternion.identity));
+                        }
                     }
                 }
-            }
-        }
-
-        else
-        {
-            if (rareDrop.Length > 0)
-            {
-                int randomNum2 = Random.Range(0, rareDrop.Length);
-                gameManager.spawnedItems.Add(Instantiate(rareDrop[randomNum2], new Vector3(transform.position.x, 10.17471f, transform.position.z), Quaternion.identity));
             }
 
             else
             {
-                int randomNum = Random.Range(2, randomDrop.Length);
-                gameManager.spawnedItems.Add(Instantiate(randomDrop[randomNum], new Vector3(transform.position.x, 10.17471f, transform.position.z), Quaternion.identity));
-            }
-        }
-        
-        gameManager.killedEnemies++;
+                if (rareDrop.Length > 0)
+                {
+                    int randomNum2 = Random.Range(0, rareDrop.Length);
+                    gameManager.spawnedItems.Add(Instantiate(rareDrop[randomNum2], new Vector3(transform.position.x, 10.17471f, transform.position.z), Quaternion.identity));
+                }
 
-        if (bigEnemyActive)
-        {
-            gameManager.bigEnemyCount--;
-            gameManager.enemyCount--;
-        }
-        else
-        {
-            gameManager.enemyCount--;
+                else
+                {
+                    int randomNum = Random.Range(2, randomDrop.Length);
+                    gameManager.spawnedItems.Add(Instantiate(randomDrop[randomNum], new Vector3(transform.position.x, 10.17471f, transform.position.z), Quaternion.identity));
+                }
+            }
+
+            gameManager.killedEnemies++;
+
+            if (bigEnemyActive)
+            {
+                gameManager.bigEnemyCount--;
+                gameManager.enemyCount--;
+            }
+            else
+            {
+                gameManager.enemyCount--;
+            }
         }
     }
 }
