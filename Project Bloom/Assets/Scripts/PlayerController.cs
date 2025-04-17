@@ -5,7 +5,9 @@ using static Weapon;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 6.0f;
+    public float speed = 10f;
+    public float walkingSpeed = 10f;
+    public float runningSpeed = 20f;
     public float mouseSensitivity = 2.0f;
     //public float verticalRotationLimit = 90.0f;
     public float lookUp = -90.0f;
@@ -102,7 +104,7 @@ public class PlayerController : MonoBehaviour
                 if (Input.GetButtonDown("Jump"))
                 {
                     velocity.y = jumpForce;
-                    speed = 6;
+                    speed = walkingSpeed;
                 }
 
                 else
@@ -111,16 +113,16 @@ public class PlayerController : MonoBehaviour
                     {
                         if (Input.GetKey(KeyCode.LeftShift) && !flamethrowerParticles.isPlaying)
                         {
-                            speed = 12.0f;
+                            speed = runningSpeed;
                         }
                         else
                         {
-                            speed = 6.0f;
+                            speed = walkingSpeed;
                         }
                     }
                     else
                     {
-                        speed = 6.0f;
+                        speed = walkingSpeed;
                     }
                 }
 
@@ -128,7 +130,7 @@ public class PlayerController : MonoBehaviour
             else
             {
                 velocity.y += gravity * Time.deltaTime;
-                speed = 6.0f;
+                speed = walkingSpeed;
             }
 
             controller.Move(velocity * Time.deltaTime);
