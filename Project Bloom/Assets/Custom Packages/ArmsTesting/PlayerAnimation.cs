@@ -60,6 +60,18 @@ public class PlayerAnimation : MonoBehaviour
             //bat.SetActive(true);
 
         }
+        if (Input.GetKeyDown(KeyCode.Alpha5) && buildingManager.buildingModeActive == false)
+        {
+            if (currentlyEquippedWeapon != 3)
+            {
+                playerAnim.SetTrigger("unequipWeapon");
+            }
+            currentlyEquippedWeapon = 3;
+            playerAnim.SetInteger("weaponType", 3);
+            //hammer.SetActive(false);
+            //bat.SetActive(true);
+
+        }
         MovementAnim();
     }
     void ActivateBat()

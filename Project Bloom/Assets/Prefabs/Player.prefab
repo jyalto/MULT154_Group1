@@ -166,18 +166,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 15
   mouseSensitivity: 2
-  verticalRotationLimit: 90
+  lookUp: -90
+  lookDown: 45
   gravity: -40
   jumpForce: 20
   health: 25
+  flameActive: 0
   pistol: {fileID: 5368922330823352395}
   assaultRifle: {fileID: 2181412260683531264}
   shotgun: {fileID: 171698579894844638}
   keyGreen: {fileID: 0}
+  keyGold: {fileID: 0}
   keyRed: {fileID: 0}
-  gasCan: {fileID: 0}
+  rpg: {fileID: 0}
+  rocketShell: {fileID: 0}
+  flamethrower: {fileID: 0}
+  lureDevice: {fileID: 0}
+  flamethrowerParticles: {fileID: 0}
   chestGreen: {fileID: 0}
-  chestRed: {fileID: 0}
+  ChestGold: {fileID: 0}
+  ChestRed: {fileID: 0}
+  velocity: {x: 0, y: 0, z: 0}
   ammo: 000000000000000000000000
 --- !u!114 &1974972879992441805
 MonoBehaviour:
@@ -191,6 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1311f1282708b44abb149d2890c6424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerObject: {fileID: 0}
   playerCamera: {fileID: 6682040707953005592}
   buildingPreviews:
   - {fileID: 3111088430545699166, guid: cf4c3237fd0e11048b453729d8b6b7fe, type: 3}
@@ -680,6 +690,7 @@ GameObject:
   - component: {fileID: 1016384417719967456}
   - component: {fileID: 6682040707953005592}
   - component: {fileID: 3251438114605048096}
+  - component: {fileID: 3606324031968342666}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -761,6 +772,50 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8174043567889596880}
   m_Enabled: 1
+--- !u!114 &3606324031968342666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8174043567889596880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
 --- !u!1001 &7823247621096237312
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -855,6 +910,7 @@ MonoBehaviour:
   audioSource: {fileID: 9009351916926965602}
   bulletPrefab: {fileID: 7410973418651961534, guid: e536a96810b66164081e252580919975, type: 3}
   bulletSpawn: {fileID: 800880749537430346}
+  flamethrowerCollider: {fileID: 0}
   bulletVelocity: 30
   bulletPrefabLifeTime: 3
   fireRate: 0.25
@@ -1056,6 +1112,7 @@ MonoBehaviour:
   audioSource: {fileID: 6897906330244444964}
   bulletPrefab: {fileID: 7410973418651961534, guid: e536a96810b66164081e252580919975, type: 3}
   bulletSpawn: {fileID: 7474644217535836368}
+  flamethrowerCollider: {fileID: 0}
   bulletVelocity: 30
   bulletPrefabLifeTime: 3
   fireRate: 0.1
@@ -1272,6 +1329,7 @@ MonoBehaviour:
   audioSource: {fileID: 963402928369176907}
   bulletPrefab: {fileID: 8245354814949963363, guid: df6f43fb7481e08469963905cfb9b4a2, type: 3}
   bulletSpawn: {fileID: 733029626534426824}
+  flamethrowerCollider: {fileID: 0}
   bulletVelocity: 30
   bulletPrefabLifeTime: 3
   fireRate: 3

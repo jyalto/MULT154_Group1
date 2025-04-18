@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7ef7965a378470342a9121a6ec1f116c
+guid: 5d5ce492b37edc4479f3a133611fce1c
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,7 +33,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Pistol_Idle_test
+      name: Pistol_IdleAnim
       takeName: Unreal Take
       internalID: 8993902097722301239
       firstFrame: 0
