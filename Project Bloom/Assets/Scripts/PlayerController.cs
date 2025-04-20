@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using static Weapon;
 
@@ -55,7 +57,7 @@ public class PlayerController : MonoBehaviour
     private List<GameObject> weapons = new List<GameObject>();
     private List<GameObject> keyItems = new List<GameObject>();
 
-    private Dictionary<string, int> resources = new Dictionary<string, int>();
+    private Dictionary<Resource.ResourceTypes, int> resources = new Dictionary<Resource.ResourceTypes, int>();
 
     private int currentWeaponIndex = 0;
 
@@ -608,12 +610,32 @@ public class PlayerController : MonoBehaviour
             canOpenChestRed = true;
         }
 
-        if (other.CompareTag("Gas Can PickUp"))
+        if (other.CompareTag("ResourcePickup"))
         {
-            AddResource("Gas Can");
-            audioSources[3].Play();
+            Resource tempResource = other.gameObject.GetComponent<Resource>();
+            AddResource(tempResource.ResourceType, 1);
+
+            /*
+            switch (tempResource.ResourceType)
+            {
+                case Resource.ResourceTypes.PLANT_PASTE:
+                    break;
+                case Resource.ResourceTypes.TOUGH_CLOTH:
+                    break;
+                case Resource.ResourceTypes.SCRAP_METAL:
+                    break;
+                case Resource.ResourceTypes.TECH_PARTS:
+                    break;
+                case Resource.ResourceTypes.GAS_CAN:
+                    break;
+                case Resource.ResourceTypes.WEED_SPRAY:
+                    break;
+            }
+            */
+
             Destroy(other.gameObject);
         }
+
     }
 
     void OnTriggerExit(Collider other)
@@ -704,28 +726,37 @@ public class PlayerController : MonoBehaviour
         weapon = newWeapon.GetComponent<Weapon>();
     }
 
-    public void AddResource(string resourceName)
+    public void AddResource(Resource.ResourceTypes resourceType, int resourceCount)
     {
-        if (resources.ContainsKey(resourceName))
+        if (resources.ContainsKey(resourceType))
         {
-            resources[resourceName]++;
+            resources[resourceType] += resourceCount;
         }
         else
         {
-            resources[resourceName] = 1;
+            resources[resourceType] = 1;
         }
 
-        //Debug.Log($"{resourceName} collected. Total: {resources[resourceName]}");
+        Debug.Log($"{resourceType} collected. Total: {resources[resourceType]}");
     }
 
-    public void RemoveResource(string resourceName)
+    public int CheckResource(Resource.ResourceTypes resourceType)
     {
-        if (resources.ContainsKey(resourceName))
+        if (resources.ContainsKey(resourceType))
         {
-            resources[resourceName]--;
-            if (resources[resourceName] <= 0)
+            return resources[resourceType];
+        }
+        return -1;
+    }
+
+    public void RemoveResource(Resource.ResourceTypes resourceType, int resourceCount)
+    {
+        if (resources.ContainsKey(resourceType))
+        {
+            resources[resourceType] -= resourceCount;
+            if (resources[resourceType] <= 0)
             {
-                resources.Remove(resourceName);
+                resources.Remove(resourceType);
             }
         }
     }
