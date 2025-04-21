@@ -706,7 +706,6 @@ public class PlayerController : MonoBehaviour
 
         newWeapon.SetActive(true);
         weapon = newWeapon.GetComponent<Weapon>();
-        //playerAnimScript.CheckActiveWeapon();
     }
 
     public void AddResource(string resourceName)

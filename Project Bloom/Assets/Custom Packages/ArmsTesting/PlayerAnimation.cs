@@ -103,6 +103,14 @@ public class PlayerAnimation : MonoBehaviour
     {
         hammer.SetActive(false);
     }
+    void ActivatePistol()
+    {
+        pistol.SetActive(true);
+    }
+    void DectivatePistol()
+    {
+        pistol.SetActive(false);
+    }
 
     void MovementAnim()
     {
