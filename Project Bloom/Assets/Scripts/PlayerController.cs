@@ -32,6 +32,8 @@ public class PlayerController : MonoBehaviour
     public TreasureChest ChestGold;
     public TreasureChest ChestRed;
 
+    public Animator playerAnim;
+    private PlayerAnimation playerAnimScript;
     private AudioSource[] audioSources;
     private Weapon weapon;
     private GameManager gameManager;
@@ -152,6 +154,7 @@ public class PlayerController : MonoBehaviour
             if (Mathf.Abs(scroll) == 0.1f && weaponSwitchEnable && !Input.GetMouseButton(0))
             {
                 SwitchWeapon();
+
                 weaponSwitchEnable = false;
                 if (switchWeaponCoroutine == null)
                 {
@@ -328,6 +331,7 @@ public class PlayerController : MonoBehaviour
 
     void SwitchWeapon()
     {
+
         if (weapons.Count > 1)
         {
             if (weapon.typeOfWeapon == Weapon.WeaponType.FLAMETHROWER)
@@ -666,6 +670,7 @@ public class PlayerController : MonoBehaviour
 
     void EquipWeapon(GameObject newWeapon)
     {
+        playerAnim.SetTrigger("unequipWeapon");
         if (weapon != null)
         {
             weapon.gameObject.SetActive(false);
@@ -700,8 +705,8 @@ public class PlayerController : MonoBehaviour
         }
 
         newWeapon.SetActive(true);
-
         weapon = newWeapon.GetComponent<Weapon>();
+        //playerAnimScript.CheckActiveWeapon();
     }
 
     public void AddResource(string resourceName)

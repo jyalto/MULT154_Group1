@@ -1,17 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static Weapon;
+using UnityEngine.UIElements;
 
 public class PlayerAnimation : MonoBehaviour
 {
     private PlayerController playerCon;
     private Animator playerAnim;
     private BuildingManager buildingManager;
+
+    // not implemented player objects
     public GameObject hammer;
     public GameObject bat;
+    public GameObject syringe;
+    public GameObject pistol;
+    public GameObject assaultRifle;
+    public GameObject shotgun;
+    public GameObject rPG7;
+    public GameObject flamethrower;
+
     private int currentlyEquippedWeapon;
-    //private Weapon weapon;
+
+    public bool isPistolActive;
+    public bool isAssaultRifleActive;
+    public bool isShotgunActive;
+    public bool isRPG7Active;
+    public bool isFlameThrowerActive;
 
     // Start is called before the first frame update
     void Start()
@@ -24,12 +38,25 @@ public class PlayerAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        MovementAnim();
 
-
-        //CheckEquipment();
-        if (Input.GetKeyDown(KeyCode.Alpha6) && buildingManager.buildingModeActive == false)
+        isPistolActive = pistol.activeSelf;
+        if (isPistolActive)
         {
-            if(currentlyEquippedWeapon != 0)
+            playerAnim.SetInteger("weaponType", 3);
+            isPistolActive = false;
+        }
+        isAssaultRifleActive = assaultRifle.activeSelf;
+        if(isAssaultRifleActive)
+        {
+            playerAnim.SetInteger("weaponType", 4);
+            isAssaultRifleActive = false;
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.Alpha8) && buildingManager.buildingModeActive == false)
+        {
+            if (currentlyEquippedWeapon != 0)
             {
                 playerAnim.SetTrigger("unequipWeapon");
             }
@@ -48,7 +75,7 @@ public class PlayerAnimation : MonoBehaviour
             //bat.SetActive(false);
             //hammer.SetActive(true);
         }
-        if (Input.GetKeyDown(KeyCode.Alpha8) && buildingManager.buildingModeActive == false)
+        if (Input.GetKeyDown(KeyCode.Alpha9) && buildingManager.buildingModeActive == false)
         {
             if (currentlyEquippedWeapon != 2)
             {
@@ -58,21 +85,7 @@ public class PlayerAnimation : MonoBehaviour
             playerAnim.SetInteger("weaponType", 2);
             //hammer.SetActive(false);
             //bat.SetActive(true);
-
         }
-        if (Input.GetKeyDown(KeyCode.Alpha5) && buildingManager.buildingModeActive == false)
-        {
-            if (currentlyEquippedWeapon != 3)
-            {
-                playerAnim.SetTrigger("unequipWeapon");
-            }
-            currentlyEquippedWeapon = 3;
-            playerAnim.SetInteger("weaponType", 3);
-            //hammer.SetActive(false);
-            //bat.SetActive(true);
-
-        }
-        MovementAnim();
     }
     void ActivateBat()
     {
@@ -90,6 +103,7 @@ public class PlayerAnimation : MonoBehaviour
     {
         hammer.SetActive(false);
     }
+
     void MovementAnim()
     {
         // Movement
@@ -111,29 +125,40 @@ public class PlayerAnimation : MonoBehaviour
             playerAnim.SetTrigger("Jump");
         }
     }
+    public void CheckActiveWeapon()
+    {
+        //pistolActive = playerCon.pistol.activeInHierarchy;
+        //assaultRifleActive = playerCon.assaultRifle.activeInHierarchy;
+        //shotgunActive = playerCon.shotgun.activeInHierarchy;
+        //rPG7Active = playerCon.rpg.activeInHierarchy;
+        //flameThrowerActive = playerCon.flamethrower.activeInHierarchy;
 
-    //void CheckEquipment()
-    //{
+        //bool pistolActive = pistol.activeInHierarchy;
+        //bool assaultRifleActive = assaultRifle.activeInHierarchy;
+        //bool shotgunActive = shotgun.activeInHierarchy;
+        //bool rPG7Active = rPG7.activeInHierarchy;
+        //bool flameThrowerActive = flamethrower.activeInHierarchy;
 
-    //    if (weapon.typeOfWeapon == Weapon.WeaponType.PISTOL)
-    //    {
-    //        playerAnim.SetInteger("weaponType", 0);
-    //    }
-    //    if (weapon.typeOfWeapon == Weapon.WeaponType.ASSAULTRIFLE)
-    //    {
-    //        playerAnim.SetInteger("weaponType", 1);
-    //    }
-    //    if (weapon.typeOfWeapon == Weapon.WeaponType.SHOTGUN)
-    //    {
-    //        playerAnim.SetInteger("weaponType", 2);
-    //    }
-    //    if (weapon.typeOfWeapon == Weapon.WeaponType.RPG)
-    //    {
-    //        playerAnim.SetInteger("weaponType", 3);
-    //    }
-    //    if (weapon.typeOfWeapon == Weapon.WeaponType.FLAMETHROWER)
-    //    {
-    //        playerAnim.SetInteger("weaponType", 4);
-    //    }
-    //}
+        //if (pistolActive)
+        //{
+        //    Debug.Log("pistol is active");
+        //    playerAnim.SetInteger("weaponType", 3);
+        //}
+        //if (assaultRifleActive)
+        //{
+        //    playerAnim.SetInteger("weaponType", 4);
+        //}
+        //if (shotgunActive)
+        //{
+        //    playerAnim.SetInteger("weaponType", 5);
+        //}
+        //if (rPG7Active)
+        //{
+        //    playerAnim.SetInteger("weaponType", 6);
+        //}
+        //if (flameThrowerActive)
+        //{
+        //    playerAnim.SetInteger("weaponType", 7);
+        //}
+    }
 }
