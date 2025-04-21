@@ -58,6 +58,7 @@ public class PlayerController : MonoBehaviour
     private List<GameObject> keyItems = new List<GameObject>();
 
     private Dictionary<Resource.ResourceTypes, int> resources = new Dictionary<Resource.ResourceTypes, int>();
+    [SerializeField] AudioClip[] pickupSounds;
 
     private int currentWeaponIndex = 0;
 
@@ -615,23 +616,27 @@ public class PlayerController : MonoBehaviour
             Resource tempResource = other.gameObject.GetComponent<Resource>();
             AddResource(tempResource.ResourceType, 1);
 
-            /*
             switch (tempResource.ResourceType)
             {
-                case Resource.ResourceTypes.PLANT_PASTE:
+                case Resource.ResourceTypes.PLANT_PASTE: // Index 1
+                    audioSources[3].PlayOneShot(pickupSounds[1]);
                     break;
-                case Resource.ResourceTypes.TOUGH_CLOTH:
+                case Resource.ResourceTypes.TOUGH_CLOTH: // Index 2
+                    audioSources[3].PlayOneShot(pickupSounds[2]);
                     break;
-                case Resource.ResourceTypes.SCRAP_METAL:
+                case Resource.ResourceTypes.SCRAP_METAL: // Index 3
+                    audioSources[3].PlayOneShot(pickupSounds[3]);
                     break;
-                case Resource.ResourceTypes.TECH_PARTS:
+                case Resource.ResourceTypes.TECH_PARTS: // Index 4
+                    audioSources[3].PlayOneShot(pickupSounds[4]);
                     break;
-                case Resource.ResourceTypes.GAS_CAN:
+                case Resource.ResourceTypes.GAS_CAN: // Index 5
+                    audioSources[3].PlayOneShot(pickupSounds[5]);
                     break;
-                case Resource.ResourceTypes.WEED_SPRAY:
+                case Resource.ResourceTypes.WEED_SPRAY: // Index 5... too
+                    audioSources[3].PlayOneShot(pickupSounds[5]);
                     break;
             }
-            */
 
             Destroy(other.gameObject);
         }
