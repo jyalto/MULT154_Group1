@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3181424859358627489}
   m_Layer: 8
-  m_Name: Gas Can PickUp
-  m_TagString: Gas Can PickUp
+  m_Name: ResPickup_GasCan
+  m_TagString: ResourcePickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24,14 +24,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 72417088088033304}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 39.928, y: -1.017, z: -26.854}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9035330631819604141}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6550175212072987586
 GameObject:
   m_ObjectHideFlags: 0
@@ -45,9 +45,10 @@ GameObject:
   - component: {fileID: 7911983130288329456}
   - component: {fileID: 3487106322435017173}
   - component: {fileID: 3210976122443821561}
+  - component: {fileID: 6443476808663937450}
   m_Layer: 8
   m_Name: Gas Can PickUp
-  m_TagString: Gas Can PickUp
+  m_TagString: ResourcePickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -60,7 +61,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6550175212072987586}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -136,8 +137,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.8671112, y: 1.1882701, z: 0.4999651}
-  m_Center: {x: 0.015830994, y: 0.057408124, z: 0.24962457}
+  m_Size: {x: 0.3103838, y: 0.65548974, z: 0.6194849}
+  m_Center: {x: 0.001015842, y: 0.0065297484, z: 0.24731386}
 --- !u!114 &3210976122443821561
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,3 +151,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 498aca23254b111478ee81beab4eacd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6443476808663937450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6550175212072987586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eb699a86a394d04892f653f96d0c5df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ResourceType: 4
