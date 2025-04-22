@@ -34,8 +34,7 @@ public class PlayerController : MonoBehaviour
     public TreasureChest ChestGold;
     public TreasureChest ChestRed;
 
-    public Animator playerAnim;
-    private PlayerAnimation playerAnimScript;
+    private Animator playerAnim;
     private AudioSource[] audioSources;
     private Weapon weapon;
     private GameManager gameManager;
@@ -88,6 +87,7 @@ public class PlayerController : MonoBehaviour
 
         controller = GetComponent<CharacterController>();
         audioSources = GetComponents<AudioSource>();
+        playerAnim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
