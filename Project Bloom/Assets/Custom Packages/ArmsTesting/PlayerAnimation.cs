@@ -52,8 +52,25 @@ public class PlayerAnimation : MonoBehaviour
             playerAnim.SetInteger("weaponType", 4);
             isAssaultRifleActive = false;
         }
-
-
+        isShotgunActive = shotgun.activeSelf;
+        if(isShotgunActive)
+        {
+            playerAnim.SetInteger("weaponType", 5);
+            isShotgunActive = false;
+        }
+        isRPG7Active = rPG7.activeSelf;
+        if (isRPG7Active)
+        {
+            playerAnim.SetInteger("weaponType", 6);
+            isRPG7Active = false;
+        }
+        isFlameThrowerActive = flamethrower.activeSelf;
+        if (isFlameThrowerActive)
+        {
+            playerAnim.SetInteger("weaponType", 7);
+            isFlameThrowerActive = false;
+        }
+        
         if (Input.GetKeyDown(KeyCode.Alpha8) && buildingManager.buildingModeActive == false)
         {
             if (currentlyEquippedWeapon != 0)
@@ -103,14 +120,14 @@ public class PlayerAnimation : MonoBehaviour
     {
         hammer.SetActive(false);
     }
-    void ActivatePistol()
-    {
-        pistol.SetActive(true);
-    }
-    void DectivatePistol()
-    {
-        pistol.SetActive(false);
-    }
+    //void ActivatePistol()
+    //{
+    //    pistol.SetActive(true);
+    //}
+    //void DectivatePistol()
+    //{
+    //    pistol.SetActive(false);
+    //}
 
     void MovementAnim()
     {
