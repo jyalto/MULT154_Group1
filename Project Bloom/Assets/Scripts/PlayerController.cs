@@ -28,7 +28,6 @@ public class PlayerController : MonoBehaviour
     public GameObject rpg;
     public GameObject rocketShell;
     public GameObject flamethrower;
-    public GameObject lureDevice;
     public ParticleSystem flamethrowerParticles;
     public TreasureChest chestGreen;
     public TreasureChest ChestGold;
@@ -38,6 +37,7 @@ public class PlayerController : MonoBehaviour
     private Weapon weapon;
     private GameManager gameManager;
     private CharacterController controller;
+    private OffhandUtilities offhandUtilities;
     private GameObject currentWeaponPickup;
     private float xRotation = 0;
     private float yRotation = 0;
@@ -86,7 +86,8 @@ public class PlayerController : MonoBehaviour
 
         controller = GetComponent<CharacterController>();
         audioSources = GetComponents<AudioSource>();
-    }
+        offhandUtilities = GetComponent<OffhandUtilities>();
+}
 
     // Update is called once per frame
     void Update()
@@ -171,7 +172,6 @@ public class PlayerController : MonoBehaviour
             {
                 Debug.Log($"Resource: {resource.Key}, Count: {resource.Value}");
             }*/
-
 
             if (canOpenChestGreen && Input.GetButtonDown("Interact"))
             {
@@ -306,19 +306,6 @@ public class PlayerController : MonoBehaviour
                         Destroy(currentWeaponPickup);
                         flamethrowerInteractable = false;
                     }
-                }
-            }
-
-            if (lureDevice == null)
-            {
-                lureActive = false;
-                lureDevice = GameObject.FindWithTag("Lure");
-            }
-            else
-            {
-                if (Input.GetKeyDown(KeyCode.L) && !lureActive)
-                {
-                    lureActive = true;
                 }
             }
         }

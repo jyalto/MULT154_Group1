@@ -43,10 +43,6 @@ public class BuildingManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.B) && playerObject.lureDevice == null) // Toggle building mode
-        {
-            buildingModeActive = !buildingModeActive;
-        }
 
         // Building Mode Functionality
         if (buildingModeActive)
@@ -94,11 +90,6 @@ public class BuildingManager : MonoBehaviour
         else
         {
             currentPreview.SetActive(false);
-        }
-
-        if (playerObject.lureDevice != null)
-        {
-            buildingModeActive = false;
         }
     }
 
