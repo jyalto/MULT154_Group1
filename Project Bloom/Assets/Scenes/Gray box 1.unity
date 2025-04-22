@@ -31804,7 +31804,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -42.668}
   m_AnchorMin: {x: 0.89500004, y: 0}
   m_AnchorMax: {x: 0.94752085, y: 0.142}
-  m_AnchoredPosition: {x: -11.5, y: -33.100067}
+  m_AnchoredPosition: {x: -11.5, y: -33.099976}
   m_SizeDelta: {x: -1, y: -52}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &852133125
@@ -70593,6 +70593,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 512237563}
   m_SourcePrefab: {fileID: 100100000, guid: e0f0c8fb24a5b7847889b173489b3e2b, type: 3}
+--- !u!1 &1890440290 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7182973648586920949, guid: 828880a0150f50547b0d2c0c9cfb82b3, type: 3}
+  m_PrefabInstance: {fileID: 2065442529}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1892473230
 GameObject:
   m_ObjectHideFlags: 0
@@ -76572,6 +76577,14 @@ PrefabInstance:
       propertyPath: pickupSounds.Array.data[5]
       value: 
       objectReference: {fileID: 8300000, guid: 368634b071eb0594693f2b40020b1c0a, type: 3}
+    - target: {fileID: 6323725430095423857, guid: 828880a0150f50547b0d2c0c9cfb82b3, type: 3}
+      propertyPath: equipmentModels.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6323725430095423857, guid: 828880a0150f50547b0d2c0c9cfb82b3, type: 3}
+      propertyPath: equipmentModels.Array.data[3]
+      value: 
+      objectReference: {fileID: 1890440290}
     - target: {fileID: 8016583785791845779, guid: 828880a0150f50547b0d2c0c9cfb82b3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 285.81482
