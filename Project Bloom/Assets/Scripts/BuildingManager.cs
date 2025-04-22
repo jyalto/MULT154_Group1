@@ -14,7 +14,7 @@ public class BuildingManager : MonoBehaviour
 
     public bool buildingModeActive = false; // Feel free to manipulate externally however is easiest
     public int selectedIndex = 0;
-    public float buildRange = 5.0f;
+    public float buildRange = 8.0f;
 
     private GameObject currentPreview;
     private Transform targetPosition;

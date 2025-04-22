@@ -252,6 +252,7 @@ MonoBehaviour:
   audioSource: {fileID: 767939043210578960}
   bulletPrefab: {fileID: 8245354814949963363, guid: df6f43fb7481e08469963905cfb9b4a2, type: 3}
   bulletSpawn: {fileID: 4799781126680561771}
+  flamethrowerCollider: {fileID: 0}
   bulletVelocity: 30
   bulletPrefabLifeTime: 3
   fireRate: 3
