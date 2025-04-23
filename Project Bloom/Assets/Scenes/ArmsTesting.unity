@@ -17266,8 +17266,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1375143773}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.08660556, y: 0.002319912, z: -0.09244674, w: 0.9919414}
-  m_LocalPosition: {x: -0.472, y: 0.245, z: 0.733}
+  m_LocalRotation: {x: 0.60379106, y: 0.44284493, z: 0.5177777, w: 0.41380075}
+  m_LocalPosition: {x: 0.4629, y: -0.0814, z: 0.0435}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -17275,7 +17275,7 @@ Transform:
   - {fileID: 1894451380}
   - {fileID: 56433297}
   m_Father: {fileID: 364607041}
-  m_LocalEulerAnglesHint: {x: -9.868, y: 1.199, z: -10.752}
+  m_LocalEulerAnglesHint: {x: 177.644, y: -83.02399, z: -74.60101}
 --- !u!1 &1375143773
 GameObject:
   m_ObjectHideFlags: 0
@@ -17313,7 +17313,7 @@ MonoBehaviour:
   bulletVelocity: 30
   bulletPrefabLifeTime: 3
   fireRate: 0.1
-  player: {fileID: 8016583784905704961}
+  player: {fileID: 0}
   typeOfWeapon: 4
 --- !u!82 &1375143775
 AudioSource:
@@ -17329,7 +17329,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -29297,7 +29297,7 @@ MonoBehaviour:
   rocketShell: {fileID: 7410973418651961534, guid: c3dd8af8b19f722488812eea914d9b89, type: 3}
   flamethrower: {fileID: 1375143773}
   lureDevice: {fileID: 0}
-  flamethrowerParticles: {fileID: 198637950067575458, guid: 007c57e2df8e9b144b99f471b84f3d56, type: 3}
+  flamethrowerParticles: {fileID: 56433296}
   chestGreen: {fileID: 0}
   ChestGold: {fileID: 0}
   ChestRed: {fileID: 0}
