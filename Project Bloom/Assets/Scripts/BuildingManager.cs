@@ -14,7 +14,7 @@ public class BuildingManager : MonoBehaviour
     private List<GameObject> previewObjects = new List<GameObject>(); // Physical, instantiated preview objects
     public List<GameObject> placedBuildings = new List<GameObject>();
 
-    public bool buildingModeActive = false; // Feel free to manipulate externally however is 
+    public bool buildingModeActive = false; // Feel free to manipulate externally however is
     public bool remoteEquipped = false;
     public bool activatorEquipped = false;
     public int selectedIndex = 0;

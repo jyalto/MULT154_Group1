@@ -58,7 +58,7 @@ public class OffhandUtilities : MonoBehaviour
             equipmentModels[currentEquipmentIndex].SetActive(true);
 
             // Equipment mode input
-            float scrollInput = Input.mouseScrollDelta.y;
+            float scrollInput = -Input.mouseScrollDelta.y;
 
             if (scrollInput != 0)
             {
@@ -92,7 +92,7 @@ public class OffhandUtilities : MonoBehaviour
 
                 }
 
-                print(equipment[currentEquipmentIndex].ToString());
+                // print(equipment[currentEquipmentIndex].ToString());
 
                 equipmentModels[currentEquipmentIndex].SetActive(true);
             }

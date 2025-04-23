@@ -1,15 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
     public NavMeshAgent agent;
-    public GameManager gameManager;
-    public PlayerController playerObject;
-    public Transform player;
-    public Transform lure;
+    private GameManager gameManager;
+    private GameObject player;
+    private PlayerController playerController;
+    private BuildingManager buildingManager;
+    public Transform target;
 
     public GameObject[] randomDrop;
     public GameObject[] rareDrop;
@@ -20,6 +22,7 @@ public class Enemy : MonoBehaviour
     public bool bigEnemyActive = false;
 
     public float health = 10;
+    public float playerLockOnRange = 10;
 
     private bool shotgunAdded = false;
     private bool rpgAdded = false;
@@ -38,15 +41,11 @@ public class Enemy : MonoBehaviour
     void Awake()
     {
         gameManager = FindObjectOfType<GameManager>();
-        playerObject = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
-        player = GameObject.Find("Player").transform;
+        player = GameObject.Find("Player");
+        playerController = player.GetComponent<PlayerController>();
+        buildingManager = player.GetComponent<BuildingManager>();
+        
         agent = GetComponent<NavMeshAgent>();
-
-        GameObject lureObject = null;
-        if (lureObject != null)
-        {
-            lure = lureObject.transform;
-        }
 
         gameManager.enemyCount++;
 
@@ -79,7 +78,7 @@ public class Enemy : MonoBehaviour
         {
             if (Time.time >= nextUpdate)
             {
-                Chase();
+                UpdateChase();
                 nextUpdate = Time.time + updateRate;
             }
         }
@@ -110,7 +109,7 @@ public class Enemy : MonoBehaviour
             flamethrowerAdded = true;
         }
 
-        if (playerObject.flameActive)
+        if (playerController.flameActive)
         {
             if (fireDamageCoroutine == null && takingFireDamage)
             {
@@ -133,16 +132,29 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void Chase()
+    private void UpdateChase()
     {
-        if (lure != null && playerObject.lureActive == true)
+        target = player.transform; // Default to player transform
+
+        foreach (GameObject building in buildingManager.placedBuildings)
         {
-            agent.SetDestination(lure.position);
+            if (building.GetComponent<LureDevice>() != null) // Lure targets
+            {
+                Vector3 currentPosition = gameObject.transform.position;
+                float newTargetDistance = Vector3.Distance(currentPosition, building.transform.position);
+                float currentTargetDistance = Vector3.Distance(currentPosition, target.position);
+
+                print("Lure device found at a distance of " + newTargetDistance + "! Current target distance is " + currentTargetDistance + ".");
+
+                if (newTargetDistance < currentTargetDistance && Vector3.Distance(currentPosition, player.transform.position) > playerLockOnRange && building.GetComponent<TrapBehavior>().luring)
+                {
+                    print("New target acquired!");
+                    target = building.transform;
+                }
+            }
         }
-        else
-        {
-            agent.SetDestination(player.position);
-        }
+
+        agent.SetDestination(target.position);
     }
 
     void OnTriggerEnter(Collider other)
@@ -170,7 +182,7 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        if (other.CompareTag("Flamethrower") && takingFireDamage == false && playerObject.flameActive)
+        if (other.CompareTag("Flamethrower") && takingFireDamage == false && playerController.flameActive)
         {
             fireDamageCoroutine = StartCoroutine(FireDamage());
             takingFireDamage = true;
@@ -210,11 +222,11 @@ public class Enemy : MonoBehaviour
     {
         if (bigEnemyActive)
         {
-            playerObject.health -= 5;
+            playerController.health -= 5;
         }
         else
         {
-            playerObject.health -= 1;
+            playerController.health -= 1;
         }
         yield return new WaitForSeconds(0.35f);
         playerDamageCoroutine = null;
@@ -229,7 +241,7 @@ public class Enemy : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (playerObject != null)
+        if (playerController != null)
         {
             if (!bigEnemyActive)
             {

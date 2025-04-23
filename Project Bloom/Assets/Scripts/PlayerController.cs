@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     public float lookDown = 45.0f;
     public float gravity = -9.81f;
     public float jumpForce = 5.0f;
+    public int maxHealth = 25;
     public int health = 25;
     public bool flameActive = false;
     public bool lureActive = false;

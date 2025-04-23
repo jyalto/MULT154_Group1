@@ -1,28 +1,44 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthBar : MonoBehaviour
+public class HealthUI : MonoBehaviour
 {
     public PlayerController playerObject;
-    private RectTransform healthBarTransform;
-    private Image healthBarImage;
+
+    [SerializeField] GameObject healthBarObject;
+    RectTransform healthBarTransform;
+    Image healthBarImage;
+
+    [SerializeField] GameObject maxHealthBarObject;
+    RectTransform maxHealthBarTransform;
+    Image maxHealthBarImage;
+
     public float maxWidth = 1.70885551f;
-    public float currentHealth;
-    public float maxHealth = 25;
+    private float maxHealth;
+    private float currentHealth;
 
     void Start()
     {
         playerObject = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
-        healthBarTransform = GetComponent<RectTransform>();
-        healthBarImage = GetComponent<Image>();
+
+        healthBarTransform = healthBarObject.GetComponent<RectTransform>();
+        healthBarImage = healthBarObject.GetComponent<Image>();
+
+        maxHealthBarTransform = maxHealthBarObject.GetComponent<RectTransform>();
+        maxHealthBarImage = maxHealthBarObject.GetComponent<Image>();
+
+        maxHealth = playerObject.maxHealth;
+        currentHealth = playerObject.health;
     }
 
     void Update()
     {
         currentHealth = playerObject.health;
-        float percent = Mathf.Clamp01(currentHealth / maxHealth);
+        currentHealth = playerObject.maxHealth;
 
+        float percent = Mathf.Clamp01(currentHealth / maxHealth);
         float healthPercentage = currentHealth / maxHealth;
+
         healthBarTransform.localScale = new Vector3(maxWidth * percent, healthBarTransform.localScale.y, healthBarTransform.localScale.z);
 
         if (currentHealth < 8)
