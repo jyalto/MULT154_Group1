@@ -26,7 +26,8 @@ TagManager:
   - Flamethrower
   - Flamethrower PickUp
   - Chest Red
-  - Lure
+  - ResourcePickup
+  - Trap
   layers:
   - Default
   - TransparentFX

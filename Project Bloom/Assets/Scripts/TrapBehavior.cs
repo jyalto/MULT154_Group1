@@ -13,9 +13,9 @@ public class TrapBehavior : MonoBehaviour
     public AudioClip activationSound;
 
     [Header("Remote Activation")]
-    [SerializeField] bool isActivatable;            // Whether a remote activator can be applied
-    [SerializeField] bool hasActivator;             // Whether a remote activator is applied
-    public int remoteChannel;                       // The channel that triggers the building when fired
+    public bool isActivatable;            // Whether a remote activator can be applied
+    [SerializeField] bool activatesOnContact;
+    public int activatorChannel = -1;                       // The channel that triggers the building when fired
 
     // Runtime Values
     private BuildingBehavior buildingBehavior;
@@ -33,23 +33,12 @@ public class TrapBehavior : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Hit! " + other);
-
         if (buildingBehavior.durability > 0 && other.gameObject.CompareTag("Enemy"))
         {
             targets.Add(other.gameObject);
-
-            if (uses > 0)
+            if (activatesOnContact)
             {
-                if (!active) // Damage all targets regularly
-                {
-                    active = true;
-                    InvokeRepeating("InflictDamage", 0.0f, triggerRate);
-                }
-            }
-            else
-            {
-                Debug.Log("Out of uses! Re-arm!");
+                ActivateTrap();
             }
         }
     }
@@ -62,13 +51,42 @@ public class TrapBehavior : MonoBehaviour
         }
     }
 
-    private void ApplyRemoteActivator(int channel)
+    public bool ApplyRemoteActivator(int channel)
     {
-        hasActivator = true;
-        remoteChannel = channel;
+        if (isActivatable)
+        {
+            activatorChannel = channel;
+            print("Activator affixed! Set to channel " + channel);
+            return true;
+        }
+        return false;
     }
 
-    private void InflictDamage()
+    public void ActivateTrap()
+    {
+        if (uses > 0)
+        {
+            if (!active) // Damage all targets regularly
+            {
+                active = true;
+                if (activatesOnContact)
+                {
+                    InvokeRepeating("InflictContactDamage", 0.0f, triggerRate);
+                }
+                else
+                {
+                    gameObject.GetComponent<AudioSource>().pitch = UnityEngine.Random.Range(0.8f, 1.2f);
+                    gameObject.GetComponent<AudioSource>().PlayOneShot(activationSound);
+                }
+            }
+        }
+        else if (activatesOnContact) // Only destroys if it deals contact damage (does not have additional functions)
+        {
+            gameObject.GetComponent<BuildingBehavior>().durability = 0;
+        }
+    }
+
+    private void InflictContactDamage()
     {
         if (targets.Count > 0)
         {
@@ -89,6 +107,7 @@ public class TrapBehavior : MonoBehaviour
         else
         {
             CancelInvoke();
+            active = false;
         }
     }
 }

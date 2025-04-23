@@ -41,5 +41,15 @@ public class BuildingBehavior : MonoBehaviour
             case BuildingType.TRAP:
                 break;
         }
+
+        if (durability <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        GameObject.FindGameObjectWithTag("Player").GetComponent<BuildingManager>().placedBuildings.Remove(gameObject);
     }
 }

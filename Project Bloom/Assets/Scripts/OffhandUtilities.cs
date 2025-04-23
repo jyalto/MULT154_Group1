@@ -16,7 +16,7 @@ public class OffhandUtilities : MonoBehaviour
     public GameObject[] equipmentModels;
 
     public enum Equipment
-    { NONE = 0, HAMMER = 1, REMOTE = 2, SYRINGE = 3 } // Correspond to model indexes
+    { NONE = 0, HAMMER = 1, REMOTE = 2, ACTIVATOR = 3, SYRINGE = 4 } // Correspond to model indexes
     private List<Equipment> equipment;
     public int currentEquipmentIndex = 0;
 
@@ -31,6 +31,7 @@ public class OffhandUtilities : MonoBehaviour
         equipment.Add(Equipment.NONE);
         equipment.Add(Equipment.HAMMER);
         equipment.Add(Equipment.REMOTE);
+        equipment.Add(Equipment.ACTIVATOR);
         equipment.Add(Equipment.SYRINGE);
 
         equipmentModels[currentEquipmentIndex].SetActive(true);
@@ -49,20 +50,15 @@ public class OffhandUtilities : MonoBehaviour
             if (!equipmentModeEnabled)
             {
                 DisableEquipmentAbilities();
-                currentEquipmentIndex = 0;
-                equipmentModels[0].SetActive(true);
             }
 
         }
         if (equipmentModeEnabled)
         {
+            equipmentModels[currentEquipmentIndex].SetActive(true);
+
             // Equipment mode input
             float scrollInput = Input.mouseScrollDelta.y;
-            print(scrollInput);
-            foreach (Equipment model in equipment)
-            {
-                print(model);
-            }
 
             if (scrollInput != 0)
             {
@@ -71,7 +67,6 @@ public class OffhandUtilities : MonoBehaviour
                     scrollInput = equipment.Count - 1;
                 }
                 currentEquipmentIndex = (currentEquipmentIndex + (int)scrollInput) % equipment.Count;
-                print(equipmentModels[currentEquipmentIndex].name + " " + currentEquipmentIndex);
                 DisableEquipmentAbilities();
 
                 switch (equipment[currentEquipmentIndex])
@@ -84,12 +79,20 @@ public class OffhandUtilities : MonoBehaviour
                         buildingManager.buildingModeActive = true;
                         break;
                     case Equipment.REMOTE:
+                        buildingManager.remoteEquipped = true;
                         equipmentModels[2].SetActive(true);
                         break;
-                    case Equipment.SYRINGE:
+                    case Equipment.ACTIVATOR:
+                        buildingManager.activatorEquipped = true;
                         equipmentModels[3].SetActive(true);
                         break;
+                    case Equipment.SYRINGE:
+                        equipmentModels[4].SetActive(true);
+                        break;
+
                 }
+
+                print(equipment[currentEquipmentIndex].ToString());
 
                 equipmentModels[currentEquipmentIndex].SetActive(true);
             }
@@ -99,6 +102,8 @@ public class OffhandUtilities : MonoBehaviour
     public void DisableEquipmentAbilities()
     {
         buildingManager.buildingModeActive = false;
+        buildingManager.remoteEquipped = false;
+        buildingManager.activatorEquipped = false;
 
         foreach (GameObject model in equipmentModels)
         {

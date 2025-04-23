@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 1650801349862484129}
   m_Layer: 6
   m_Name: Trap_LureBomb
-  m_TagString: Lure
+  m_TagString: Trap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -140,11 +140,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   triggerRate: 1
-  uses: 0
+  uses: 1
   activationSound: {fileID: 8300000, guid: 20c4df6abefe1fe45915af4a4cb0a876, type: 3}
   isActivatable: 1
-  hasActivator: 0
-  remoteChannel: 0
+  activatesOnContact: 0
+  activatorChannel: -1
 --- !u!114 &-4235875446855363943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,7 +215,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.99
       inSlope: 0
       outSlope: 0
       tangentMode: 0
