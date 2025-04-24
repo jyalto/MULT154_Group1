@@ -644,6 +644,10 @@ public class PlayerController : MonoBehaviour
 
             Destroy(other.gameObject);
         }
+        if (other.CompareTag("Explosion"))
+        {
+            health = 0;
+        }
 
     }
 
