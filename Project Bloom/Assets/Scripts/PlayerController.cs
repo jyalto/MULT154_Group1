@@ -16,7 +16,9 @@ public class PlayerController : MonoBehaviour
     public float lookDown = 45.0f;
     public float gravity = -9.81f;
     public float jumpForce = 5.0f;
-    public int health = 25;
+    public int maxHealth = 25;          // Maximum possible health
+    public int healthLimit = 25;        // Temporary limit on health
+    public int health = 25;             // Current health
     public bool flameActive = false;
     public bool lureActive = false;
     public GameObject pistol;
@@ -59,8 +61,10 @@ public class PlayerController : MonoBehaviour
     private List<GameObject> keyItems = new List<GameObject>();
 
     private Dictionary<Resource.ResourceTypes, int> resources = new Dictionary<Resource.ResourceTypes, int>();
+    [SerializeField] AudioClip[] playerSounds;
     [SerializeField] AudioClip[] pickupSounds;
 
+    public bool usingSyringe = false;
     private int currentWeaponIndex = 0;
 
     public enum AmmoType
@@ -312,24 +316,28 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            if (lureDevice == null)
+            if (usingSyringe && Input.GetMouseButtonDown(0))
             {
-                lureActive = false;
-                lureDevice = GameObject.FindWithTag("Lure");
+                HealWithSyringe();
             }
-            else
-            {
-                if (Input.GetKeyDown(KeyCode.L) && !lureActive)
-                {
-                    lureActive = true;
-                }
-            }
+
+
         }
 
         else
         {
             gameManager.ReloadScene();
         }
+    }
+    public void HealWithSyringe()
+    {
+        healthLimit -= 1;
+        health += 2;
+        if (health > healthLimit)
+        {
+            health = healthLimit;
+        }
+        audioSources[3].PlayOneShot(playerSounds[0]);
     }
 
     void SwitchWeapon()
