@@ -4,26 +4,20 @@ using UnityEngine;
 
 public class LureDevice : MonoBehaviour
 {
-    public PlayerController playerObject;
     public GameObject explosion;
+    TrapBehavior trapBehavior;
 
     private Coroutine myCoroutine = null;
 
     // Start is called before the first frame update
     void Start()
     {
-        playerObject = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        trapBehavior = gameObject.GetComponent<TrapBehavior>();
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy") && playerObject.lureActive == true)
+        if (other.CompareTag("Enemy") && trapBehavior.uses == 0)
         {
             if (myCoroutine == null)
             {
