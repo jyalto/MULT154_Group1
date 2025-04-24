@@ -5,17 +5,20 @@ public class HealthUI : MonoBehaviour
 {
     public PlayerController playerObject;
 
+    // Current health
     [SerializeField] GameObject healthBarObject;
     RectTransform healthBarTransform;
     Image healthBarImage;
 
-    [SerializeField] GameObject maxHealthBarObject;
-    RectTransform maxHealthBarTransform;
-    Image maxHealthBarImage;
+    // Limited health
+    [SerializeField] GameObject healthLimitBarObject;
+    RectTransform healthLimitBarTransform;
+    Image healthLimitBarImage;
 
-    public float maxWidth = 1.70885551f;
+    public float maxWidth = 2;
+    private float healthLimit;
+    private float health;
     private float maxHealth;
-    private float currentHealth;
 
     void Start()
     {
@@ -24,34 +27,52 @@ public class HealthUI : MonoBehaviour
         healthBarTransform = healthBarObject.GetComponent<RectTransform>();
         healthBarImage = healthBarObject.GetComponent<Image>();
 
-        maxHealthBarTransform = maxHealthBarObject.GetComponent<RectTransform>();
-        maxHealthBarImage = maxHealthBarObject.GetComponent<Image>();
+        healthLimitBarTransform = healthLimitBarObject.GetComponent<RectTransform>();
+        healthLimitBarImage = healthLimitBarObject.GetComponent<Image>();
+
+        health = playerObject.health;
+        healthLimit = playerObject.healthLimit;
 
         maxHealth = playerObject.maxHealth;
-        currentHealth = playerObject.health;
     }
 
     void Update()
     {
-        currentHealth = playerObject.health;
-        currentHealth = playerObject.maxHealth;
+        health = playerObject.health;
+        healthLimit = playerObject.healthLimit;
 
-        float percent = Mathf.Clamp01(currentHealth / maxHealth);
-        float healthPercentage = currentHealth / maxHealth;
+        float healthPercent = Mathf.Clamp01(health / maxHealth);
+        float maxHealthPercent = Mathf.Clamp01(healthLimit / maxHealth);
 
-        healthBarTransform.localScale = new Vector3(maxWidth * percent, healthBarTransform.localScale.y, healthBarTransform.localScale.z);
+        healthBarTransform.localScale = new Vector3(maxWidth * healthPercent, healthBarTransform.localScale.y, healthBarTransform.localScale.z);
+        print("Current health percentage: " + healthPercent);
+        healthLimitBarTransform.localScale = new Vector3(maxWidth * maxHealthPercent, healthLimitBarTransform.localScale.y, healthLimitBarTransform.localScale.z);
+        print("Current health limit percentage: " + maxHealthPercent);
 
-        if (currentHealth < 8)
+        if (health < 8)
         {
             healthBarImage.color = new Color(0.7373f, 0.0588f, 0f);
         }
-        else if (currentHealth < 16)
+        else if (health < 16)
         {
             healthBarImage.color = new Color(0.949f, 0.627f, 0.0196f);
         }
         else
         {
             healthBarImage.color = new Color(0.0118f, 0.5843f, 0f);
+        }
+
+        if (healthLimit < 8)
+        {
+            healthLimitBarImage.color = new Color(0.7373f, 0.0588f, 0f);
+        }
+        else if (healthLimit < 16)
+        {
+            healthLimitBarImage.color = new Color(0.949f, 0.627f, 0.0196f);
+        }
+        else
+        {
+            healthLimitBarImage.color = new Color(0.0118f, 0.5843f, 0f);
         }
     }
 }

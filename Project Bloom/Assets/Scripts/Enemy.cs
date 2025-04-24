@@ -144,7 +144,7 @@ public class Enemy : MonoBehaviour
                 float newTargetDistance = Vector3.Distance(currentPosition, building.transform.position);
                 float currentTargetDistance = Vector3.Distance(currentPosition, target.position);
 
-                print("Lure device found at a distance of " + newTargetDistance + "! Current target distance is " + currentTargetDistance + ".");
+                // print("Lure device found at a distance of " + newTargetDistance + "! Current target distance is " + currentTargetDistance + ".");
 
                 if (newTargetDistance < currentTargetDistance && Vector3.Distance(currentPosition, player.transform.position) > playerLockOnRange && building.GetComponent<TrapBehavior>().luring)
                 {

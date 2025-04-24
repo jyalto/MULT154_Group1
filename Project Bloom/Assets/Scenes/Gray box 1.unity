@@ -46019,7 +46019,7 @@ GameObject:
   - component: {fileID: 1220270224}
   - component: {fileID: 1220270223}
   m_Layer: 5
-  m_Name: Max Health Bar
+  m_Name: Health Limit Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46034,14 +46034,14 @@ RectTransform:
   m_GameObject: {fileID: 1220270221}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.7088556, y: 0.080000006, z: 1}
+  m_LocalScale: {x: 2, y: 0.080000006, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1425040239}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.009479167, y: 0.93200004}
   m_AnchorMax: {x: 0.186, y: 0.9905989}
-  m_AnchoredPosition: {x: -893.04803, y: 415.34964}
+  m_AnchoredPosition: {x: -893.04803, y: 472.0999}
   m_SizeDelta: {x: 181.26788, y: 95.43662}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1220270223
@@ -46057,7 +46057,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.7372549, g: 0.05490196, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -49763,14 +49763,14 @@ RectTransform:
   m_GameObject: {fileID: 1320713077}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.7088556, y: 0.61828864, z: 1}
+  m_LocalScale: {x: 2, y: 0.6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1425040239}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.009479167, y: 0.93200004}
   m_AnchorMax: {x: 0.186, y: 0.9905989}
-  m_AnchoredPosition: {x: -893.04803, y: 451.6497}
+  m_AnchoredPosition: {x: -893.04803, y: 435.7}
   m_SizeDelta: {x: 181.26788, y: 95.43662}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &1320713080
@@ -53427,10 +53427,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15f55c40d407fe444b91e3c95f4ab995, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerObject: {fileID: 0}
+  playerObject: {fileID: 2015498719}
   healthBarObject: {fileID: 1320713077}
-  maxHealthBarObject: {fileID: 1220270221}
-  maxWidth: 1.7088555
+  healthLimitBarObject: {fileID: 1220270221}
+  maxWidth: 2
 --- !u!4 &1428221179 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c3ddac21844c2274c8c714b9b9bcd262, type: 3}
@@ -76691,34 +76691,6 @@ PrefabInstance:
       propertyPath: flameActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3938967582853834804, guid: 828880a0150f50547b0d2c0c9cfb82b3, type: 3}
-      propertyPath: pickupSounds.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3938967582853834804, guid: 828880a0150f50547b0d2c0c9cfb82b3, type: 3}
-      propertyPath: pickupSounds.Array.data[0]
-      value: 
-      objectReference: {fileID: 8300000, guid: c761b1dca317f0f41941ea71674f9720, type: 3}
-    - target: {fileID: 3938967582853834804, guid: 828880a0150f50547b0d2c0c9cfb82b3, type: 3}
-      propertyPath: pickupSounds.Array.data[1]
-      value: 
-      objectReference: {fileID: 8300000, guid: 8ae32c42dba99404ab907bdbdecf0f24, type: 3}
-    - target: {fileID: 3938967582853834804, guid: 828880a0150f50547b0d2c0c9cfb82b3, type: 3}
-      propertyPath: pickupSounds.Array.data[2]
-      value: 
-      objectReference: {fileID: 8300000, guid: eb8ed4d32e2ded7448241f50d5d47c96, type: 3}
-    - target: {fileID: 3938967582853834804, guid: 828880a0150f50547b0d2c0c9cfb82b3, type: 3}
-      propertyPath: pickupSounds.Array.data[3]
-      value: 
-      objectReference: {fileID: 8300000, guid: 6f9714a9533490d428ef30d2ddc40a9e, type: 3}
-    - target: {fileID: 3938967582853834804, guid: 828880a0150f50547b0d2c0c9cfb82b3, type: 3}
-      propertyPath: pickupSounds.Array.data[4]
-      value: 
-      objectReference: {fileID: 8300000, guid: d37eae4a3ec20774d802425fe3f32f74, type: 3}
-    - target: {fileID: 3938967582853834804, guid: 828880a0150f50547b0d2c0c9cfb82b3, type: 3}
-      propertyPath: pickupSounds.Array.data[5]
-      value: 
-      objectReference: {fileID: 8300000, guid: 368634b071eb0594693f2b40020b1c0a, type: 3}
     - target: {fileID: 6323725430095423857, guid: 828880a0150f50547b0d2c0c9cfb82b3, type: 3}
       propertyPath: equipmentModels.Array.size
       value: 5

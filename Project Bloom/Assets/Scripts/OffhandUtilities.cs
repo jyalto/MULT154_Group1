@@ -60,6 +60,7 @@ public class OffhandUtilities : MonoBehaviour
             // Equipment mode input
             float scrollInput = -Input.mouseScrollDelta.y;
 
+            // Mode switching
             if (scrollInput != 0)
             {
                 if (scrollInput < 0)
@@ -87,6 +88,7 @@ public class OffhandUtilities : MonoBehaviour
                         equipmentModels[3].SetActive(true);
                         break;
                     case Equipment.SYRINGE:
+                        controller.usingSyringe = true;
                         equipmentModels[4].SetActive(true);
                         break;
 
@@ -104,6 +106,7 @@ public class OffhandUtilities : MonoBehaviour
         buildingManager.buildingModeActive = false;
         buildingManager.remoteEquipped = false;
         buildingManager.activatorEquipped = false;
+        controller.usingSyringe = false;
 
         foreach (GameObject model in equipmentModels)
         {

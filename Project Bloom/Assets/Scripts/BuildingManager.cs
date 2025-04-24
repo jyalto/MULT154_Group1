@@ -29,7 +29,7 @@ public class BuildingManager : MonoBehaviour
     public TextMeshProUGUI remoteDisplay;
     public TextMeshProUGUI activatorDisplay;
 
-    private GameObject currentPreview;
+    public GameObject currentPreview;
     private Transform targetPosition;
     private float heightOffset = 0;
 
@@ -61,6 +61,7 @@ public class BuildingManager : MonoBehaviour
         // Hammer Mode Functionality
         if (buildingModeActive)
         {
+            ShowBuildPreview();
 
             // Update preview
             if (currentPreview != previewObjects[selectedIndex])
@@ -82,7 +83,12 @@ public class BuildingManager : MonoBehaviour
 
             if (hit.transform != null)
             {
+                ShowBuildPreview();
                 currentPreview.transform.position = hit.point + new Vector3(0, heightOffset, 0);
+            }
+            else
+            {
+                HideBuildPreview();
             }
 
             // Building Mode Inputs
@@ -144,7 +150,23 @@ public class BuildingManager : MonoBehaviour
                 SetActivatorChannel(currentActivatorChannel);
             }
         }
-        else
+        if (!buildingModeActive)
+        {
+            HideBuildPreview();
+        }
+    }
+
+    void ShowBuildPreview()
+    {
+        if (!currentPreview.activeInHierarchy)
+        {
+            currentPreview.SetActive(true);
+        }
+    }
+
+    void HideBuildPreview()
+    {
+        if (currentPreview.activeInHierarchy)
         {
             currentPreview.SetActive(false);
         }
@@ -161,24 +183,21 @@ public class BuildingManager : MonoBehaviour
         else if (index >= size)
         {
             index = index % size;
-        }
+        } 
 
         return index;
     }
 
     void FireActivatorsOnChannel(int remoteChannel)
     {
-        print("Fired channel " + remoteChannel + "!");
         foreach (GameObject building in placedBuildings)
         {
             TrapBehavior trapBehavior = building.GetComponent<TrapBehavior>();
             if (building.CompareTag("Trap") && trapBehavior != null)
             {
-                print("Current trap is " + trapBehavior.gameObject.name + ", connected to channel " + trapBehavior.activatorChannel + ".");
                 if (trapBehavior.activatorChannel == remoteChannel)
                 {
                     trapBehavior.ActivateTrap();
-                    print("Firing!");
                 }
             }
         }
