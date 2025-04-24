@@ -45,9 +45,9 @@ public class HealthUI : MonoBehaviour
         float maxHealthPercent = Mathf.Clamp01(healthLimit / maxHealth);
 
         healthBarTransform.localScale = new Vector3(maxWidth * healthPercent, healthBarTransform.localScale.y, healthBarTransform.localScale.z);
-        print("Current health percentage: " + healthPercent);
+        // print("Current health percentage: " + healthPercent);
         healthLimitBarTransform.localScale = new Vector3(maxWidth * maxHealthPercent, healthLimitBarTransform.localScale.y, healthLimitBarTransform.localScale.z);
-        print("Current health limit percentage: " + maxHealthPercent);
+        // print("Current health limit percentage: " + maxHealthPercent);
 
         if (health < 8)
         {

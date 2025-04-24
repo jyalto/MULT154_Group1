@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class OffhandUtilities : MonoBehaviour
@@ -10,6 +11,7 @@ public class OffhandUtilities : MonoBehaviour
     public bool equipmentModeEnabled = false;
     private PlayerController controller;
     [SerializeField] GameObject mainHand;
+    [SerializeField] GameObject handMesh; // ALL INVOLVED CODE IS QUICK FIX FOR LACK OF HAND ANIMATIONS, REMOVE AFTER IMPLEMENTATION
     private BuildingManager buildingManager;
 
     public GameObject offhandModel;
@@ -55,6 +57,7 @@ public class OffhandUtilities : MonoBehaviour
         }
         if (equipmentModeEnabled)
         {
+            handMesh.SetActive(false);
             equipmentModels[currentEquipmentIndex].SetActive(true);
 
             // Equipment mode input
@@ -98,6 +101,10 @@ public class OffhandUtilities : MonoBehaviour
 
                 equipmentModels[currentEquipmentIndex].SetActive(true);
             }
+        }
+        else
+        {
+            handMesh.SetActive(true);
         }
     }
 

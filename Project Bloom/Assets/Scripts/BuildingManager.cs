@@ -210,7 +210,7 @@ public class BuildingManager : MonoBehaviour
         RaycastHit hit;
         Physics.Raycast(ray, out hit, buildRange, buildingMask);
 
-        print(hit.collider.gameObject.name);
+        print(hit.collider);
 
         if (hit.collider.CompareTag("Trap") && hit.collider.gameObject.GetComponent<TrapBehavior>().isActivatable)
         {
