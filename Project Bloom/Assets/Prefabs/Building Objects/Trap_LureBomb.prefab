@@ -142,6 +142,7 @@ MonoBehaviour:
   triggerRate: 99999
   uses: 1
   activationSound: {fileID: 8300000, guid: 20c4df6abefe1fe45915af4a4cb0a876, type: 3}
+  luring: 0
   isActivatable: 1
   activatesOnContact: 0
   activatorChannel: -1
@@ -157,7 +158,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 387c5e2c059d63c44ba231804398e925, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerObject: {fileID: 0}
   explosion: {fileID: 1121192042590650, guid: e1b08032bec16ba4eb1ae23cbd572664, type: 3}
 --- !u!82 &1650801349862484129
 AudioSource:
@@ -180,7 +180,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 100
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0

@@ -145,7 +145,7 @@ public class PlayerAnimation : MonoBehaviour
     {
         // Movement
         float playerSpeed = new Vector2(playerCon.velocity.x, playerCon.velocity.z).magnitude;
-        playerAnim.SetFloat("playerSpeed", playerSpeed, 0.1f, Time.deltaTime);
+        playerAnim.SetFloat("playerSpeed", playerSpeed / playerCon.runningSpeed, 0.1f, Time.deltaTime);
 
         // Attack
         if (Input.GetMouseButtonDown(0))

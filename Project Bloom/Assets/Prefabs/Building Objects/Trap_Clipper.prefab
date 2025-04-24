@@ -141,6 +141,7 @@ MonoBehaviour:
   triggerRate: 0.8
   uses: 20
   activationSound: {fileID: 8300000, guid: 296326683de0ece4bb148ff7de3838bb, type: 3}
+  luring: 0
   isActivatable: 0
   activatesOnContact: 1
   activatorChannel: -1
@@ -165,7 +166,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 100
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
