@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 7367447262565922946}
   - component: {fileID: 8139564456497677889}
   - component: {fileID: 4569469386491701731}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TechParts
   m_TagString: ResourcePickup
   m_Icon: {fileID: 0}
@@ -179,6 +179,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: pcb_1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5db49e01b67e5b94b984723401408cff, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -253,6 +257,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: pcb_5
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: eda813667537a114fbdc6f9fc5e7ff20, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -326,6 +334,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 88d4c73219907a34e8723e662c5858bc, type: 3}
       propertyPath: m_Name
       value: pcb_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 88d4c73219907a34e8723e662c5858bc, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

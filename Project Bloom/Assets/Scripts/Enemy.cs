@@ -245,7 +245,7 @@ public class Enemy : MonoBehaviour
         {
             if (!bigEnemyActive)
             {
-                int randomRate = Random.Range(0, 3);
+                int randomRate = Random.Range(0, 8);
                 if (randomRate == 2)
                 {
                     int randomNum = Random.Range(0, randomDrop.Length);
@@ -271,6 +271,10 @@ public class Enemy : MonoBehaviour
                         {
                             gameManager.spawnedItems.Add(Instantiate(randomDrop[randomNum], new Vector3(transform.position.x, 10.17471f, transform.position.z), Quaternion.identity));
                         }
+                    }
+                    else
+                    {
+                        gameManager.spawnedItems.Add(Instantiate(randomDrop[randomNum], new Vector3(transform.position.x, 10.17471f, transform.position.z), Quaternion.Euler(90f, 0f, -90f)));
                     }
                 }
             }

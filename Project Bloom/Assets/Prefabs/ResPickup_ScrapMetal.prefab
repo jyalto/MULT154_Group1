@@ -101,6 +101,10 @@ PrefabInstance:
       value: metal_scrap
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c17e07dae2ea04d43b38ecf62d614152, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c17e07dae2ea04d43b38ecf62d614152, type: 3}
       propertyPath: m_TagString
       value: ResourcePickup
       objectReference: {fileID: 0}

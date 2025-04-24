@@ -123,21 +123,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 4510651296602036111}
-  gameManager: {fileID: 0}
-  playerObject: {fileID: 0}
-  player: {fileID: 0}
-  lure: {fileID: 0}
+  target: {fileID: 0}
   randomDrop:
   - {fileID: 9144164244080005112, guid: 5ba1ae649eb66174ba9a3200668f5937, type: 3}
-  - {fileID: 72417088088033304, guid: d256898718dde2c48b53833279d09759, type: 3}
   - {fileID: 2574026887304345406, guid: d30726c1678cc674f9c0b7289cc0767a, type: 3}
   - {fileID: 927894897820252096, guid: b32629ec71f96db439483f8c2bea2c14, type: 3}
+  - {fileID: 72417088088033304, guid: 89f533047808af34fab98efa23140079, type: 3}
+  - {fileID: 72417088088033304, guid: 8015a95a1b20597428cd38c6884bdba3, type: 3}
+  - {fileID: 72417088088033304, guid: b54c739a751831446b397f3b023d586e, type: 3}
+  - {fileID: 72417088088033304, guid: 02cfe62b6dcecb84ea3fcc52d6dd8de3, type: 3}
+  - {fileID: 72417088088033304, guid: b8827a47aa7f9e545a8c2826982e6a4f, type: 3}
+  - {fileID: 72417088088033304, guid: d99f7952b38df2d4f93977af91503b26, type: 3}
   rareDrop: []
   shotgunItem: {fileID: 927894897820252096, guid: c7b53dd23904b764e809cb7e65ca3bae, type: 3}
   rpgItem: {fileID: 927894897820252096, guid: 07f1733a436524645becfbaf2ac0a0a9, type: 3}
   flamethrowerItem: {fileID: 927894897820252096, guid: 5410455c1efc16d48be49f6443a32abe, type: 3}
   bigEnemyActive: 1
   health: 50
+  playerLockOnRange: 10
 --- !u!195 &4510651296602036111
 NavMeshAgent:
   m_ObjectHideFlags: 0

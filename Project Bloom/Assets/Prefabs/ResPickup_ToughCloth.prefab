@@ -85,6 +85,10 @@ PrefabInstance:
       value: package_hr_1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b8129cd038bfc034e89ad89ffcccdba7, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b8129cd038bfc034e89ad89ffcccdba7, type: 3}
       propertyPath: m_TagString
       value: ResourcePickup
       objectReference: {fileID: 0}
