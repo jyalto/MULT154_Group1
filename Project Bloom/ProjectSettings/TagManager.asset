@@ -28,6 +28,7 @@ TagManager:
   - Chest Red
   - ResourcePickup
   - Trap
+  - Bat
   layers:
   - Default
   - TransparentFX

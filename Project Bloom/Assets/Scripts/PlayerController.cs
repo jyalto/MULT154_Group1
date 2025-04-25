@@ -35,8 +35,8 @@ public class PlayerController : MonoBehaviour
     public TreasureChest chestGreen;
     public TreasureChest ChestGold;
     public TreasureChest ChestRed;
+    public Animator playerAnim;
 
-    private Animator playerAnim;
     private AudioSource[] audioSources;
     private Weapon weapon;
     private GameManager gameManager;
@@ -321,7 +321,10 @@ public class PlayerController : MonoBehaviour
                 HealWithSyringe();
             }
 
-
+            if (playerAnim.GetInteger("weaponType") == 2)
+            {
+               
+            }
         }
 
         else

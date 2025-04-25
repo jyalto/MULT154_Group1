@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     private PlayerController playerController;
     private BuildingManager buildingManager;
     public Transform target;
+    public AudioSource[] audioSources;
 
     public GameObject[] randomDrop;
     public GameObject[] rareDrop;
@@ -44,7 +45,8 @@ public class Enemy : MonoBehaviour
         player = GameObject.Find("Player");
         playerController = player.GetComponent<PlayerController>();
         buildingManager = player.GetComponent<BuildingManager>();
-        
+        //audioSources = GetComponents<AudioSource>();
+
         agent = GetComponent<NavMeshAgent>();
 
         gameManager.enemyCount++;
@@ -192,6 +194,13 @@ public class Enemy : MonoBehaviour
         {
             playerDamageCoroutine = StartCoroutine(DamagePlayer());
             playerTakingDamage = true;
+        }
+
+        AnimatorStateInfo stateInfo = playerController.playerAnim.GetCurrentAnimatorStateInfo(0);
+
+        if (stateInfo.IsName("Attack") && other.CompareTag("Bat"))
+        {
+            health -= 3.5f;
         }
     }
 
