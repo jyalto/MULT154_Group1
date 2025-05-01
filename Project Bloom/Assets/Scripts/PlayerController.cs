@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public int health = 25;             // Current health
     public bool flameActive = false;
     public bool lureActive = false;
+    public bool batActive = false;
     public GameObject pistol;
     public GameObject assaultRifle;
     public GameObject shotgun;
@@ -30,6 +31,7 @@ public class PlayerController : MonoBehaviour
     public GameObject rpg;
     public GameObject rocketShell;
     public GameObject flamethrower;
+    public GameObject bat;
     public GameObject lureDevice;
     public ParticleSystem flamethrowerParticles;
     public TreasureChest chestGreen;
@@ -158,7 +160,7 @@ public class PlayerController : MonoBehaviour
 
             float scroll = Input.GetAxis("Mouse ScrollWheel");
 
-            if (Mathf.Abs(scroll) == 0.1f && weaponSwitchEnable && !Input.GetMouseButton(0))
+            if (Mathf.Abs(scroll) == 0.1f && weaponSwitchEnable && !Input.GetMouseButton(0) && batActive == false)
             {
                 SwitchWeapon();
 
@@ -321,10 +323,39 @@ public class PlayerController : MonoBehaviour
                 HealWithSyringe();
             }
 
+            if (!batActive && Input.GetKeyDown(KeyCode.Z) && !flameActive)
+            {
+                if (weapon != null)
+                {
+                    weapon.gameObject.SetActive(false);
+                }
+                playerAnim.SetTrigger("unequipWeapon");
+                //playerAnim.SetInteger("weaponType", 2);
+                bat.SetActive(true);
+            }
+
+            else if (batActive && Input.GetKeyDown(KeyCode.Z) && !playerAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+            {
+                if (weapon != null)
+                {
+                    weapon.gameObject.SetActive(true);
+                }
+                playerAnim.SetTrigger("unequipWeapon");
+                //playerAnim.SetInteger("weaponType", 0);
+                bat.SetActive(false);
+            }
+
             if (playerAnim.GetInteger("weaponType") == 2)
             {
-               
+                batActive = true;
             }
+
+            else
+            {
+                batActive = false;
+            }
+
+            print(playerAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack"));
         }
 
         else
@@ -716,10 +747,12 @@ public class PlayerController : MonoBehaviour
         if (weapon != null)
         {
             weapon.gameObject.SetActive(false);
+            bat.SetActive(false);
         }
         else
         {
             gameManager.bulletImage.gameObject.SetActive(true);
+            bat.SetActive(false);
         }
 
         if (weapons.Count > 2)

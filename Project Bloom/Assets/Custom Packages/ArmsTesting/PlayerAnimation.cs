@@ -42,7 +42,12 @@ public class PlayerAnimation : MonoBehaviour
     {
         MovementAnim();
 
-        //isBatActive = bat.activeSelf;
+        isBatActive = bat.activeSelf;
+        if (isBatActive)
+        {
+            savedActiveWeapon = bat;
+            playerAnim.SetInteger("weaponType", 2);
+        }
 
         isPistolActive = pistol.activeSelf;
         if (isPistolActive)
@@ -149,14 +154,18 @@ public class PlayerAnimation : MonoBehaviour
         playerAnim.SetFloat("playerSpeed", playerSpeed / playerCon.runningSpeed, 0.1f, Time.deltaTime);
 
         // Attack
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !isBatActive)
         {
             playerAnim.SetTrigger("Attack");
         }
-        if (Input.GetMouseButtonDown(1))
+        else if (Input.GetMouseButtonDown(1) && isBatActive)
+        {
+            playerAnim.SetTrigger("Attack");
+        }
+        /*if (Input.GetMouseButtonDown(1))
         {
             playerAnim.SetTrigger("Bonk");
-        }
+        }*/
         //// Jump
         //if (Input.GetKeyDown(KeyCode.Space))
         //{
