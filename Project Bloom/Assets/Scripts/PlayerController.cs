@@ -334,12 +334,9 @@ public class PlayerController : MonoBehaviour
                 bat.SetActive(true);
             }
 
-            else if (batActive && Input.GetKeyDown(KeyCode.Z) && !playerAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+            else if (batActive && Input.GetKeyDown(KeyCode.Z) && !playerAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack") && weapon != null)
             {
-                if (weapon != null)
-                {
-                    weapon.gameObject.SetActive(true);
-                }
+                weapon.gameObject.SetActive(true);
                 playerAnim.SetTrigger("unequipWeapon");
                 //playerAnim.SetInteger("weaponType", 0);
                 bat.SetActive(false);
