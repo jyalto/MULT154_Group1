@@ -352,7 +352,7 @@ public class PlayerController : MonoBehaviour
                 batActive = false;
             }
 
-            print(playerAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack"));
+            //print(playerAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack"));
         }
 
         else

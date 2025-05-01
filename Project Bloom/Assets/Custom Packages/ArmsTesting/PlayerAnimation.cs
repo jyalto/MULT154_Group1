@@ -158,7 +158,7 @@ public class PlayerAnimation : MonoBehaviour
         {
             playerAnim.SetTrigger("Attack");
         }
-        else if (Input.GetMouseButtonDown(1) && isBatActive)
+        else if (Input.GetMouseButtonDown(1) && isBatActive && !playerAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
         {
             playerAnim.SetTrigger("Attack");
         }
