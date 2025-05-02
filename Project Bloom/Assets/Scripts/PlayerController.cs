@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     public GameObject flamethrower;
     public GameObject bat;
     public GameObject lureDevice;
+    public GameObject hands;
     public ParticleSystem flamethrowerParticles;
     public TreasureChest chestGreen;
     public TreasureChest ChestGold;
@@ -358,8 +359,9 @@ public class PlayerController : MonoBehaviour
         }
 
         else
-        {
-            gameManager.ReloadScene();
+        { 
+            StartCoroutine(gameManager.ReloadScene());
+            hands.SetActive(false);
         }
     }
     public void HealWithSyringe()
