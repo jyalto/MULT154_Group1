@@ -33,7 +33,6 @@ public class PlayerController : MonoBehaviour
     public GameObject flamethrower;
     public GameObject bat;
     public GameObject lureDevice;
-    public GameObject hands;
     public ParticleSystem flamethrowerParticles;
     public TreasureChest chestGreen;
     public TreasureChest ChestGold;
@@ -331,7 +330,6 @@ public class PlayerController : MonoBehaviour
                     weapon.gameObject.SetActive(false);
                 }
                 playerAnim.SetTrigger("unequipWeapon");
-                playerAnim.ResetTrigger("Attack");
                 //playerAnim.SetInteger("weaponType", 2);
                 bat.SetActive(true);
             }
@@ -340,7 +338,6 @@ public class PlayerController : MonoBehaviour
             {
                 weapon.gameObject.SetActive(true);
                 playerAnim.SetTrigger("unequipWeapon");
-                playerAnim.ResetTrigger("Attack");
                 //playerAnim.SetInteger("weaponType", 0);
                 bat.SetActive(false);
             }
@@ -359,9 +356,8 @@ public class PlayerController : MonoBehaviour
         }
 
         else
-        { 
-            StartCoroutine(gameManager.ReloadScene());
-            hands.SetActive(false);
+        {
+            gameManager.ReloadScene();
         }
     }
     public void HealWithSyringe()
@@ -780,7 +776,6 @@ public class PlayerController : MonoBehaviour
             }
         }
         playerAnim.SetTrigger("unequipWeapon");
-        playerAnim.ResetTrigger("Attack");
         newWeapon.SetActive(true);
         weapon = newWeapon.GetComponent<Weapon>();
     }

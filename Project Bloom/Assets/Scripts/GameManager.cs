@@ -7,8 +7,6 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    private SoundManager soundManager;
-
     public GameObject enemy;
     public GameObject bigEnemy;
     public int enemyCount = 0;
@@ -33,10 +31,6 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        GameObject soundManagerObject = GameObject.Find("Sound Manager");
-
-        soundManager = soundManagerObject.GetComponent<SoundManager>();
-
         enemyCount = 0;
         bigEnemyCount = 0;
         wave = 1;
@@ -249,10 +243,8 @@ public class GameManager : MonoBehaviour
         myCoroutine = null;
     }
 
-    public IEnumerator ReloadScene()
+    public void ReloadScene()
     {
-        soundManager.DeathCry();
-        yield return new WaitForSeconds(2f);
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.name);
     }
