@@ -330,6 +330,7 @@ public class PlayerController : MonoBehaviour
                     weapon.gameObject.SetActive(false);
                 }
                 playerAnim.SetTrigger("unequipWeapon");
+                playerAnim.ResetTrigger("Attack");
                 //playerAnim.SetInteger("weaponType", 2);
                 bat.SetActive(true);
             }
@@ -338,6 +339,7 @@ public class PlayerController : MonoBehaviour
             {
                 weapon.gameObject.SetActive(true);
                 playerAnim.SetTrigger("unequipWeapon");
+                playerAnim.ResetTrigger("Attack");
                 //playerAnim.SetInteger("weaponType", 0);
                 bat.SetActive(false);
             }
@@ -776,6 +778,7 @@ public class PlayerController : MonoBehaviour
             }
         }
         playerAnim.SetTrigger("unequipWeapon");
+        playerAnim.ResetTrigger("Attack");
         newWeapon.SetActive(true);
         weapon = newWeapon.GetComponent<Weapon>();
     }
