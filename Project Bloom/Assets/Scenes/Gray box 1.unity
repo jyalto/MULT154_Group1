@@ -48072,6 +48072,10 @@ PrefabInstance:
       propertyPath: walkingSpeed
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 891133935614179754, guid: 812092a8d2374e74c8c72761d0c849cc, type: 3}
+      propertyPath: m_RenderPostProcessing
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2097586723553559847, guid: 812092a8d2374e74c8c72761d0c849cc, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -48146,7 +48150,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4892690474030769459, guid: 812092a8d2374e74c8c72761d0c849cc, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5702591023095267678, guid: 812092a8d2374e74c8c72761d0c849cc, type: 3}
       propertyPath: m_IsActive
