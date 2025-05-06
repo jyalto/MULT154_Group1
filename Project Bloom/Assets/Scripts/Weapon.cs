@@ -8,6 +8,8 @@ public class Weapon : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
     public Collider flamethrowerCollider = null;
+    public ParticleSystem muzzleFlash;
+    private Animator playerAnim;
     public float bulletVelocity = 30f;
     public float bulletPrefabLifeTime = 3f;
     public float fireRate = 0.1f;
@@ -68,6 +70,7 @@ public class Weapon : MonoBehaviour
                 flamethrowerCollider.enabled = false;
             }
         }
+        playerAnim = GameObject.FindWithTag("Player").GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -87,6 +90,7 @@ public class Weapon : MonoBehaviour
                         {
                             FireWeapon();
                             nextFireTime = Time.time + fireRate;
+                            playerAnim.SetTrigger("Attack");
                         }
                     }
                 }
@@ -102,6 +106,7 @@ public class Weapon : MonoBehaviour
                         {
                             FireWeapon();
                             nextFireTime = Time.time + fireRate;
+                            playerAnim.SetTrigger("Attack");
                         }
                     }
                     else
@@ -131,6 +136,8 @@ public class Weapon : MonoBehaviour
                         {
                             FireWeapon();
                             nextFireTime = Time.time + fireRate;
+                            playerAnim.SetTrigger("Attack");
+                            muzzleFlash.Play();
                         }
                     }
                 }

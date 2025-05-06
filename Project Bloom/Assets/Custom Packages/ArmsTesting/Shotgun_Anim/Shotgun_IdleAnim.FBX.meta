@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 74c4384085e897d4baf99fce46b0abe5
+guid: 0f2f0fe90d1bd48429cefedc2cd2b78f
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: FlamePose_Anim
+      name: Shotgun_IdleAnim
       takeName: Unreal Take
       internalID: 8993902097722301239
       firstFrame: 0
-      lastFrame: 151
+      lastFrame: 61
       wrapMode: 2
       orientationOffsetY: 0
       level: 0
