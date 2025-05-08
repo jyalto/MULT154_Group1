@@ -1,3 +1,4 @@
+using JetBrains.Rider.Unity.Editor;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -13,6 +14,7 @@ public class Enemy : MonoBehaviour
     private BuildingManager buildingManager;
     public Transform target;
     public AudioSource[] audioSources;
+    public GameObject model;
 
     public GameObject[] randomDrop;
     public GameObject[] rareDrop;
@@ -132,6 +134,18 @@ public class Enemy : MonoBehaviour
         {
             playerDamageCoroutine = StartCoroutine(DamagePlayer());
         }
+
+        // UpdateAnims();
+    }
+
+    private void UpdateAnims()
+    {
+        /*
+        if (gameObject.GetComponent<Rigidbody>().velocity.magnitude > 1f)
+        {
+            model.GetComponent<Animator>().SetBool("walking", true);
+        }
+        */
     }
 
     private void UpdateChase()
@@ -192,6 +206,7 @@ public class Enemy : MonoBehaviour
 
         if (other.CompareTag("Player") && playerTakingDamage == false)
         {
+            model.GetComponent<Animator>().SetTrigger("attack");
             playerDamageCoroutine = StartCoroutine(DamagePlayer());
             playerTakingDamage = true;
         }
