@@ -27,6 +27,8 @@ public class PlayerAnimation : MonoBehaviour
     public bool isRPG7Active;
     public bool isFlameThrowerActive;
 
+    private bool canShoot = false;
+
     public GameObject savedActiveWeapon;
 
     // Start is called before the first frame update
@@ -68,6 +70,14 @@ public class PlayerAnimation : MonoBehaviour
         {
             savedActiveWeapon = shotgun;
             playerAnim.SetInteger("weaponType", 5);
+            //if (playerCon.ammo[(int)PlayerController.AmmoType.SHOTGUN] > 0)
+            //{
+            //    playerAnim.SetBool("canShoot", true);
+            //}
+            //else
+            //{
+            //    playerAnim.SetBool("canShoot", false);
+            //}
         }
 
         isRPG7Active = rPG7.activeSelf;
@@ -84,67 +94,7 @@ public class PlayerAnimation : MonoBehaviour
             playerAnim.SetInteger("weaponType", 7);
         }
 
-        //if (Input.GetKeyDown(KeyCode.Alpha8) && buildingManager.buildingModeActive == false)
-        //{
-        //    if (currentlyEquippedWeapon != 0)
-        //    {
-        //        playerAnim.SetTrigger("unequipWeapon");
-        //    }
-        //    currentlyEquippedWeapon = 0;
-        //    playerAnim.SetInteger("weaponType", 0);
-
-        //}
-        //if (buildingManager.buildingModeActive == true)
-        //{
-        //    if (currentlyEquippedWeapon != 1)
-        //    {
-        //        playerAnim.SetTrigger("unequipWeapon");
-        //    }
-        //    playerAnim.SetInteger("weaponType", 1);
-        //    currentlyEquippedWeapon = 1;
-        //}
-        //if (Input.GetKeyDown(KeyCode.Alpha1))
-        //{
-        //    playerAnim.SetTrigger("unequipWeapon");
-        //    if (!isBatActive)
-        //    {
-        //        if (savedActiveWeapon != null)
-        //        {
-        //            savedActiveWeapon.SetActive(false);
-        //        }
-        //        bat.SetActive(true);
-        //        playerAnim.SetInteger("weaponType", 2);
-        //    }
-        //}
-        //if (Input.GetKeyDown(KeyCode.Alpha2))
-        //{
-        //    if (savedActiveWeapon != null)
-        //    {
-        //        playerAnim.SetTrigger("unequipWeapon");
-        //        bat.SetActive(false);
-        //        savedActiveWeapon.SetActive(true);
-        //    }
-        //    else
-        //    {
-        //        return;
-        //    }
-        //}
-    }
-    void ActivateBat()
-    {
-        bat.SetActive(true);
-    }
-    void DectivateBat()
-    {
-        bat.SetActive(false);
-    }
-    void ActivateHammer()
-    {
-        hammer.SetActive(true);
-    }
-    void DectivateHammer()
-    {
-        hammer.SetActive(false);
+        
     }
 
     void MovementAnim()
@@ -154,22 +104,13 @@ public class PlayerAnimation : MonoBehaviour
         playerAnim.SetFloat("playerSpeed", playerSpeed / playerCon.runningSpeed, 0.1f, Time.deltaTime);
 
         // Attack
-        if (Input.GetMouseButtonDown(0) && !isBatActive)
-        {
-            playerAnim.SetTrigger("Attack");
-        }
-        else if (Input.GetMouseButtonDown(1) && isBatActive && !playerAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
-        {
-            playerAnim.SetTrigger("Attack");
-        }
-        /*if (Input.GetMouseButtonDown(1))
-        {
-            playerAnim.SetTrigger("Bonk");
-        }*/
-        //// Jump
-        //if (Input.GetKeyDown(KeyCode.Space))
+        //if (Input.GetMouseButtonDown(0) && !isBatActive)
         //{
-        //    playerAnim.SetTrigger("Jump");
+        //    playerAnim.SetTrigger("Attack");
         //}
+        if (Input.GetMouseButtonDown(1) && isBatActive && !playerAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        {
+            playerAnim.SetTrigger("Attack");
+        }
     }
 }
