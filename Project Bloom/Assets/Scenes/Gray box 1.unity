@@ -68987,7 +68987,7 @@ PrefabInstance:
       objectReference: {fileID: 1120684686}
     - target: {fileID: 737609134185094121, guid: 812092a8d2374e74c8c72761d0c849cc, type: 3}
       propertyPath: jumpForce
-      value: 20
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 737609134185094121, guid: 812092a8d2374e74c8c72761d0c849cc, type: 3}
       propertyPath: chestGreen
@@ -78913,7 +78913,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.85700005, y: 0.90500003}
   m_AnchorMax: {x: 0.998, y: 0.99629635}
-  m_AnchoredPosition: {x: -24.199951, y: 22.000183}
+  m_AnchoredPosition: {x: -24.199951, y: 22.000214}
   m_SizeDelta: {x: -79, y: -44}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1315523342
