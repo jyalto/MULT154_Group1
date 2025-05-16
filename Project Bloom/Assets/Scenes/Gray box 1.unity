@@ -71501,6 +71501,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 198106746083209970, guid: 26fe161b92f34854fb8a3e4cbfdc5b34, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198203059999958256, guid: 26fe161b92f34854fb8a3e4cbfdc5b34, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198281278066588744, guid: 26fe161b92f34854fb8a3e4cbfdc5b34, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198858088642353856, guid: 26fe161b92f34854fb8a3e4cbfdc5b34, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198976860282349896, guid: 26fe161b92f34854fb8a3e4cbfdc5b34, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198995580952663020, guid: 26fe161b92f34854fb8a3e4cbfdc5b34, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 199080161605920032, guid: 26fe161b92f34854fb8a3e4cbfdc5b34, type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
