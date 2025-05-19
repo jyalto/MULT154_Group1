@@ -61,7 +61,7 @@ public class Weapon : MonoBehaviour
         }
         else if (typeOfWeapon == WeaponType.RPG)
         {
-            fireRate = 10f;
+            fireRate = 2f;
         }
         else if (typeOfWeapon == WeaponType.FLAMETHROWER)
         {
@@ -153,6 +153,7 @@ public class Weapon : MonoBehaviour
                         {
                             FireWeapon();
                             nextFireTime = Time.time + fireRate;
+                            playerAnim.SetTrigger("Attack");
                         }
                     }
                 }

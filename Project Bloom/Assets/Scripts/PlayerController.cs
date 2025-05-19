@@ -737,7 +737,8 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator ReloadRocket()
     {
-        yield return new WaitForSeconds(10f);
+        playerAnim.SetTrigger("reload");
+        yield return new WaitForSeconds(1.5f);
         rocketShell.SetActive(true);
         reloadRocketRoutine = null;
     }
