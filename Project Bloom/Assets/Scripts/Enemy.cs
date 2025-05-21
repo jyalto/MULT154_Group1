@@ -258,6 +258,7 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator DamagePlayer()
     {
+        yield return new WaitForSeconds(1.85f);
         if (bigEnemyActive)
         {
             playerController.health -= 5;
@@ -266,7 +267,7 @@ public class Enemy : MonoBehaviour
         {
             playerController.health -= 1;
         }
-        yield return new WaitForSeconds(0.35f);
+        yield return new WaitForSeconds(1f);
         playerDamageCoroutine = null;
     }
 

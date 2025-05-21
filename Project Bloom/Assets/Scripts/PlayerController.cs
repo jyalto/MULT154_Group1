@@ -113,7 +113,7 @@ public class PlayerController : MonoBehaviour
 
             if (controller.isGrounded)
             {
-                if (Input.GetButtonDown("Jump"))
+                /*if (Input.GetButtonDown("Jump"))
                 {
                     velocity.y = jumpForce;
                     speed = walkingSpeed;
@@ -136,8 +136,23 @@ public class PlayerController : MonoBehaviour
                     {
                         speed = walkingSpeed;
                     }
-                }
+                }*/
 
+                if (move.magnitude > 0)
+                {
+                    if (Input.GetKey(KeyCode.LeftShift) && !flamethrowerParticles.isPlaying)
+                    {
+                        speed = runningSpeed;
+                    }
+                    else
+                    {
+                        speed = walkingSpeed;
+                    }
+                }
+                else
+                {
+                    speed = walkingSpeed;
+                }
             }
             else
             {
