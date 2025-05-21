@@ -23,6 +23,7 @@ public class Enemy : MonoBehaviour
     public GameObject flamethrowerItem;
 
     public bool bigEnemyActive = false;
+    public bool attacking = false;
 
     public float health = 10;
     public float playerLockOnRange = 10;
@@ -80,10 +81,22 @@ public class Enemy : MonoBehaviour
     {
         if (health > 0)
         {
-            if (Time.time >= nextUpdate)
+            if (!attacking)
             {
-                UpdateChase();
-                nextUpdate = Time.time + updateRate;
+                agent.isStopped = false;
+                model.GetComponent<Animator>().SetBool("Attack", false);
+                model.GetComponent<Animator>().SetBool("Walk", true);
+                if (Time.time >= nextUpdate)
+                {
+                    UpdateChase();
+                    nextUpdate = Time.time + updateRate;
+                }
+            }
+            else
+            {
+                agent.isStopped = true;
+                model.GetComponent<Animator>().SetBool("Attack", true);
+                model.GetComponent<Animator>().SetBool("Walk", false);
             }
         }
         else
@@ -206,7 +219,7 @@ public class Enemy : MonoBehaviour
 
         if (other.CompareTag("Player") && playerTakingDamage == false)
         {
-            model.GetComponent<Animator>().SetTrigger("attack");
+            attacking = true;
             playerDamageCoroutine = StartCoroutine(DamagePlayer());
             playerTakingDamage = true;
         }
@@ -233,6 +246,7 @@ public class Enemy : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
+            attacking = false;
             playerTakingDamage = false;
             if (playerDamageCoroutine != null)
             {
