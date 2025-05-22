@@ -125,6 +125,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingType: 2
+  buildingName: Clipper
+  buildingDescription: A bear trap that has been modified to automatically re-arm
+    itself. Don't ask how it works, I don't know either.
   durability: 100
   constructionSound: {fileID: 8300000, guid: dc2ce450217aab241867f264f92c3ddb, type: 3}
 --- !u!114 &8609226776396446649

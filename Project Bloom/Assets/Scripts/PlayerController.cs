@@ -95,6 +95,13 @@ public class PlayerController : MonoBehaviour
         controller = GetComponent<CharacterController>();
         audioSources = GetComponents<AudioSource>();
         playerAnim = GetComponent<Animator>();
+
+        AddResource(Resource.ResourceTypes.PLANT_PASTE, 0);
+        AddResource(Resource.ResourceTypes.TOUGH_CLOTH, 0);
+        AddResource(Resource.ResourceTypes.SCRAP_METAL, 0);
+        AddResource(Resource.ResourceTypes.TECH_PARTS, 0);
+        AddResource(Resource.ResourceTypes.GAS_CAN, 0);
+        AddResource(Resource.ResourceTypes.WEED_SPRAY, 0);
     }
 
     // Update is called once per frame

@@ -103,9 +103,53 @@ public class BuildingManager : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0) && currentPreview.GetComponent<BuildingPreview>().canPlace)
             {
-                GameObject temp = Instantiate(currentPreview.GetComponent<BuildingPreview>().buildingObject);
-                temp.transform.position = currentPreview.transform.position;
-                placedBuildings.Add(temp);
+                bool enoughResources = true;
+
+                PlayerController pc = playerObject.GetComponent<PlayerController>();
+                BuildingPreview bp = currentPreview.GetComponent<BuildingPreview>();
+
+                if (pc.CheckResource(Resource.ResourceTypes.PLANT_PASTE) < bp.costPaste)
+                {
+                    enoughResources = false;
+                }
+                if (pc.CheckResource(Resource.ResourceTypes.TOUGH_CLOTH) < bp.costCloth)
+                {
+                    enoughResources = false;
+                }
+                if (pc.CheckResource(Resource.ResourceTypes.SCRAP_METAL) < bp.costMetal)
+                {
+                    enoughResources = false;
+                }
+                if (pc.CheckResource(Resource.ResourceTypes.TECH_PARTS) < bp.costTech)
+                {
+                    enoughResources = false;
+                }
+                if (pc.CheckResource(Resource.ResourceTypes.GAS_CAN) < bp.costGas)
+                {
+                    enoughResources = false;
+                }
+                if (pc.CheckResource(Resource.ResourceTypes.WEED_SPRAY) < bp.costSpray)
+                {
+                    enoughResources = false;
+                }
+
+                if (enoughResources)
+                {
+                    pc.RemoveResource(Resource.ResourceTypes.PLANT_PASTE, bp.costPaste);
+                    pc.RemoveResource(Resource.ResourceTypes.TOUGH_CLOTH, bp.costCloth);
+                    pc.RemoveResource(Resource.ResourceTypes.SCRAP_METAL, bp.costMetal);
+                    pc.RemoveResource(Resource.ResourceTypes.TECH_PARTS, bp.costTech);
+                    pc.RemoveResource(Resource.ResourceTypes.GAS_CAN, bp.costGas);
+                    pc.RemoveResource(Resource.ResourceTypes.WEED_SPRAY, bp.costSpray);
+
+                    GameObject temp = Instantiate(currentPreview.GetComponent<BuildingPreview>().buildingObject);
+                    temp.transform.position = currentPreview.transform.position;
+                    placedBuildings.Add(temp);
+                }
+                else
+                {
+                    Debug.Log("Not enough resources!");
+                }
 
             }
         }

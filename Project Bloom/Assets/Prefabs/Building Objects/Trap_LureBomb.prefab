@@ -126,6 +126,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingType: 2
+  buildingName: Lure Bomb
+  buildingDescription: Distracts your foes with an annoying virtual assistant. When
+    enemies come in contact with it, an explosion occurs after a short delay.
   durability: 100
   constructionSound: {fileID: 8300000, guid: dc2ce450217aab241867f264f92c3ddb, type: 3}
 --- !u!114 &8609226776396446649

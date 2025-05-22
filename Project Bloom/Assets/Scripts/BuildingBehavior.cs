@@ -8,7 +8,9 @@ using UnityEngine;
 public class BuildingBehavior : MonoBehaviour
 {
     [Header("Common Attributes")]
-    [SerializeField] BuildingType buildingType;     // Refer to enum "BuildingType"
+    public BuildingType buildingType;     // Refer to enum "BuildingType"
+    public string buildingName;
+    public string buildingDescription;
     public float durability;
     public AudioClip constructionSound;
 

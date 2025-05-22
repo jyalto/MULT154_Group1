@@ -73,6 +73,12 @@ MonoBehaviour:
   mesh: {fileID: 4878884500646575253}
   red: {fileID: 2100000, guid: 2cc2215682994d847972335c42c1177a, type: 2}
   green: {fileID: 2100000, guid: 5bc17a34f139c3f45afe53e81a25dbec, type: 2}
+  costPaste: 0
+  costCloth: 0
+  costMetal: 1
+  costTech: 0
+  costGas: 0
+  costSpray: 0
   canPlace: 1
 --- !u!54 &-6773138109339982977
 Rigidbody:

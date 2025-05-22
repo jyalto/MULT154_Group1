@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class StartTransition : MonoBehaviour
+public class DayTransition : MonoBehaviour
 {
     public float delay = 1.0f;
     public Image overlay;
