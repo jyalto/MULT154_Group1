@@ -3,7 +3,12 @@ guid: 1398e9c5a5d64264587c2d6d7a5dfed8
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: fern_2
+    second: {fileID: 2100000, guid: f7f9d7b580770cc4b93aaf44681d93db, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
