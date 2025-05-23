@@ -98,7 +98,7 @@ public class GameManager : MonoBehaviour
                 wave = 4;
             }
         }
-        else if (wave == 4)
+        /*else if (wave == 4)
         {
             if (enemyCount < 15 && killedEnemies < 200 && myCoroutine == null)
             {
@@ -108,7 +108,7 @@ public class GameManager : MonoBehaviour
             {
                 wave = 5;
             }
-        }
+        }*/
 
         waveText.SetText("Wave: " + wave);
     }

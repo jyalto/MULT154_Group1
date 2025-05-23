@@ -264,7 +264,7 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            playerController.health -= 1;
+            playerController.health -= 2;
         }
         yield return new WaitForSeconds(1f);
         playerDamageCoroutine = null;
@@ -283,17 +283,19 @@ public class Enemy : MonoBehaviour
         {
             if (!bigEnemyActive)
             {
-                int randomRate = Random.Range(0, 8);
+                int randomRate = Random.Range(0, 4);
                 if (randomRate == 2)
                 {
                     int randomNum = Random.Range(0, randomDrop.Length);
                     if (randomNum == 0)
                     {
-                        gameManager.spawnedItems.Add(Instantiate(randomDrop[randomNum], new Vector3(transform.position.x, 10.17471f, transform.position.z), Quaternion.Euler(90f, 0f, -90f)));
+                        //gameManager.spawnedItems.Add(Instantiate(randomDrop[randomNum], new Vector3(transform.position.x, 10.17471f, transform.position.z), Quaternion.Euler(90f, 0f, -90f)));
+                        gameManager.spawnedItems.Add(Instantiate(randomDrop[randomNum], new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z), randomDrop[randomNum].transform.rotation));
                     }
                     else if (randomNum == 1)
                     {
-                        gameManager.spawnedItems.Add(Instantiate(randomDrop[randomNum], new Vector3(transform.position.x, 9.8f, transform.position.z), Quaternion.Euler(-90f, 0f, 0f)));
+                        //gameManager.spawnedItems.Add(Instantiate(randomDrop[randomNum], new Vector3(transform.position.x, 9.8f, transform.position.z), Quaternion.Euler(-90f, 0f, 0f)));
+                        gameManager.spawnedItems.Add(Instantiate(randomDrop[randomNum], new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z), randomDrop[randomNum].transform.rotation));
                     }
                     else if (randomNum == 2 || randomNum == 3)
                     {
@@ -302,17 +304,20 @@ public class Enemy : MonoBehaviour
                         if (randomChance == 1 && rareDrop.Length > 0)
                         {
                             int randomNum2 = Random.Range(0, rareDrop.Length);
-                            gameManager.spawnedItems.Add(Instantiate(rareDrop[randomNum2], new Vector3(transform.position.x, 10.17471f, transform.position.z), Quaternion.identity));
+                            //gameManager.spawnedItems.Add(Instantiate(rareDrop[randomNum2], new Vector3(transform.position.x, 10.17471f, transform.position.z), Quaternion.identity));
+                            gameManager.spawnedItems.Add(Instantiate(rareDrop[randomNum2], new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z), rareDrop[randomNum2].transform.rotation));
                         }
 
                         else
                         {
-                            gameManager.spawnedItems.Add(Instantiate(randomDrop[randomNum], new Vector3(transform.position.x, 10.17471f, transform.position.z), Quaternion.identity));
+                            //gameManager.spawnedItems.Add(Instantiate(randomDrop[randomNum], new Vector3(transform.position.x, 10.17471f, transform.position.z), Quaternion.identity));
+                            gameManager.spawnedItems.Add(Instantiate(randomDrop[randomNum], new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z), randomDrop[randomNum].transform.rotation));
                         }
                     }
                     else
                     {
-                        gameManager.spawnedItems.Add(Instantiate(randomDrop[randomNum], new Vector3(transform.position.x, 10.17471f, transform.position.z), Quaternion.Euler(90f, 0f, -90f)));
+                        //gameManager.spawnedItems.Add(Instantiate(randomDrop[randomNum], new Vector3(transform.position.x, 10.17471f, transform.position.z), Quaternion.Euler(90f, 0f, -90f)));
+                        gameManager.spawnedItems.Add(Instantiate(randomDrop[randomNum], new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z), randomDrop[randomNum].transform.rotation));
                     }
                 }
             }
@@ -322,13 +327,15 @@ public class Enemy : MonoBehaviour
                 if (rareDrop.Length > 0)
                 {
                     int randomNum2 = Random.Range(0, rareDrop.Length);
-                    gameManager.spawnedItems.Add(Instantiate(rareDrop[randomNum2], new Vector3(transform.position.x, 10.17471f, transform.position.z), Quaternion.identity));
+                    //gameManager.spawnedItems.Add(Instantiate(rareDrop[randomNum2], new Vector3(transform.position.x, 10.17471f, transform.position.z), Quaternion.identity));
+                    gameManager.spawnedItems.Add(Instantiate(rareDrop[randomNum2], new Vector3(transform.position.x, transform.position.y - 3f, transform.position.z), rareDrop[randomNum2].transform.rotation));
                 }
 
                 else
                 {
                     int randomNum = Random.Range(2, randomDrop.Length);
-                    gameManager.spawnedItems.Add(Instantiate(randomDrop[randomNum], new Vector3(transform.position.x, 10.17471f, transform.position.z), Quaternion.identity));
+                    //gameManager.spawnedItems.Add(Instantiate(randomDrop[randomNum], new Vector3(transform.position.x, 10.17471f, transform.position.z), Quaternion.identity));
+                    gameManager.spawnedItems.Add(Instantiate(randomDrop[randomNum], new Vector3(transform.position.x, transform.position.y - 3f, transform.position.z), randomDrop[randomNum].transform.rotation));
                 }
             }
 
