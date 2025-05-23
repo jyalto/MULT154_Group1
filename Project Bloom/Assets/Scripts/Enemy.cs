@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -73,6 +74,18 @@ public class Enemy : MonoBehaviour
             health = 50;
             bigEnemyActive = true;
             gameManager.bigEnemyCount++;
+        }
+    }
+
+    void Start()
+    {
+        if (gameManager.wave == 2)
+        {
+            agent.speed = 14;
+        }
+        else if (gameManager.wave == 3)
+        {
+            agent.speed = 16;
         }
     }
 
@@ -264,7 +277,18 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            playerController.health -= 2;
+            if (gameManager.wave == 1)
+            {
+                playerController.health -= 2;
+            }
+            if (gameManager.wave == 2)
+            {
+                playerController.health -= 3;
+            }
+            if (gameManager.wave == 3)
+            {
+                playerController.health -= 4;
+            }
         }
         yield return new WaitForSeconds(1f);
         playerDamageCoroutine = null;
@@ -283,7 +307,7 @@ public class Enemy : MonoBehaviour
         {
             if (!bigEnemyActive)
             {
-                int randomRate = Random.Range(0, 4);
+                int randomRate = Random.Range(0, 3);
                 if (randomRate == 2)
                 {
                     int randomNum = Random.Range(0, randomDrop.Length);

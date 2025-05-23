@@ -124,6 +124,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 4510651296602036111}
   target: {fileID: 0}
+  audioSources: []
+  model: {fileID: 0}
   randomDrop:
   - {fileID: 9144164244080005112, guid: 5ba1ae649eb66174ba9a3200668f5937, type: 3}
   - {fileID: 2574026887304345406, guid: d30726c1678cc674f9c0b7289cc0767a, type: 3}
@@ -139,6 +141,7 @@ MonoBehaviour:
   rpgItem: {fileID: 927894897820252096, guid: 07f1733a436524645becfbaf2ac0a0a9, type: 3}
   flamethrowerItem: {fileID: 927894897820252096, guid: 5410455c1efc16d48be49f6443a32abe, type: 3}
   bigEnemyActive: 1
+  attacking: 0
   health: 50
   playerLockOnRange: 10
 --- !u!195 &4510651296602036111
@@ -151,7 +154,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 6
+  m_Speed: 8
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120

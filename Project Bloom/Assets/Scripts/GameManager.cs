@@ -67,33 +67,33 @@ public class GameManager : MonoBehaviour
 
         if (wave == 1)
         {
-            if (enemyCount < 5 && killedEnemies < 15 && myCoroutine == null)
+            if (enemyCount < 10 && killedEnemies < 35 && myCoroutine == null)
             {
                 myCoroutine = StartCoroutine(WaveOneSpawnEnemy());
             }
-            if (killedEnemies == 15)
+            if (killedEnemies == 35)
             {
                 wave = 2;
             }
         }
         else if (wave == 2)
         {
-            if (enemyCount < 7 && killedEnemies < 35 && myCoroutine == null)
+            if (enemyCount < 20 && killedEnemies < 75 && myCoroutine == null)
             {
                 myCoroutine = StartCoroutine(WaveTwoSpawnEnemy());
             }
-            if (killedEnemies == 35)
+            if (killedEnemies == 75)
             {
                 wave = 3;
             }
         }
         else if (wave == 3)
         {
-            if (enemyCount < 10 && killedEnemies < 75 && myCoroutine == null)
+            if (enemyCount < 30 && killedEnemies < 150 && myCoroutine == null)
             {
                 myCoroutine = StartCoroutine(WaveThreeSpawnEnemy());
             }
-            if (killedEnemies == 75)
+            if (killedEnemies == 150)
             {
                 wave = 4;
             }
@@ -115,7 +115,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator WaveOneSpawnEnemy()
     {
-        while (enemyCount < 5)
+        while (enemyCount < 10)
         {
             if (bigEnemyCount == 0)
             {
@@ -149,7 +149,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator WaveTwoSpawnEnemy()
     {
-        while (enemyCount < 7)
+        while (enemyCount < 20)
         {
             if (bigEnemyCount == 0)
             {
@@ -183,7 +183,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator WaveThreeSpawnEnemy()
     {
-        while (enemyCount < 10)
+        while (enemyCount < 30)
         {
             if (bigEnemyCount == 0)
             {
