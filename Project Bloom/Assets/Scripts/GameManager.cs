@@ -98,17 +98,18 @@ public class GameManager : MonoBehaviour
                 wave = 4;
             }
         }
-        /*else if (wave == 4)
+        else if (wave == 4)
         {
-            if (enemyCount < 15 && killedEnemies < 200 && myCoroutine == null)
+            soundManager.Wave4Start();
+            if (myCoroutine == null)
             {
                 myCoroutine = StartCoroutine(WaveFourSpawnEnemy());
             }
-            if (killedEnemies == 200)
+            /*if (killedEnemies == 200)
             {
                 wave = 5;
-            }
-        }*/
+            }*/
+        }
 
         waveText.SetText("Wave: " + wave);
     }
@@ -217,9 +218,9 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator WaveFourSpawnEnemy()
     {
-        while (enemyCount < 15)
+        while (enemyCount < 200)
         {
-            if (bigEnemyCount < 2)
+            if (bigEnemyCount < 15)
             {
                 randomBigSpawn = Random.Range(0, 5);
 
@@ -243,7 +244,7 @@ public class GameManager : MonoBehaviour
                 Instantiate(enemy, spawnPoints[randomPoint].position, Quaternion.identity);
             }
 
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(0.5f);
         }
 
         myCoroutine = null;

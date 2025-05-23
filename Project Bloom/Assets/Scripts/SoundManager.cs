@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class SoundManager : MonoBehaviour
 {
@@ -8,7 +9,10 @@ public class SoundManager : MonoBehaviour
 
     public AudioSource[] audioSources;
 
+    public bool wave4SoundPlayed = false;
+
     private bool death = false;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -60,6 +64,15 @@ public class SoundManager : MonoBehaviour
             audioSources[3].Stop();
             audioSources[2].Play();
             death = true;
+        }
+    }
+
+    public void Wave4Start()
+    {
+        if (!audioSources[4].isPlaying && !wave4SoundPlayed)
+        {
+            audioSources[4].Play();
+            wave4SoundPlayed = true;
         }
     }
 }

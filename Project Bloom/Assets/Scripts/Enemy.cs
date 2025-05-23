@@ -79,13 +79,35 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-        if (gameManager.wave == 2)
+        if (!bigEnemyActive)
         {
-            agent.speed = 14;
+            if (gameManager.wave == 2)
+            {
+                agent.speed = 14;
+            }
+            else if (gameManager.wave == 3)
+            {
+                agent.speed = 16;
+            }
+            else if (gameManager.wave == 4)
+            {
+                agent.speed = 18;
+            }
         }
-        else if (gameManager.wave == 3)
+        else
         {
-            agent.speed = 16;
+            if (gameManager.wave == 2)
+            {
+                agent.speed = 10;
+            }
+            else if (gameManager.wave == 3)
+            {
+                agent.speed = 12;
+            }
+            else if (gameManager.wave == 4)
+            {
+                agent.speed = 14;
+            }
         }
     }
 
@@ -285,7 +307,7 @@ public class Enemy : MonoBehaviour
             {
                 playerController.health -= 3;
             }
-            if (gameManager.wave == 3)
+            if (gameManager.wave == 3 || gameManager.wave == 4)
             {
                 playerController.health -= 4;
             }
