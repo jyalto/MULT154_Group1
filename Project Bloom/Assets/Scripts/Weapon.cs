@@ -107,6 +107,7 @@ public class Weapon : MonoBehaviour
                             FireWeapon();
                             nextFireTime = Time.time + fireRate;
                             playerAnim.SetTrigger("Attack");
+                            muzzleFlash.Play();
                         }
                     }
                     else
