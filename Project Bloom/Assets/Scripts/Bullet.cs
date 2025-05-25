@@ -16,7 +16,7 @@ public class Bullet : MonoBehaviour
         {
             if (weapon.typeOfWeapon == Weapon.WeaponType.PISTOL)
             {
-                damage = 3.5f;
+                damage = 3;
             }
             else if (weapon.typeOfWeapon == Weapon.WeaponType.ASSAULTRIFLE)
             {
