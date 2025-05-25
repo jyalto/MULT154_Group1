@@ -30,7 +30,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 650203006987351456}
-  - {fileID: 7964484320237627303}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7270801443146942452
@@ -64,7 +63,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3181424859358627489}
+  m_Father: {fileID: 650203006987351456}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!2083052967 &8813197105752946888
 VisualEffect:
@@ -315,6 +314,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 483e3b2d55e13e044b57f35b9d57ee54, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1285570141352841923}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 483e3b2d55e13e044b57f35b9d57ee54, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7964484320237627303}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 483e3b2d55e13e044b57f35b9d57ee54, type: 3}
       insertIndex: -1
