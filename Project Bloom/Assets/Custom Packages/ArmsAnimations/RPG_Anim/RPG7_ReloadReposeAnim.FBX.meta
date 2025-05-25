@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 88d09544f7c72fc4cb6b27a00e787245
+guid: 650993aef1389b3459a4d3b526b40359
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,18 +33,18 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: RPG7_RunAnim
+      name: RPG7_ReloadReposeAnim
       takeName: Unreal Take
       internalID: 8993902097722301239
       firstFrame: 0
-      lastFrame: 51
+      lastFrame: 61
       wrapMode: 2
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 1
       loopBlendPositionY: 1

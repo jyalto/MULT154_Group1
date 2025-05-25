@@ -107,9 +107,11 @@ public class Weapon : MonoBehaviour
                         {
                             FireWeapon();
                             nextFireTime = Time.time + fireRate;
-                            playerAnim.SetTrigger("Attack");
+                            //playerAnim.SetTrigger("Attack");
+
                             muzzleFlash.Play();
                         }
+                        playerAnim.SetBool("stillShooting", true);
                     }
                     else
                     {
@@ -117,6 +119,7 @@ public class Weapon : MonoBehaviour
                         {
                             audioSource.Stop();
                         }
+                        playerAnim.SetBool("stillShooting", false);
                     }
                 }
                 else
@@ -125,6 +128,7 @@ public class Weapon : MonoBehaviour
                     {
                         audioSource.Stop();
                     }
+                    playerAnim.SetBool("stillShooting", false);
                 }
             }
             else if (typeOfWeapon == WeaponType.SHOTGUN)
