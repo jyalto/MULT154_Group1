@@ -70,14 +70,6 @@ public class PlayerAnimation : MonoBehaviour
         {
             savedActiveWeapon = shotgun;
             playerAnim.SetInteger("weaponType", 5);
-            //if (playerCon.ammo[(int)PlayerController.AmmoType.SHOTGUN] > 0)
-            //{
-            //    playerAnim.SetBool("canShoot", true);
-            //}
-            //else
-            //{
-            //    playerAnim.SetBool("canShoot", false);
-            //}
         }
 
         isRPG7Active = rPG7.activeSelf;
@@ -93,8 +85,6 @@ public class PlayerAnimation : MonoBehaviour
             savedActiveWeapon = flamethrower;
             playerAnim.SetInteger("weaponType", 7);
         }
-
-        
     }
 
     void MovementAnim()
