@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 10da9c84ac38d3d4fb9e019f11e7a5e5
+guid: c8a62bb96b6913342a9e6457b6e989f2
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,7 +33,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Flame_AttackTest3Anim
+      name: Pistol_RunAnim3
       takeName: Unreal Take
       internalID: 8993902097722301239
       firstFrame: 0

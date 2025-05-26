@@ -8,10 +8,9 @@ public class PlayerAnimation : MonoBehaviour
 {
     private PlayerController playerCon;
     private Animator playerAnim;
-    private BuildingManager buildingManager;
 
     // not implemented player objects
-    public GameObject hammer;
+    //public GameObject hammer;
     public GameObject bat;
     public GameObject syringe;
     public GameObject pistol;
@@ -20,14 +19,12 @@ public class PlayerAnimation : MonoBehaviour
     public GameObject rPG7;
     public GameObject flamethrower;
 
-    public bool isBatActive;
-    public bool isPistolActive;
-    public bool isAssaultRifleActive;
-    public bool isShotgunActive;
-    public bool isRPG7Active;
-    public bool isFlameThrowerActive;
-
-    private bool canShoot = false;
+    private bool isBatActive;
+    private bool isPistolActive;
+    private bool isAssaultRifleActive;
+    private bool isShotgunActive;
+    private bool isRPG7Active;
+    private bool isFlameThrowerActive;
 
     public GameObject savedActiveWeapon;
 
@@ -36,7 +33,6 @@ public class PlayerAnimation : MonoBehaviour
     {
         playerAnim = GetComponent<Animator>();
         playerCon = GetComponent<PlayerController>();
-        buildingManager = GetComponent<BuildingManager>();
     }
 
     // Update is called once per frame

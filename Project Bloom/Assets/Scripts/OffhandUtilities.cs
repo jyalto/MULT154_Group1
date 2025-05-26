@@ -10,6 +10,7 @@ public class OffhandUtilities : MonoBehaviour
 {
     public bool equipmentModeEnabled = false;
     private PlayerController controller;
+    private Animator playerAnim;
     [SerializeField] GameObject mainHand;
     [SerializeField] GameObject handMesh; // ALL INVOLVED CODE IS QUICK FIX FOR LACK OF HAND ANIMATIONS, REMOVE AFTER IMPLEMENTATION
     private BuildingManager buildingManager;
@@ -26,6 +27,7 @@ public class OffhandUtilities : MonoBehaviour
     void Start()
     {
         controller = GetComponent<PlayerController>();
+        playerAnim = GetComponent<Animator>();  
         buildingManager = GetComponent<BuildingManager>();
 
         equipment = new List<Equipment>();
@@ -53,11 +55,11 @@ public class OffhandUtilities : MonoBehaviour
             {
                 DisableEquipmentAbilities();
             }
-
+            playerAnim.SetTrigger("unequipWeapon");
         }
         if (equipmentModeEnabled)
         {
-            handMesh.SetActive(false);
+            //handMesh.SetActive(false);
             equipmentModels[currentEquipmentIndex].SetActive(true);
 
             // Equipment mode input
@@ -72,27 +74,33 @@ public class OffhandUtilities : MonoBehaviour
                 }
                 currentEquipmentIndex = (currentEquipmentIndex + (int)scrollInput) % equipment.Count;
                 DisableEquipmentAbilities();
+                playerAnim.SetTrigger("unequipWeapon");
 
                 switch (equipment[currentEquipmentIndex])
                 {
                     case Equipment.NONE:
                         equipmentModels[0].SetActive(true);
+                        playerAnim.SetInteger("weaponType", 0);
                         break;
                     case Equipment.HAMMER:
                         equipmentModels[1].SetActive(true);
+                        playerAnim.SetInteger("weaponType", 1);
                         buildingManager.buildingModeActive = true;
                         break;
                     case Equipment.REMOTE:
                         buildingManager.remoteEquipped = true;
                         equipmentModels[2].SetActive(true);
+                        playerAnim.SetInteger("weaponType", 9);
                         break;
                     case Equipment.ACTIVATOR:
                         buildingManager.activatorEquipped = true;
                         equipmentModels[3].SetActive(true);
+                        playerAnim.SetInteger("weaponType", 10);
                         break;
                     case Equipment.SYRINGE:
                         controller.usingSyringe = true;
                         equipmentModels[4].SetActive(true);
+                        playerAnim.SetInteger("weaponType", 8);
                         break;
 
                 }
@@ -104,7 +112,7 @@ public class OffhandUtilities : MonoBehaviour
         }
         else
         {
-            handMesh.SetActive(true);
+            //handMesh.SetActive(true);
         }
     }
 

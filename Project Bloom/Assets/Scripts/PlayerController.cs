@@ -400,6 +400,7 @@ public class PlayerController : MonoBehaviour
             health = healthLimit;
         }
         audioSources[3].PlayOneShot(playerSounds[0]);
+        playerAnim.SetTrigger("Activate");
     }
 
     void SwitchWeapon()

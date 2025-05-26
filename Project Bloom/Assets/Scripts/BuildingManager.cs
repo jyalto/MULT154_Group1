@@ -9,6 +9,7 @@ using UnityEngine.InputSystem;
 public class BuildingManager : MonoBehaviour
 {
     private PlayerController playerObject;
+    private Animator playerAnim;
     public Camera playerCamera;
     public List<GameObject> buildingPreviews = new List<GameObject>(); // Previews to be used
     private List<GameObject> previewObjects = new List<GameObject>(); // Physical, instantiated preview objects
@@ -40,6 +41,7 @@ public class BuildingManager : MonoBehaviour
     void Start()
     {
         playerObject = gameObject.GetComponent<PlayerController>();
+        playerAnim = GetComponent<Animator>();
 
         // Pre-load ghosts
         foreach (GameObject building in buildingPreviews)
@@ -150,7 +152,7 @@ public class BuildingManager : MonoBehaviour
                 {
                     Debug.Log("Not enough resources!");
                 }
-
+                playerAnim.SetTrigger("Activate");
             }
         }
         // Remote Mode Functionailty
@@ -172,6 +174,7 @@ public class BuildingManager : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 FireActivatorsOnChannel(currentRemoteChannel);
+                playerAnim.SetTrigger("Activate");
             }
         }
         // Activator Mode Functionailty
@@ -192,6 +195,7 @@ public class BuildingManager : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 SetActivatorChannel(currentActivatorChannel);
+                playerAnim.SetTrigger("Activate");
             }
         }
         if (!buildingModeActive)
@@ -242,6 +246,7 @@ public class BuildingManager : MonoBehaviour
                 if (trapBehavior.activatorChannel == remoteChannel)
                 {
                     trapBehavior.ActivateTrap();
+                    playerAnim.SetTrigger("Activate");
                 }
             }
         }
@@ -260,6 +265,7 @@ public class BuildingManager : MonoBehaviour
         {
             hit.collider.gameObject.GetComponent<TrapBehavior>().ApplyRemoteActivator(currentActivatorChannel);
             offhandObject.GetComponent<AudioSource>().PlayOneShot(success);
+            playerAnim.SetTrigger("Activate");
         }
         else
         {
