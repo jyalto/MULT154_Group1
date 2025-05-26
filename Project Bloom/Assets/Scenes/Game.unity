@@ -32831,7 +32831,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &393446469
 RectTransform:
   m_ObjectHideFlags: 0
@@ -94008,6 +94008,7 @@ MonoBehaviour:
   waveText: {fileID: 1315523342}
   ammoText: {fileID: 995404826}
   bulletImage: {fileID: 852133125}
+  skullImage: {fileID: 393446470}
 --- !u!4 &1074783298
 Transform:
   m_ObjectHideFlags: 0
@@ -119581,7 +119582,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.85700005, y: 0.90500003}
   m_AnchorMax: {x: 0.998, y: 0.99629635}
-  m_AnchoredPosition: {x: -33.5, y: 17.8}
+  m_AnchoredPosition: {x: -33.5, y: 17.800049}
   m_SizeDelta: {x: -79, y: -44}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1315523342

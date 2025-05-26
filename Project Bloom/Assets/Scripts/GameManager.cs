@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     public TMP_Text waveText;
     public TMP_Text ammoText;
     public Image bulletImage;
+    public Image skullImage;
 
     private Coroutine myCoroutine = null;
 
@@ -111,7 +112,16 @@ public class GameManager : MonoBehaviour
             }*/
         }
 
-        waveText.SetText("Wave: " + wave);
+        if (wave != 4)
+        {
+            waveText.SetText("Wave: " + wave);
+            skullImage.gameObject.SetActive(false);
+        }
+        else
+        {
+            waveText.SetText("Wave: ");
+            skullImage.gameObject.SetActive(true);
+        }
     }
 
     private IEnumerator WaveOneSpawnEnemy()
