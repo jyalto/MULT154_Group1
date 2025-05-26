@@ -20,7 +20,7 @@ public class Bullet : MonoBehaviour
             }
             else if (weapon.typeOfWeapon == Weapon.WeaponType.ASSAULTRIFLE)
             {
-                damage = 1;
+                damage = 1.25f;
             }
             else if (weapon.typeOfWeapon == Weapon.WeaponType.SHOTGUN)
             {

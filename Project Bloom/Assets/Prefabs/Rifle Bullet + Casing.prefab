@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4937549762343652762}
   - component: {fileID: 4937549762344750938}
   m_Layer: 0
-  m_Name: Rifel Bullet + Casing
+  m_Name: Rifle Bullet + Casing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -84,14 +84,17 @@ public class Enemy : MonoBehaviour
             if (gameManager.wave == 2)
             {
                 agent.speed = 14;
+                //health = 12;
             }
             else if (gameManager.wave == 3)
             {
                 agent.speed = 16;
+                //health = 14;
             }
             else if (gameManager.wave == 4)
             {
                 agent.speed = 18;
+                //health = 16;
             }
         }
         else
@@ -318,7 +321,7 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator FireDamage()
     {
-        health -= 1;
+        health -= 1.35f;
         yield return new WaitForSeconds(0.2f);  
         fireDamageCoroutine = null;
     }

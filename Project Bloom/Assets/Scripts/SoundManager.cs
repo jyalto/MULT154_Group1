@@ -62,6 +62,7 @@ public class SoundManager : MonoBehaviour
         if (!death)
         {
             audioSources[3].Stop();
+            audioSources[5].Stop();
             audioSources[2].Play();
             death = true;
         }

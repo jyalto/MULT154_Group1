@@ -57,7 +57,7 @@ VisualEffect:
       m_Array: []
     m_Vector4f:
       m_Array:
-      - m_Value: {x: 1.8503311, y: 0.62862813, z: 0, w: 0}
+      - m_Value: {x: 0, y: 1.0386311, z: 1.8503312, w: 0}
         m_Name: New Color
         m_Overridden: 1
     m_Uint:
@@ -72,7 +72,7 @@ VisualEffect:
       m_Array: []
     m_NamedObject:
       m_Array:
-      - m_Value: {fileID: 2800000, guid: 64aa1b4ba04165245a6d958f48977b77, type: 3}
+      - m_Value: {fileID: 2800000, guid: b773dda36bbcf714f850a59407236ac8, type: 3}
         m_Name: Tex01_Glow
         m_Overridden: 1
     m_Bool:
