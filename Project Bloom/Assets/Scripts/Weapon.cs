@@ -196,6 +196,7 @@ public class Weapon : MonoBehaviour
                                 main.startSpeed = 8f;
                             }
                         }
+                        playerAnim.SetBool("stillShooting", true);
                     }
                     else
                     {
@@ -209,6 +210,7 @@ public class Weapon : MonoBehaviour
                             }
                             player.flamethrowerParticles.Stop();
                         }
+                        playerAnim.SetBool("stillShooting", false);
                     }
                 }
             }
@@ -224,6 +226,7 @@ public class Weapon : MonoBehaviour
                 flameThrowerAmmoCoroutine = null;
             }
             player.flamethrowerParticles.Stop();
+            playerAnim.SetBool("stillShooting", false);
         }
         if (player.flameActive)
         {
