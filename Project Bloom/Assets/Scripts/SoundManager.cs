@@ -76,4 +76,12 @@ public class SoundManager : MonoBehaviour
             wave4SoundPlayed = true;
         }
     }
+
+    public void RayGunTroll()
+    {
+        if (!audioSources[6].isPlaying)
+        {
+            audioSources[6].Play();
+        }
+    }
 }

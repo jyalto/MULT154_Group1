@@ -29,6 +29,7 @@ TagManager:
   - ResourcePickup
   - Trap
   - Bat
+  - Troll
   layers:
   - Default
   - TransparentFX

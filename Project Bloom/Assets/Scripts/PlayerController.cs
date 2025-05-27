@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour
     private AudioSource[] audioSources;
     private Weapon weapon;
     private GameManager gameManager;
+    private SoundManager soundManager;
     private CharacterController controller;
     private GameObject currentWeaponPickup;
     private float xRotation = 0;
@@ -91,6 +92,10 @@ public class PlayerController : MonoBehaviour
         {
             gameManager = gameManagerObject.GetComponent<GameManager>();
         }
+
+        GameObject soundManagerObject = GameObject.Find("Sound Manager");
+
+        soundManager = soundManagerObject.GetComponent<SoundManager>();
 
         controller = GetComponent<CharacterController>();
         audioSources = GetComponents<AudioSource>();
@@ -725,6 +730,11 @@ public class PlayerController : MonoBehaviour
             health = 0;
         }
 
+        if (other.CompareTag("Troll"))
+        {
+            soundManager.RayGunTroll();
+            Destroy(other.gameObject);
+        }
     }
 
     void OnTriggerExit(Collider other)
