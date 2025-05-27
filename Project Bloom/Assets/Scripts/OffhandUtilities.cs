@@ -50,7 +50,9 @@ public class OffhandUtilities : MonoBehaviour
 
             mainHand.SetActive(!equipmentModeEnabled);
             offhandModel.SetActive(equipmentModeEnabled);
+
             playerAnim.SetTrigger("unequipWeapon");
+            playerAnim.SetInteger("weaponType", 0);
 
             if (!equipmentModeEnabled)
             {
@@ -105,9 +107,7 @@ public class OffhandUtilities : MonoBehaviour
                         break;
 
                 }
-
                 // print(equipment[currentEquipmentIndex].ToString());
-
                 equipmentModels[currentEquipmentIndex].SetActive(true);
             }
         }
@@ -123,7 +123,6 @@ public class OffhandUtilities : MonoBehaviour
         buildingManager.remoteEquipped = false;
         buildingManager.activatorEquipped = false;
         controller.usingSyringe = false;
-        playerAnim.SetTrigger("unequipWeapon");
 
         foreach (GameObject model in equipmentModels)
         {

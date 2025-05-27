@@ -778,7 +778,8 @@ public class PlayerController : MonoBehaviour
 
     void EquipWeapon(GameObject newWeapon)
     {
-
+        playerAnim.SetTrigger("unequipWeapon");
+        playerAnim.ResetTrigger("Attack");
         if (weapon != null)
         {
             weapon.gameObject.SetActive(false);
@@ -813,8 +814,7 @@ public class PlayerController : MonoBehaviour
                 weapons.Remove(flamethrower);
             }
         }
-        playerAnim.SetTrigger("unequipWeapon");
-        playerAnim.ResetTrigger("Attack");
+
         newWeapon.SetActive(true);
         weapon = newWeapon.GetComponent<Weapon>();
     }
