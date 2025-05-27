@@ -50,12 +50,13 @@ public class OffhandUtilities : MonoBehaviour
 
             mainHand.SetActive(!equipmentModeEnabled);
             offhandModel.SetActive(equipmentModeEnabled);
+            playerAnim.SetTrigger("unequipWeapon");
 
             if (!equipmentModeEnabled)
             {
                 DisableEquipmentAbilities();
             }
-            playerAnim.SetTrigger("unequipWeapon");
+
         }
         if (equipmentModeEnabled)
         {
@@ -122,6 +123,7 @@ public class OffhandUtilities : MonoBehaviour
         buildingManager.remoteEquipped = false;
         buildingManager.activatorEquipped = false;
         controller.usingSyringe = false;
+        playerAnim.SetTrigger("unequipWeapon");
 
         foreach (GameObject model in equipmentModels)
         {

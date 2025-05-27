@@ -399,9 +399,14 @@ public class PlayerController : MonoBehaviour
         {
             health = healthLimit;
         }
-        audioSources[3].PlayOneShot(playerSounds[0]);
+
         playerAnim.SetTrigger("Activate");
     }
+    public void playSyringeSound()
+    {
+        audioSources[3].PlayOneShot(playerSounds[0]);
+    }
+
 
     void SwitchWeapon()
     {
