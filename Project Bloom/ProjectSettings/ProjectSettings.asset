@@ -738,7 +738,13 @@ PlayerSettings:
   XboxOneOverrideIdentityPublisher: 
   vrEditorSettings: {}
   cloudServicesEnabled:
+    Build: 0
+    Game Performance: 0
+    Legacy Analytics: 0
+    Purchasing: 0
+    UDP: 0
     UNet: 1
+    Unity Ads: 0
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
@@ -758,11 +764,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: cf75e764-b000-49b2-9e8d-05ecd05af09b
+  cloudProjectId: 5ed857f3-c8aa-4ef6-be82-365f633f94d7
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: Project Bloom
-  organizationId: dj2334
+  projectName: Project Bloom (1)
+  organizationId: jyalto
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
