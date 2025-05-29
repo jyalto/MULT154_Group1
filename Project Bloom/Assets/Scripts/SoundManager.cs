@@ -12,7 +12,11 @@ public class SoundManager : MonoBehaviour
     public bool wave4SoundPlayed = false;
 
     private bool death = false;
-    
+    private bool disturbedPlayed = false;
+    private bool disturbedDelay = false;
+
+    private Coroutine myCoroutine = null;
+    private GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +24,13 @@ public class SoundManager : MonoBehaviour
         player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
 
         audioSources = GetComponents<AudioSource>();
+
+        GameObject gameManagerObject = GameObject.Find("Game Manager");
+
+        if (gameManagerObject != null)
+        {
+            gameManager = gameManagerObject.GetComponent<GameManager>();
+        }
     }
 
     // Update is called once per frame
@@ -55,13 +66,25 @@ public class SoundManager : MonoBehaviour
                 audioSources[1].Play();
             }
         }
+
+        if (gameManager.wave == 4 && !disturbedDelay && myCoroutine == null)
+        {
+            myCoroutine = StartCoroutine(DisturbedDelayTime());
+        }
     }
 
     public void DeathCry()
     {
         if (!death)
         {
-            audioSources[3].Stop();
+            if (audioSources[3].isPlaying)
+            {
+                audioSources[3].Stop();
+            }
+            if (audioSources[7].isPlaying)
+            {
+                audioSources[7].Stop();
+            }
             audioSources[5].Stop();
             audioSources[2].Play();
             death = true;
@@ -83,5 +106,32 @@ public class SoundManager : MonoBehaviour
         {
             audioSources[6].Play();
         }
+    }
+
+    public void Disturbed()
+    {
+        if (disturbedDelay)
+        {
+            if (!audioSources[7].isPlaying && !disturbedPlayed)
+            {
+                audioSources[3].Stop();
+                audioSources[7].Play();
+                disturbedPlayed = true;
+            }
+            else if (!audioSources[7].isPlaying && disturbedPlayed)
+            {
+                if (!audioSources[3].isPlaying)
+                {
+                    audioSources[3].Play();
+                }
+            }
+        }
+    }
+
+    private IEnumerator DisturbedDelayTime()
+    {
+        yield return new WaitForSeconds(3f);
+        disturbedDelay = true;
+        myCoroutine = null;
     }
 }

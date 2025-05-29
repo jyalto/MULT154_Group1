@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject enemy;
     public GameObject bigEnemy;
+    public GameObject barricade;
     public int enemyCount = 0;
     public int bigEnemyCount = 0;
     public int wave = 1;
@@ -18,6 +19,8 @@ public class GameManager : MonoBehaviour
     public bool shotgunDrop = false;
     public bool rpgDrop = false;
     public bool flamethrowerDrop = false;
+
+    private bool delay = true;
 
     private int randomBigSpawn = 0;
 
@@ -53,6 +56,7 @@ public class GameManager : MonoBehaviour
         killedEnemies = 0;
         shotgunDrop = false;
         rpgDrop = false;
+        delay = true;
         flamethrowerDrop = false;
         randomBigSpawn = 0;
         myCoroutine = null;
@@ -75,55 +79,69 @@ public class GameManager : MonoBehaviour
             Application.Quit(); 
         }
 
-        if (wave == 1)
+        if (!delay)
         {
-            if (enemyCount < 10 && killedEnemies < 35 && myCoroutine == null)
+            barricade.SetActive(false);
+            if (wave == 1)
             {
-                myCoroutine = StartCoroutine(WaveOneSpawnEnemy());
+                if (enemyCount < 10 && killedEnemies < 35 && myCoroutine == null)
+                {
+                    myCoroutine = StartCoroutine(WaveOneSpawnEnemy());
 
+                }
+                if (killedEnemies == 35)
+                {
+                    wave = 2;
+                    alertRadio.GetComponent<AudioSource>().PlayOneShot(wave2, 4);
+                }
             }
-            if (killedEnemies == 35)
+            else if (wave == 2)
             {
-                wave = 2;
-                alertRadio.GetComponent<AudioSource>().PlayOneShot(wave2, 4);
+                if (enemyCount < 20 && killedEnemies < 75 && myCoroutine == null)
+                {
+                    myCoroutine = StartCoroutine(WaveTwoSpawnEnemy());
+                }
+                if (killedEnemies == 75)
+                {
+                    wave = 3;
+                    alertRadio.GetComponent<AudioSource>().PlayOneShot(wave3, 4);
+                }
+            }
+            else if (wave == 3)
+            {
+                if (enemyCount < 30 && killedEnemies < 150 && myCoroutine == null)
+                {
+                    myCoroutine = StartCoroutine(WaveThreeSpawnEnemy());
+                }
+                if (killedEnemies == 150)
+                {
+                    wave = 4;
+                    alertRadio.GetComponent<AudioSource>().PlayOneShot(wave4, 4);
+                }
+            }
+            else if (wave == 4)
+            {
+                soundManager.Wave4Start();
+                if (myCoroutine == null)
+                {
+                    myCoroutine = StartCoroutine(WaveFourSpawnEnemy());
+                }
+                /*if (killedEnemies == 200)
+                {
+                    wave = 5;
+                }*/
             }
         }
-        else if (wave == 2)
+
+        else
         {
-            if (enemyCount < 20 && killedEnemies < 75 && myCoroutine == null)
-            {
-                myCoroutine = StartCoroutine(WaveTwoSpawnEnemy());
-            }
-            if (killedEnemies == 75)
-            {
-                wave = 3;
-                alertRadio.GetComponent<AudioSource>().PlayOneShot(wave3, 4);
-            }
-        }
-        else if (wave == 3)
-        {
-            if (enemyCount < 30 && killedEnemies < 150 && myCoroutine == null)
-            {
-                myCoroutine = StartCoroutine(WaveThreeSpawnEnemy());
-            }
-            if (killedEnemies == 150)
-            {
-                wave = 4;
-                alertRadio.GetComponent<AudioSource>().PlayOneShot(wave4, 4);
-            }
-        }
-        else if (wave == 4)
-        {
-            soundManager.Wave4Start();
+            barricade.SetActive(true);
             if (myCoroutine == null)
             {
-                myCoroutine = StartCoroutine(WaveFourSpawnEnemy());
+                myCoroutine = StartCoroutine(StartDelay());
             }
-            /*if (killedEnemies == 200)
-            {
-                wave = 5;
-            }*/
         }
+        
 
         if (wave != 4)
         {
@@ -132,9 +150,17 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            soundManager.Disturbed();
             waveText.SetText("Wave: ");
             skullImage.gameObject.SetActive(true);
         }
+    }
+
+    private IEnumerator StartDelay()
+    {
+        yield return new WaitForSeconds(60f);
+        delay = false;
+        myCoroutine = null;
     }
 
     private IEnumerator WaveOneSpawnEnemy()
