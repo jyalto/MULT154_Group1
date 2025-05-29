@@ -202,25 +202,28 @@ public class Enemy : MonoBehaviour
     {
         target = player.transform; // Default to player transform
 
-        foreach (GameObject building in buildingManager.placedBuildings)
+        if (!attacking)
         {
-            if (building.GetComponent<LureDevice>() != null) // Lure targets
+            foreach (GameObject building in buildingManager.placedBuildings)
             {
-                Vector3 currentPosition = gameObject.transform.position;
-                float newTargetDistance = Vector3.Distance(currentPosition, building.transform.position);
-                float currentTargetDistance = Vector3.Distance(currentPosition, target.position);
-
-                // print("Lure device found at a distance of " + newTargetDistance + "! Current target distance is " + currentTargetDistance + ".");
-
-                if (newTargetDistance < currentTargetDistance && Vector3.Distance(currentPosition, player.transform.position) > playerLockOnRange && building.GetComponent<TrapBehavior>().luring)
+                if (building.GetComponent<LureDevice>() != null) // Lure targets
                 {
-                    print("New target acquired!");
-                    target = building.transform;
+                    Vector3 currentPosition = gameObject.transform.position;
+                    float newTargetDistance = Vector3.Distance(currentPosition, building.transform.position);
+                    float currentTargetDistance = Vector3.Distance(currentPosition, target.position);
+
+                    // print("Lure device found at a distance of " + newTargetDistance + "! Current target distance is " + currentTargetDistance + ".");
+
+                    if (newTargetDistance < currentTargetDistance && Vector3.Distance(currentPosition, player.transform.position) > playerLockOnRange && building.GetComponent<TrapBehavior>().luring)
+                    {
+                        print("New target acquired!");
+                        target = building.transform;
+                    }
                 }
             }
-        }
 
-        agent.SetDestination(target.position);
+            agent.SetDestination(target.position);
+        }
     }
 
     void OnTriggerEnter(Collider other)

@@ -859,7 +859,7 @@ public class PlayerController : MonoBehaviour
             resources[resourceType] -= resourceCount;
             if (resources[resourceType] <= 0)
             {
-                resources.Remove(resourceType);
+                resources[resourceType] = 0;
             }
         }
     }

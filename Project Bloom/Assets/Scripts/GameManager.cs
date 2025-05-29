@@ -30,6 +30,13 @@ public class GameManager : MonoBehaviour
     public Image bulletImage;
     public Image skullImage;
 
+    public GameObject alertRadio;
+    public AudioClip wave1;
+    public AudioClip wave2;
+    public AudioClip wave3;
+    public AudioClip wave4;
+
+
     private Coroutine myCoroutine = null;
 
     void Start()
@@ -37,6 +44,8 @@ public class GameManager : MonoBehaviour
         GameObject soundManagerObject = GameObject.Find("Sound Manager");
 
         soundManager = soundManagerObject.GetComponent<SoundManager>();
+
+        alertRadio.GetComponent<AudioSource>().PlayOneShot(wave1, 4);
 
         enemyCount = 0;
         bigEnemyCount = 0;
@@ -71,10 +80,12 @@ public class GameManager : MonoBehaviour
             if (enemyCount < 10 && killedEnemies < 35 && myCoroutine == null)
             {
                 myCoroutine = StartCoroutine(WaveOneSpawnEnemy());
+
             }
             if (killedEnemies == 35)
             {
                 wave = 2;
+                alertRadio.GetComponent<AudioSource>().PlayOneShot(wave2, 4);
             }
         }
         else if (wave == 2)
@@ -86,6 +97,7 @@ public class GameManager : MonoBehaviour
             if (killedEnemies == 75)
             {
                 wave = 3;
+                alertRadio.GetComponent<AudioSource>().PlayOneShot(wave3, 4);
             }
         }
         else if (wave == 3)
@@ -97,6 +109,7 @@ public class GameManager : MonoBehaviour
             if (killedEnemies == 150)
             {
                 wave = 4;
+                alertRadio.GetComponent<AudioSource>().PlayOneShot(wave4, 4);
             }
         }
         else if (wave == 4)
