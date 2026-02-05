@@ -42,6 +42,10 @@ public class Enemy : MonoBehaviour
 
     private List<GameObject> rareDropList;
 
+    public GameObject bloodEffect;
+
+    EnemySound enemySound;
+
     void Awake()
     {
         gameManager = FindObjectOfType<GameManager>();
@@ -49,6 +53,8 @@ public class Enemy : MonoBehaviour
         playerController = player.GetComponent<PlayerController>();
         buildingManager = player.GetComponent<BuildingManager>();
         //audioSources = GetComponents<AudioSource>();
+
+        enemySound = GetComponent<EnemySound>();
 
         agent = GetComponent<NavMeshAgent>();
 
@@ -138,6 +144,7 @@ public class Enemy : MonoBehaviour
         }
         else
         {
+            enemySound.PlayDeathSound();
             Destroy(gameObject);
         }
         //print(health);
@@ -236,6 +243,19 @@ public class Enemy : MonoBehaviour
             {
                 health -= bullet.damage;
                 Destroy(other.gameObject);
+
+                if (health > 0)
+                {
+                    Vector3 hitPos = other.ClosestPoint(transform.position);
+
+                    hitPos -= other.transform.forward * 2f;
+
+                    Instantiate(
+                        bloodEffect,
+                        hitPos,
+                        Quaternion.identity
+                    );
+                }
             }
         }
 
@@ -244,6 +264,18 @@ public class Enemy : MonoBehaviour
             if (bigEnemyActive)
             {
                 health -= 25;
+                if (health > 0)
+                {
+                    Vector3 hitPos = other.ClosestPoint(transform.position);
+
+                    hitPos -= other.transform.forward * 4f;
+
+                    Instantiate(
+                        bloodEffect,
+                        hitPos,
+                        Quaternion.identity
+                    );
+                }
             }
             else
             {
@@ -269,6 +301,18 @@ public class Enemy : MonoBehaviour
         if (stateInfo.IsName("Attack") && other.CompareTag("Bat"))
         {
             health -= 3.5f;
+            if (health > 0)
+            {
+                Vector3 hitPos = other.ClosestPoint(transform.position);
+
+                hitPos -= other.transform.forward * 4f;
+
+                Instantiate(
+                    bloodEffect,
+                    hitPos,
+                    Quaternion.identity
+                );
+            }
         }
     }
 
