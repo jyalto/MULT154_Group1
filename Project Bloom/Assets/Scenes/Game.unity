@@ -19836,6 +19836,7 @@ MonoBehaviour:
   player: {fileID: 0}
   audioSources: []
   wave4SoundPlayed: 0
+  helicopter: {fileID: 1894801441}
 --- !u!4 &243683654
 Transform:
   m_ObjectHideFlags: 0
@@ -48579,6 +48580,7 @@ Transform:
   - {fileID: 123555011}
   - {fileID: 1074783298}
   - {fileID: 243683654}
+  - {fileID: 1150697503}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &564771929
@@ -100069,6 +100071,50 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 903203311752323059, guid: a66e982099b206c45aa3c0f5db3c7dce, type: 3}
   m_PrefabInstance: {fileID: 1150654126}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1150697502
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1150697503}
+  - component: {fileID: 1150697504}
+  m_Layer: 0
+  m_Name: Cheats
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1150697503
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1150697502}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 97.89087, y: 26.80751, z: -104.79072}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 564738399}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1150697504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1150697502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95bcadd0c23f9074987c87b4e32ced76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1151173867
 GameObject:
   m_ObjectHideFlags: 0
@@ -166656,6 +166702,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 68219079bc61c7444a7617705dfa9ffe, type: 3}
   m_PrefabInstance: {fileID: 1894080660}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1894801441 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2163045167120796637, guid: 4102bca20c1f39a4b85e4bb2034bf111, type: 3}
+  m_PrefabInstance: {fileID: 934594801359608550}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1894813498
 PrefabInstance:

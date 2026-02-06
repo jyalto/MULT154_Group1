@@ -114,10 +114,10 @@ public class PlayerController : MonoBehaviour
     {
         if (health > 0)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha4) && gameManager.wave != 4)
+            /*if (Input.GetKeyDown(KeyCode.Alpha4) && gameManager.wave != 4)
             {
                 gameManager.wave = 4;
-            }
+            }*/
 
             float moveDirectionX = Input.GetAxis("Horizontal");
             float moveDirectionZ = Input.GetAxis("Vertical");
