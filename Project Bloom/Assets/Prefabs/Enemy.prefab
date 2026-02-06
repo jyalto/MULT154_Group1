@@ -1279,6 +1279,8 @@ MonoBehaviour:
   - {fileID: 1114809196026896336}
   - {fileID: 1672029797493439074}
   - {fileID: 5400024441225484631}
+  pitchMinVal: 0.85
+  pitchMaxVal: 1.15
 --- !u!1 &8563774665559799958
 GameObject:
   m_ObjectHideFlags: 0

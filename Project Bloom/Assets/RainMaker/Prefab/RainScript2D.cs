@@ -192,7 +192,7 @@ namespace DigitalRuby.RainMaker
         {
             base.Update();
 
-            cameraMultiplier = (Camera.orthographicSize * 0.25f);
+            /*cameraMultiplier = (Camera.orthographicSize * 0.25f);
             visibleBounds.min = Camera.main.ViewportToWorldPoint(Vector3.zero);
             visibleBounds.max = Camera.main.ViewportToWorldPoint(Vector3.one);
             visibleWorldWidth = visibleBounds.size.x;
@@ -203,7 +203,7 @@ namespace DigitalRuby.RainMaker
             TransformParticleSystem(RainExplosionParticleSystem, initialStartSpeedExplosion, initialStartSizeExplosion);
 
             CheckForCollisionsRainParticles();
-            CheckForCollisionsMistParticles();
+            CheckForCollisionsMistParticles();*/
         }
 
         protected override float RainFallEmissionRate()

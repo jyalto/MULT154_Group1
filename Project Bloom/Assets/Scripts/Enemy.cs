@@ -45,6 +45,7 @@ public class Enemy : MonoBehaviour
     public GameObject bloodEffect;
 
     EnemySound enemySound;
+    DamagedSound damagedSound;
 
     void Awake()
     {
@@ -248,7 +249,7 @@ public class Enemy : MonoBehaviour
                 {
                     Vector3 hitPos = other.ClosestPoint(transform.position);
 
-                    hitPos -= other.transform.forward * 2f;
+                    hitPos -= other.transform.forward * 4f;
 
                     Instantiate(
                         bloodEffect,
@@ -291,6 +292,7 @@ public class Enemy : MonoBehaviour
 
         if (other.CompareTag("Player") && playerTakingDamage == false)
         {
+            damagedSound = other.GetComponentInChildren<DamagedSound>();
             attacking = true;
             playerDamageCoroutine = StartCoroutine(DamagePlayer());
             playerTakingDamage = true;
@@ -346,20 +348,36 @@ public class Enemy : MonoBehaviour
         if (bigEnemyActive)
         {
             playerController.health -= 5;
+            if (playerController.health > 0)
+            {
+                damagedSound.PlayRandomSound();
+            }
         }
         else
         {
             if (gameManager.wave == 1)
             {
                 playerController.health -= 2;
+                if (playerController.health > 0)
+                {
+                    damagedSound.PlayRandomSound();
+                }
             }
             if (gameManager.wave == 2)
             {
                 playerController.health -= 3;
+                if (playerController.health > 0)
+                {
+                    damagedSound.PlayRandomSound();
+                }
             }
             if (gameManager.wave == 3 || gameManager.wave == 4)
             {
                 playerController.health -= 4;
+                if (playerController.health > 0)
+                {
+                    damagedSound.PlayRandomSound();
+                }
             }
         }
         yield return new WaitForSeconds(1f);

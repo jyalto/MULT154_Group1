@@ -128,6 +128,24 @@ public class PlayerController : MonoBehaviour
             velocity.x = move.x * speed;
             velocity.z = move.z * speed;
 
+            bool isMoving = new Vector3(velocity.x, 0, velocity.z).magnitude > 0.1f;
+
+            if (isMoving && controller.isGrounded)
+            {
+                PlayFootsteps();
+            }
+            else
+            {
+                if (audioSources[4].isPlaying)
+                {
+                    audioSources[4].Stop();
+                }
+                if (audioSources[5].isPlaying)
+                {
+                    audioSources[5].Stop();
+                }
+            }
+
             if (controller.isGrounded)
             {
                 /*if (Input.GetButtonDown("Jump"))
@@ -157,9 +175,12 @@ public class PlayerController : MonoBehaviour
 
                 if (move.magnitude > 0)
                 {
-                    if (Input.GetKey(KeyCode.LeftShift) && !flamethrowerParticles.isPlaying)
+                    if (!flamethrowerParticles.isPlaying)
                     {
-                        speed = runningSpeed;
+                        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.JoystickButton8))
+                        {
+                            speed = runningSpeed;
+                        }
                     }
                     else
                     {
@@ -179,28 +200,30 @@ public class PlayerController : MonoBehaviour
 
             controller.Move(velocity * Time.deltaTime);
 
-            float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
-            float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
+            float mouseX = (Input.GetAxis("Mouse X") + Input.GetAxis("Joystick Right X")) * mouseSensitivity; 
+            float mouseY = (Input.GetAxis("Mouse Y") + Input.GetAxis("Joystick Right Y")) * mouseSensitivity; 
 
-            yRotation += mouseX;
-            transform.localEulerAngles = new Vector3(0, yRotation, 0);
-
-            xRotation -= mouseY;
-            xRotation = Mathf.Clamp(xRotation, lookUp, lookDown);
+            yRotation += mouseX; 
+            transform.localEulerAngles = new Vector3(0, yRotation, 0); 
+            xRotation -= mouseY; 
+            xRotation = Mathf.Clamp(xRotation, lookUp, lookDown); 
             Camera.main.transform.localEulerAngles = new Vector3(xRotation, 0, 0);
 
             //transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0);
 
             float scroll = Input.GetAxis("Mouse ScrollWheel");
 
-            if (Mathf.Abs(scroll) == 0.1f && weaponSwitchEnable && !Input.GetMouseButton(0) && batActive == false)
+            if (weaponSwitchEnable && !Input.GetMouseButton(0) && !Input.GetKey(KeyCode.JoystickButton7) && batActive == false)
             {
-                SwitchWeapon();
-
-                weaponSwitchEnable = false;
-                if (switchWeaponCoroutine == null)
+                if (Mathf.Abs(scroll) == 0.1f || Input.GetKeyDown(KeyCode.JoystickButton3))
                 {
-                    switchWeaponCoroutine = StartCoroutine(SwitchWeaponTime(0.15f));
+                    SwitchWeapon();
+
+                    weaponSwitchEnable = false;
+                    if (switchWeaponCoroutine == null)
+                    {
+                        switchWeaponCoroutine = StartCoroutine(SwitchWeaponTime(0.15f));
+                    }
                 }
             }
 
@@ -351,30 +374,39 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            if (usingSyringe && Input.GetMouseButtonDown(0))
+            if (usingSyringe)
             {
-                HealWithSyringe();
-            }
-
-            if (!batActive && Input.GetKeyDown(KeyCode.Z) && !flameActive)
-            {
-                if (weapon != null)
+                if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.JoystickButton7))
                 {
-                    weapon.gameObject.SetActive(false);
+                    HealWithSyringe();
                 }
-                playerAnim.SetTrigger("unequipWeapon");
-                playerAnim.ResetTrigger("Attack");
-                //playerAnim.SetInteger("weaponType", 2);
-                bat.SetActive(true);
             }
 
-            else if (batActive && Input.GetKeyDown(KeyCode.Z) && !playerAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack") && weapon != null)
+            if (!batActive && !flameActive)
             {
-                weapon.gameObject.SetActive(true);
-                playerAnim.SetTrigger("unequipWeapon");
-                playerAnim.ResetTrigger("Attack");
-                //playerAnim.SetInteger("weaponType", 0);
-                bat.SetActive(false);
+                if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.JoystickButton1))
+                {
+                    if (weapon != null)
+                    {
+                        weapon.gameObject.SetActive(false);
+                    }
+                    playerAnim.SetTrigger("unequipWeapon");
+                    playerAnim.ResetTrigger("Attack");
+                    //playerAnim.SetInteger("weaponType", 2);
+                    bat.SetActive(true);
+                }
+            }
+
+            else if (batActive && !playerAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack") && weapon != null)
+            {
+                if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.JoystickButton1))
+                {
+                    weapon.gameObject.SetActive(true);
+                    playerAnim.SetTrigger("unequipWeapon");
+                    playerAnim.ResetTrigger("Attack");
+                    //playerAnim.SetInteger("weaponType", 0);
+                    bat.SetActive(false);
+                }
             }
 
             if (playerAnim.GetInteger("weaponType") == 2)
@@ -391,7 +423,15 @@ public class PlayerController : MonoBehaviour
         }
 
         else
-        { 
+        {
+            if (audioSources[4].isPlaying)
+            {
+                audioSources[4].Stop();
+            }
+            if (audioSources[5].isPlaying)
+            {
+                audioSources[5].Stop();
+            }
             StartCoroutine(gameManager.ReloadScene());
             hands.SetActive(false);
         }
@@ -860,6 +900,34 @@ public class PlayerController : MonoBehaviour
             if (resources[resourceType] <= 0)
             {
                 resources[resourceType] = 0;
+            }
+        }
+    }
+
+    public void PlayFootsteps()
+    {
+        if (speed == walkingSpeed)
+        {
+            if (!audioSources[4].isPlaying)
+            {
+                if (audioSources[5].isPlaying)
+                {
+                    audioSources[5].Stop();
+                }
+                audioSources[4].pitch = UnityEngine.Random.Range(0.85f, 1f);
+                audioSources[4].Play();
+            }
+        }
+        else if (speed == runningSpeed)
+        {
+            if (!audioSources[5].isPlaying)
+            {
+                if (audioSources[4].isPlaying)
+                {
+                    audioSources[4].Stop();
+                }
+                audioSources[5].pitch = UnityEngine.Random.Range(0.9f, 1.2f);
+                audioSources[5].Play();
             }
         }
     }

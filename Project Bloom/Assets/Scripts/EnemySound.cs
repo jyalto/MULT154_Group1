@@ -9,6 +9,11 @@ public class EnemySound : MonoBehaviour
     [SerializeField]
     private AudioSource[] audioSourcesDeath;
 
+    [SerializeField]
+    private float pitchMinVal = 0f;
+    [SerializeField]
+    private float pitchMaxVal = 2f;
+
     private Coroutine myCoroutine = null;
 
     void Start()
@@ -33,7 +38,7 @@ public class EnemySound : MonoBehaviour
 
         // play in 3D at the parent transform position
         AudioClip clip = randomSource.clip;
-        float pitch = Random.Range(0.85f, 1.15f);
+        float pitch = Random.Range(pitchMinVal, pitchMaxVal);
 
         GameObject temp = new GameObject("TempAudio"); // temporary audio object
         temp.transform.position = transform.position;
@@ -56,7 +61,7 @@ public class EnemySound : MonoBehaviour
 
         // play in 3D at the parent transform position
         AudioClip clip = randomSource.clip;
-        float pitch = Random.Range(0.85f, 1.15f);
+        float pitch = Random.Range(pitchMinVal, pitchMaxVal);
 
         GameObject temp = new GameObject("TempAudio"); // temporary audio object
         temp.transform.position = transform.position;

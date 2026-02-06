@@ -1109,7 +1109,7 @@ GameObject:
   - component: {fileID: 3085612624668321432}
   - component: {fileID: 4510651296602036111}
   - component: {fileID: 3398644058041280680}
-  - component: {fileID: -5175804298592575172}
+  - component: {fileID: 784241894039273229}
   m_Layer: 0
   m_Name: Big Enemy
   m_TagString: Enemy
@@ -1242,7 +1242,7 @@ MonoBehaviour:
   attacking: 0
   health: 50
   playerLockOnRange: 10
-  bloodEffect: {fileID: 4828392551780618622, guid: 80736c5b8fae7224889a4d6de2312e00, type: 3}
+  bloodEffect: {fileID: 4828392551780618622, guid: 46878442ed9911641a1a9b0207bfab34, type: 3}
 --- !u!195 &4510651296602036111
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1292,7 +1292,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &-5175804298592575172
+--- !u!114 &784241894039273229
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1314,6 +1314,8 @@ MonoBehaviour:
   - {fileID: 4178855580858392089}
   - {fileID: 7331265510783166235}
   - {fileID: 4966044492222669155}
+  pitchMinVal: 0.5
+  pitchMaxVal: 0.65
 --- !u!1001 &5829451780423263978
 PrefabInstance:
   m_ObjectHideFlags: 0

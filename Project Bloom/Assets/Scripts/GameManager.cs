@@ -303,8 +303,8 @@ public class GameManager : MonoBehaviour
     {
         soundManager.DeathCry();
         yield return new WaitForSeconds(2f);
-        Scene currentScene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(currentScene.name);
+        Cursor.lockState = CursorLockMode.None;
+        SceneManager.LoadScene("MainMenu");
     }
 
 }
