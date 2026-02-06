@@ -30,6 +30,8 @@ TagManager:
   - Trap
   - Bat
   - Troll
+  - homing_missile
+  - helicopter
   layers:
   - Default
   - TransparentFX

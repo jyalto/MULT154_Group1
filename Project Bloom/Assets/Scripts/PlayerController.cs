@@ -173,19 +173,11 @@ public class PlayerController : MonoBehaviour
                     }
                 }*/
 
-                if (move.magnitude > 0)
+                bool isRunningHeld = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.JoystickButton8);
+
+                if (move.magnitude > 0 && isRunningHeld && !flamethrowerParticles.isPlaying)
                 {
-                    if (!flamethrowerParticles.isPlaying)
-                    {
-                        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.JoystickButton8))
-                        {
-                            speed = runningSpeed;
-                        }
-                    }
-                    else
-                    {
-                        speed = walkingSpeed;
-                    }
+                    speed = runningSpeed;
                 }
                 else
                 {
