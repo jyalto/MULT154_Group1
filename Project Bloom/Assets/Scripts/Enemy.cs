@@ -245,18 +245,15 @@ public class Enemy : MonoBehaviour
                 health -= bullet.damage;
                 Destroy(other.gameObject);
 
-                if (health > 0)
-                {
-                    Vector3 hitPos = other.ClosestPoint(transform.position);
+                Vector3 hitPos = other.ClosestPoint(transform.position);
 
-                    hitPos -= other.transform.forward * 4f;
+                hitPos -= other.transform.forward * 4f;
 
-                    Instantiate(
-                        bloodEffect,
-                        hitPos,
-                        Quaternion.identity
-                    );
-                }
+                Instantiate(
+                    bloodEffect,
+                    hitPos,
+                    Quaternion.identity
+                );
             }
         }
 
@@ -303,18 +300,15 @@ public class Enemy : MonoBehaviour
         if (stateInfo.IsName("Attack") && other.CompareTag("Bat"))
         {
             health -= 3.5f;
-            if (health > 0)
-            {
-                Vector3 hitPos = other.ClosestPoint(transform.position);
+            Vector3 hitPos = other.ClosestPoint(transform.position);
 
-                hitPos -= other.transform.forward * 4f;
+            hitPos -= other.transform.forward * -0.5f;
 
-                Instantiate(
-                    bloodEffect,
-                    hitPos,
-                    Quaternion.identity
-                );
-            }
+            Instantiate(
+                bloodEffect,
+                hitPos,
+                Quaternion.identity
+            );
         }
     }
 

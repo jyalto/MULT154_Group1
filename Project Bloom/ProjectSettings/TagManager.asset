@@ -32,6 +32,7 @@ TagManager:
   - Troll
   - homing_missile
   - helicopter
+  - Bat PickUp
   layers:
   - Default
   - TransparentFX

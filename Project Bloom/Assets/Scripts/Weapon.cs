@@ -35,6 +35,19 @@ public class Weapon : MonoBehaviour
 
     public WeaponType typeOfWeapon;
 
+    private bool triggerPressedLastFrame = false;
+    private bool TriggerDown()
+    {
+        float trigger = Input.GetAxis("Right Trigger");
+        bool pressed = trigger > 0.5f;
+
+        bool down = pressed && !triggerPressedLastFrame;
+        triggerPressedLastFrame = pressed;
+
+        return down;
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -84,7 +97,7 @@ public class Weapon : MonoBehaviour
                 gameManager.ammoText.SetText(player.ammo[(int)PlayerController.AmmoType.PISTOL].ToString());
                 if (player.ammo[(int)PlayerController.AmmoType.PISTOL] > 0)
                 {
-                    if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.JoystickButton7))
+                    if (Input.GetKeyDown(KeyCode.Mouse0) || TriggerDown())
                     {
                         if (Time.time >= nextFireTime)
                         {
@@ -101,7 +114,7 @@ public class Weapon : MonoBehaviour
                 gameManager.ammoText.SetText(player.ammo[(int)PlayerController.AmmoType.ASSAULTRIFLE].ToString());
                 if (player.ammo[(int)PlayerController.AmmoType.ASSAULTRIFLE] > 0)
                 {
-                    if (Input.GetMouseButton(0) || Input.GetKey(KeyCode.JoystickButton7))
+                    if (Input.GetMouseButton(0) || Input.GetAxis("Right Trigger") > 0.5f)
                     {
                         if (Time.time >= nextFireTime)
                         {
@@ -136,7 +149,7 @@ public class Weapon : MonoBehaviour
                 gameManager.ammoText.SetText(player.ammo[(int)PlayerController.AmmoType.SHOTGUN].ToString());
                 if (player.ammo[(int)PlayerController.AmmoType.SHOTGUN] > 0)
                 {
-                    if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.JoystickButton7))
+                    if (Input.GetKeyDown(KeyCode.Mouse0) || TriggerDown())
                     {
                         if (Time.time >= nextFireTime)
                         {
@@ -153,7 +166,7 @@ public class Weapon : MonoBehaviour
                 gameManager.ammoText.SetText(player.ammo[(int)PlayerController.AmmoType.RPG].ToString());
                 if (player.ammo[(int)PlayerController.AmmoType.RPG] > 0)
                 {
-                    if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.JoystickButton7))
+                    if (Input.GetKeyDown(KeyCode.Mouse0) || TriggerDown())
                     {
                         if (Time.time >= nextFireTime)
                         {
@@ -169,7 +182,7 @@ public class Weapon : MonoBehaviour
                 gameManager.ammoText.SetText(player.ammo[(int)PlayerController.AmmoType.FLAMETHROWER].ToString());
                 if (player.ammo[(int)PlayerController.AmmoType.FLAMETHROWER] > 0)
                 {
-                    if (Input.GetMouseButton(0) || Input.GetKey(KeyCode.JoystickButton7))
+                    if (Input.GetMouseButton(0) || Input.GetAxis("Right Trigger") > 0.5f)
                     {
                         player.flameActive = true;
                         if (!player.flamethrowerParticles.isPlaying)

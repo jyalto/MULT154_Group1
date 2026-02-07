@@ -64,9 +64,12 @@ public class PlayerAnimation : MonoBehaviour
         //{
         //    playerAnim.SetTrigger("Attack");
         //}
-        if (Input.GetMouseButtonDown(1) && isBatActive && !playerAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        if (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.JoystickButton5))
         {
-            playerAnim.SetTrigger("Attack");
+            if (isBatActive && !playerAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+            {
+                playerAnim.SetTrigger("Attack");
+            }
         }
     }
 

@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     public bool flameActive = false;
     public bool lureActive = false;
     public bool batActive = false;
+    public bool hasBat = false;
     public GameObject pistol;
     public GameObject assaultRifle;
     public GameObject shotgun;
@@ -205,7 +206,7 @@ public class PlayerController : MonoBehaviour
 
             float scroll = Input.GetAxis("Mouse ScrollWheel");
 
-            if (weaponSwitchEnable && !Input.GetMouseButton(0) && !Input.GetKey(KeyCode.JoystickButton7) && batActive == false)
+            if (weaponSwitchEnable && !Input.GetMouseButton(0) && Input.GetAxis("Right Trigger") < 0.1f && batActive == false)
             {
                 if (Mathf.Abs(scroll) == 0.1f || Input.GetKeyDown(KeyCode.JoystickButton3))
                 {
@@ -374,7 +375,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            if (!batActive && !flameActive)
+            if (hasBat && !batActive && !flameActive)
             {
                 if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.JoystickButton1))
                 {
@@ -468,6 +469,20 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("Bat PickUp"))
+        {
+            hasBat = true;
+            audioSources[6].Play();
+            if (weapon != null)
+            {
+                weapon.gameObject.SetActive(false);
+            }
+            playerAnim.SetTrigger("unequipWeapon");
+            playerAnim.ResetTrigger("Attack");
+            //playerAnim.SetInteger("weaponType", 2);
+            bat.SetActive(true);
+            Destroy(other.gameObject);
+        }
         if (other.CompareTag("Pistol PickUp"))
         {
             if (weapons.Count < 2)
