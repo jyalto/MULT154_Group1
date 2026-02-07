@@ -29,39 +29,49 @@ public class Notebook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Input
+        // Toggle input
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton7))
+        {
+            isOpen = !isOpen;
 
-        if (Input.GetKey(KeyCode.Space))
-        {
-            RefreshText();
-            if (!isOpen)
-            {
-                GetComponent<AudioSource>().pitch = Random.Range(0.9f, 1.1f);
-                GetComponent<AudioSource>().PlayOneShot(toggleSound);
-            }
-            isOpen = true;
-        }
-        else
-        {
+            GetComponent<AudioSource>().pitch = Random.Range(0.9f, 1.1f);
+            GetComponent<AudioSource>().PlayOneShot(toggleSound);
+
             if (isOpen)
-            {
-                GetComponent<AudioSource>().pitch = Random.Range(0.9f, 1.1f);
-                GetComponent<AudioSource>().PlayOneShot(toggleSound);
-            }
-            isOpen = false;
+                RefreshText();
         }
 
+        // Animate notebook
         if (isOpen)
         {
-            GetComponent<RectTransform>().position = Vector2.Lerp(GetComponent<RectTransform>().position, new Vector2(Screen.width / 2, Screen.height / 3), smoothing);
-            GetComponent<RectTransform>().localScale = Vector3.Lerp(GetComponent<RectTransform>().localScale, new Vector3(openScale, openScale, 1), smoothing);
+            GetComponent<RectTransform>().position = Vector2.Lerp(
+                GetComponent<RectTransform>().position,
+                new Vector2(Screen.width / 2, Screen.height / 3),
+                smoothing
+            );
+
+            GetComponent<RectTransform>().localScale = Vector3.Lerp(
+                GetComponent<RectTransform>().localScale,
+                new Vector3(openScale, openScale, 1),
+                smoothing
+            );
         }
         else
         {
-            GetComponent<RectTransform>().position = Vector2.Lerp(GetComponent<RectTransform>().position, new Vector2(Screen.width / 2, -Screen.height / 3), smoothing);
-            GetComponent<RectTransform>().localScale = Vector3.Lerp(GetComponent<RectTransform>().localScale, new Vector3(closeScale, closeScale, 1), smoothing);
+            GetComponent<RectTransform>().position = Vector2.Lerp(
+                GetComponent<RectTransform>().position,
+                new Vector2(Screen.width / 2, -Screen.height / 3),
+                smoothing
+            );
+
+            GetComponent<RectTransform>().localScale = Vector3.Lerp(
+                GetComponent<RectTransform>().localScale,
+                new Vector3(closeScale, closeScale, 1),
+                smoothing
+            );
         }
     }
+
 
     private void RefreshText()
     {

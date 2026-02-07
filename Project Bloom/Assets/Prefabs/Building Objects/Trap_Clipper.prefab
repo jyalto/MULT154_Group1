@@ -144,7 +144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 20
   triggerRate: 0.8
-  uses: 1
+  uses: 3
   activationSound: {fileID: 8300000, guid: 296326683de0ece4bb148ff7de3838bb, type: 3}
   luring: 0
   isActivatable: 0

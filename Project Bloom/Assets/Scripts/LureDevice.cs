@@ -17,7 +17,7 @@ public class LureDevice : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy") && trapBehavior.uses == 0)
+        if (other.CompareTag("Enemy"))
         {
             if (myCoroutine == null)
             {
@@ -28,7 +28,7 @@ public class LureDevice : MonoBehaviour
 
     private IEnumerator DestroySelf()
     {
-        yield return new WaitForSeconds(7.5f);
+        yield return new WaitForSeconds(10f);
         Instantiate(explosion, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }

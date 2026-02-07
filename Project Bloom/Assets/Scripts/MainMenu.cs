@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class MainMenu : MonoBehaviour
 {
@@ -12,10 +13,12 @@ public class MainMenu : MonoBehaviour
     public bool isActive = false;
     public AudioClip startSound;
 
+    public Button playButton;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        EventSystem.current.SetSelectedGameObject(playButton.gameObject);
     }
 
     // Update is called once per frame

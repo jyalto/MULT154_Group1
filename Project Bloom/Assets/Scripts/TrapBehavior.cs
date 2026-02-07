@@ -1,32 +1,41 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class TrapBehavior : MonoBehaviour
 {
     [Header("Trap Attributes")]
-    [SerializeField] int damage;                            // Damage dealt
-    [SerializeField] float triggerRate;                     // Damage interval (If <=0, trap is single use)
-    public float uses;                            // Total use time is triggerRate * uses
+    [SerializeField] int damage;                // Damage dealt
+    [SerializeField] float triggerRate;         // Damage interval (If <=0, trap is single use)
+    public float uses;                          // Total use time is triggerRate * uses
     public AudioClip activationSound;
     public bool luring = false;
 
     [Header("Remote Activation")]
-    public bool isActivatable;                              // Whether a remote activator can be applied
+    public bool isActivatable;
     [SerializeField] bool activatesOnContact;
-    public int activatorChannel = -1;                       // The channel that triggers the building when fired
+    public int activatorChannel = -1;
 
     // Runtime Values
     private BuildingBehavior buildingBehavior;
     private List<GameObject> targets;
 
-    // Start is called before the first frame update
+    SoundManager soundManager;
+
     void Start()
     {
+        GameObject soundManagerObject = GameObject.Find("Sound Manager");
+        soundManager = soundManagerObject.GetComponent<SoundManager>();
+
         buildingBehavior = GetComponent<BuildingBehavior>();
         targets = new List<GameObject>();
+
+        // Auto activate lure devices immediately
+        if (GetComponent<LureDevice>() != null)
+        {
+            luring = true;
+            PlayPitchedSound(activationSound);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -34,45 +43,41 @@ public class TrapBehavior : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy"))
         {
             targets.Add(other.gameObject);
+
             if (activatesOnContact)
-            {
                 ActivateTrap();
-            }
-        }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("Enemy"))
-        {
-            targets.Remove(other.gameObject);
         }
     }
 
-    public void ActivateTrap() // Activate trap functions
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+            targets.Remove(other.gameObject);
+    }
+
+    public void ActivateTrap()
     {
         if (uses > 0)
         {
             if (activatesOnContact)
             {
-                InvokeRepeating("InflictContactDamage", 0.0f, triggerRate);
+                InvokeRepeating(nameof(InflictContactDamage), 0f, triggerRate);
             }
             else
             {
-                if (gameObject.GetComponent<LureDevice>() != null)
-                {
+                if (GetComponent<LureDevice>() != null)
                     luring = true;
-                }
+
                 uses--;
             }
 
-            PlayPitchedSound(activationSound);
+            //PlayPitchedSound(activationSound);
+            soundManager.BearTrap();
         }
-        else // Depleted functions
+        else
         {
-            if (activatesOnContact) // Contact traps break when depleted
-            {
-                gameObject.GetComponent<BuildingBehavior>().durability = 0;
-            }
+            if (activatesOnContact)
+                buildingBehavior.durability = 0;
         }
     }
 
@@ -90,17 +95,41 @@ public class TrapBehavior : MonoBehaviour
     {
         if (targets.Count > 0)
         {
+            List<GameObject> toRemove = new List<GameObject>();
+
             foreach (GameObject target in targets)
             {
-                // Remove dead enemies
-                if (target == null || target.GetComponent<Enemy>().health - damage <= 0)
+                if (target == null)
                 {
-                    targets.Remove(target);
+                    toRemove.Add(target);
+                    continue;
                 }
-                // Damage targets
-                target.GetComponent<Enemy>().health -= damage;
+
+                Enemy enemy = target.GetComponent<Enemy>();
+
+                if (enemy.health - damage <= 0)
+                {
+                    enemy.health -= damage;
+                    toRemove.Add(target);
+                }
+                else
+                {
+                    enemy.health -= damage;
+                }
             }
+
+            foreach (GameObject t in toRemove)
+                targets.Remove(t);
+
             uses--;
+
+            if (uses <= 0)
+            {
+                soundManager.BearTrap();
+                CancelInvoke();
+                Destroy(gameObject);
+                return;
+            }
         }
         else
         {
@@ -110,7 +139,8 @@ public class TrapBehavior : MonoBehaviour
 
     public void PlayPitchedSound(AudioClip sound)
     {
-        gameObject.GetComponent<AudioSource>().pitch = Random.Range(0.8f, 1.2f);
-        gameObject.GetComponent<AudioSource>().PlayOneShot(sound);
+        AudioSource src = GetComponent<AudioSource>();
+        src.pitch = Random.Range(0.8f, 1.2f);
+        src.PlayOneShot(sound);
     }
 }

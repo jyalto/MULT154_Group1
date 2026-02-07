@@ -369,7 +369,7 @@ public class PlayerController : MonoBehaviour
 
             if (usingSyringe)
             {
-                if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.JoystickButton7))
+                if (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.JoystickButton5))
                 {
                     HealWithSyringe();
                 }
@@ -884,7 +884,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            resources[resourceType] = 1;
+            resources[resourceType] = 0;
         }
 
         Debug.Log($"{resourceType} collected. Total: {resources[resourceType]}");

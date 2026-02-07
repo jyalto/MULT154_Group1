@@ -222,9 +222,14 @@ public class Enemy : MonoBehaviour
 
                     // print("Lure device found at a distance of " + newTargetDistance + "! Current target distance is " + currentTargetDistance + ".");
 
-                    if (newTargetDistance < currentTargetDistance && Vector3.Distance(currentPosition, player.transform.position) > playerLockOnRange && building.GetComponent<TrapBehavior>().luring)
+                    /*if (newTargetDistance < currentTargetDistance && Vector3.Distance(currentPosition, player.transform.position) > playerLockOnRange && building.GetComponent<TrapBehavior>().luring)
                     {
-                        print("New target acquired!");
+                        //print("New target acquired!");
+                        target = building.transform;
+                    }*/
+
+                    if (building.GetComponent<TrapBehavior>().luring)
+                    {
                         target = building.transform;
                     }
                 }
