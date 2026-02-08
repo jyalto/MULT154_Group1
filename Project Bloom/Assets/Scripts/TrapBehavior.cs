@@ -72,6 +72,7 @@ public class TrapBehavior : MonoBehaviour
             }
 
             //PlayPitchedSound(activationSound);
+
             soundManager.BearTrap();
         }
         else
@@ -125,7 +126,7 @@ public class TrapBehavior : MonoBehaviour
 
             if (uses <= 0)
             {
-                soundManager.BearTrap();
+                soundManager.BearTrapBreak();
                 CancelInvoke();
                 Destroy(gameObject);
                 return;

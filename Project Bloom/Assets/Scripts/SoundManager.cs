@@ -136,6 +136,11 @@ public class SoundManager : MonoBehaviour
         audioSources[8].Play();
     }
 
+    public void BearTrapBreak()
+    {
+        audioSources[9].Play();
+    }
+
     private IEnumerator DisturbedDelayTime()
     {
         yield return new WaitForSeconds(3f);
