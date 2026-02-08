@@ -14,6 +14,7 @@ public class MainMenu : MonoBehaviour
     public AudioClip startSound;
 
     public Button playButton;
+    public Button quitButton;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +25,18 @@ public class MainMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Check if the cursor is over a button using RectTransformUtility
+        Vector2 mousePos = Input.mousePosition;
+
+        if (RectTransformUtility.RectangleContainsScreenPoint(playButton.GetComponent<RectTransform>(), mousePos))
+        {
+            EventSystem.current.SetSelectedGameObject(playButton.gameObject);
+        }
+        else if (RectTransformUtility.RectangleContainsScreenPoint(quitButton.GetComponent<RectTransform>(), mousePos))
+        {
+            EventSystem.current.SetSelectedGameObject(quitButton.gameObject);
+        }
+
         Color currentColor = transition.color;
         if (isActive && currentColor.a < 1)
         {

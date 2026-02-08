@@ -43836,7 +43836,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 8.561682, y: 5.756026, z: 1}
   m_Center: {x: -0.31525803, y: -2.378013, z: 0.000003237889}
@@ -186376,7 +186376,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2163045167120796637, guid: 4102bca20c1f39a4b85e4bb2034bf111, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

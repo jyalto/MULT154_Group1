@@ -24,14 +24,6 @@ public class HelicopterMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameObject.activeSelf)
-        {
-            transform.position = Vector3.MoveTowards(
-                transform.position,
-                targetPosition,
-                speed * Time.deltaTime
-            );
-        }
         if (transform.position == targetPosition)
         {
             heldMissile.SetActive(false);
@@ -40,6 +32,18 @@ public class HelicopterMovement : MonoBehaviour
                 Instantiate(missilePrefab, missilePrefab.transform.position, missilePrefab.transform.rotation);
                 missileCount++;
             }
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if (gameObject.activeSelf)
+        {
+            transform.position = Vector3.MoveTowards(
+                transform.position,
+                targetPosition,
+                speed * Time.deltaTime
+            );
         }
     }
 }
