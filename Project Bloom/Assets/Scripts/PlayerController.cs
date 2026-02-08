@@ -884,7 +884,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            resources[resourceType] = 5;
+            resources[resourceType] = 0;
         }
 
         Debug.Log($"{resourceType} collected. Total: {resources[resourceType]}");

@@ -6,6 +6,8 @@ using UnityEngine;
 public class Notebook : MonoBehaviour
 {
     public GameObject playerObject;
+    public GameObject clipperImg;
+    public GameObject lureImg;
     public AudioClip toggleSound;
 
     public bool isOpen = false;
@@ -80,6 +82,17 @@ public class Notebook : MonoBehaviour
 
         buildName.text = bp.buildingObject.GetComponent<BuildingBehavior>().buildingName;
         buildDescription.text = bp.buildingObject.GetComponent<BuildingBehavior>().buildingDescription;
+
+        if (buildName.text == "Lure Bomb")
+        {
+            clipperImg.SetActive(false);
+            lureImg.SetActive(true);
+        }
+        else
+        {
+            lureImg.SetActive(false);
+            clipperImg.SetActive(true);
+        }
 
         resources[0].text = pc.CheckResource(Resource.ResourceTypes.PLANT_PASTE).ToString();
         costs[0].text = bp.costPaste.ToString();
