@@ -19,6 +19,8 @@ public class BuildingBehavior : MonoBehaviour
 
     private Collider colliderComponent;
 
+    private BuildingManager buildingManager;
+
     public enum BuildingType // For type-checking
     {
         BARRICADE,      // Defensive structures. Eg. Window Boards, Scrap Wall
@@ -29,6 +31,8 @@ public class BuildingBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        buildingManager = GameObject.FindGameObjectWithTag("Player").GetComponent<BuildingManager>();
+
         gameObject.GetComponent<AudioSource>().pitch = UnityEngine.Random.Range(0.8f, 1.2f);
         gameObject.GetComponent<AudioSource>().PlayOneShot(constructionSound);
 
@@ -52,6 +56,9 @@ public class BuildingBehavior : MonoBehaviour
 
     private void OnDestroy()
     {
-        GameObject.FindGameObjectWithTag("Player").GetComponent<BuildingManager>().placedBuildings.Remove(gameObject);
+        if (buildingManager != null && buildingManager.placedBuildings != null)
+        {
+            buildingManager.placedBuildings.Remove(gameObject);
+        }
     }
 }

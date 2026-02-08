@@ -241,6 +241,19 @@ public class Enemy : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        if (other.name.StartsWith("Trap_Clipper"))
+        {
+            Vector3 hitPos = other.ClosestPoint(transform.position);
+
+            hitPos -= other.transform.forward * 4f;
+
+            Instantiate(
+                bloodEffect,
+                hitPos,
+                Quaternion.identity
+            );
+        }
+
         if (other.CompareTag("Bullet"))
         {
             Bullet bullet = other.GetComponent<Bullet>();
@@ -248,7 +261,6 @@ public class Enemy : MonoBehaviour
             if (bullet != null)
             {
                 health -= bullet.damage;
-                Destroy(other.gameObject);
 
                 Vector3 hitPos = other.ClosestPoint(transform.position);
 
@@ -259,6 +271,8 @@ public class Enemy : MonoBehaviour
                     hitPos,
                     Quaternion.identity
                 );
+
+                Destroy(other.gameObject);
             }
         }
 
