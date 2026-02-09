@@ -14,6 +14,7 @@ public class SoundManager : MonoBehaviour
     private bool death = false;
     public bool disturbedPlayed = false;
     private bool disturbedDelay = false;
+    private bool helicopterSpawned = false;
 
     private Coroutine myCoroutine = null;
     private GameManager gameManager;
@@ -75,6 +76,11 @@ public class SoundManager : MonoBehaviour
         {
             myCoroutine = StartCoroutine(DisturbedDelayTime());
         }
+
+        /*if (disturbedPlayed)
+        {
+            audioSources[7].Stop();
+        }*/
     }
 
     public void DeathCry()
@@ -124,7 +130,7 @@ public class SoundManager : MonoBehaviour
             }
             else if (!audioSources[7].isPlaying && disturbedPlayed)
             {
-                if (!audioSources[3].isPlaying)
+                if (!audioSources[3].isPlaying && !helicopterSpawned)
                 {
                     audioSources[3].Play();
                     alertRadio.GetComponent<AudioSource>().PlayOneShot(wave4, 4);
@@ -155,6 +161,7 @@ public class SoundManager : MonoBehaviour
     {
         yield return new WaitForSeconds(35f);
         helicopter.SetActive(true);
+        helicopterSpawned = true;
         myCoroutine = null;
     }
 }
