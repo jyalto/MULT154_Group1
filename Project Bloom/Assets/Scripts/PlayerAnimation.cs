@@ -26,6 +26,9 @@ public class PlayerAnimation : MonoBehaviour
     private bool isRPG7Active;
     private bool isFlameThrowerActive;
 
+    [SerializeField]
+    private AudioSource batSwing;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -68,6 +71,7 @@ public class PlayerAnimation : MonoBehaviour
         {
             if (isBatActive && !playerAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
             {
+                batSwing.Play();
                 playerAnim.SetTrigger("Attack");
             }
         }

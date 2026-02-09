@@ -89,7 +89,7 @@ public class GameManager : MonoBehaviour
                     myCoroutine = StartCoroutine(WaveOneSpawnEnemy());
 
                 }
-                if (killedEnemies == 35)
+                if (killedEnemies >= 35)
                 {
                     wave = 2;
                     alertRadio.GetComponent<AudioSource>().PlayOneShot(wave2, 4);
@@ -101,7 +101,7 @@ public class GameManager : MonoBehaviour
                 {
                     myCoroutine = StartCoroutine(WaveTwoSpawnEnemy());
                 }
-                if (killedEnemies == 75)
+                if (killedEnemies >= 75)
                 {
                     wave = 3;
                     alertRadio.GetComponent<AudioSource>().PlayOneShot(wave3, 4);
@@ -113,7 +113,7 @@ public class GameManager : MonoBehaviour
                 {
                     myCoroutine = StartCoroutine(WaveThreeSpawnEnemy());
                 }
-                if (killedEnemies == 150)
+                if (killedEnemies >= 150)
                 {
                     wave = 4;
                     alertRadio.GetComponent<AudioSource>().PlayOneShot(wave4, 4);
