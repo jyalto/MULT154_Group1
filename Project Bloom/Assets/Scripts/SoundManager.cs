@@ -12,13 +12,15 @@ public class SoundManager : MonoBehaviour
     public bool wave4SoundPlayed = false;
 
     private bool death = false;
-    private bool disturbedPlayed = false;
+    public bool disturbedPlayed = false;
     private bool disturbedDelay = false;
 
     private Coroutine myCoroutine = null;
     private GameManager gameManager;
 
     public GameObject helicopter;
+    public GameObject alertRadio;
+    public AudioClip wave4;
 
     // Start is called before the first frame update
     void Start()
@@ -125,6 +127,7 @@ public class SoundManager : MonoBehaviour
                 if (!audioSources[3].isPlaying)
                 {
                     audioSources[3].Play();
+                    alertRadio.GetComponent<AudioSource>().PlayOneShot(wave4, 4);
                     myCoroutine = StartCoroutine(HelicopterDelayTime());
                 }
             }
@@ -150,7 +153,7 @@ public class SoundManager : MonoBehaviour
 
     private IEnumerator HelicopterDelayTime()
     {
-        yield return new WaitForSeconds(50f);
+        yield return new WaitForSeconds(35f);
         helicopter.SetActive(true);
         myCoroutine = null;
     }

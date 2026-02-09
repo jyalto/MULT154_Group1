@@ -116,7 +116,6 @@ public class GameManager : MonoBehaviour
                 if (killedEnemies >= 150)
                 {
                     wave = 4;
-                    alertRadio.GetComponent<AudioSource>().PlayOneShot(wave4, 4);
                 }
             }
             else if (wave == 4)
