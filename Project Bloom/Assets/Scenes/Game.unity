@@ -372,9 +372,9 @@ Transform:
   - {fileID: 1763219619}
   - {fileID: 1026131865}
   - {fileID: 1509427250}
+  - {fileID: 1836241658}
   - {fileID: 1699290881}
   - {fileID: 2076538587}
-  - {fileID: 1836241658}
   - {fileID: 2053422013}
   - {fileID: 1744925065}
   - {fileID: 1200549093}
@@ -8132,6 +8132,10 @@ PrefabInstance:
     - target: {fileID: 72417088088033304, guid: 8015a95a1b20597428cd38c6884bdba3, type: 3}
       propertyPath: m_Name
       value: ResPickup_PlantPaste (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1580971993206944544, guid: 8015a95a1b20597428cd38c6884bdba3, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3181424859358627489, guid: 8015a95a1b20597428cd38c6884bdba3, type: 3}
       propertyPath: m_LocalScale.x
@@ -16917,6 +16921,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 361845097}
     m_Modifications:
+    - target: {fileID: 351966159637958616, guid: b88f518f93d32564f91b0910cb64d874, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1238229506013097442, guid: b88f518f93d32564f91b0910cb64d874, type: 3}
       propertyPath: m_Name
       value: Key Gold
@@ -17941,6 +17949,10 @@ PrefabInstance:
     - target: {fileID: 3181424859358627489, guid: b8827a47aa7f9e545a8c2826982e6a4f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7596193216539915120, guid: b8827a47aa7f9e545a8c2826982e6a4f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -20344,6 +20356,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Assault Rifle PickUp (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5357134481326325411, guid: b32629ec71f96db439483f8c2bea2c14, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9192209424301111576, guid: b32629ec71f96db439483f8c2bea2c14, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5
@@ -21461,6 +21477,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 916144694}
     m_Modifications:
+    - target: {fileID: 3913971768505890686, guid: 5ba1ae649eb66174ba9a3200668f5937, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5241557980337503723, guid: 5ba1ae649eb66174ba9a3200668f5937, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.001
@@ -29008,6 +29028,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7062706537585887005, guid: b54c739a751831446b397f3b023d586e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -34845,6 +34869,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5353246235264116123, guid: 89f533047808af34fab98efa23140079, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -39437,6 +39465,10 @@ PrefabInstance:
     - target: {fileID: 2574026887304345406, guid: d30726c1678cc674f9c0b7289cc0767a, type: 3}
       propertyPath: m_Name
       value: Pistol PickUp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4550185555111154665, guid: d30726c1678cc674f9c0b7289cc0767a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5440632238903800255, guid: d30726c1678cc674f9c0b7289cc0767a, type: 3}
       propertyPath: m_LocalScale.x
@@ -46795,6 +46827,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 916144694}
     m_Modifications:
+    - target: {fileID: 3913971768505890686, guid: 5ba1ae649eb66174ba9a3200668f5937, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5241557980337503723, guid: 5ba1ae649eb66174ba9a3200668f5937, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.001
@@ -48622,6 +48658,10 @@ PrefabInstance:
     - target: {fileID: 2574026887304345406, guid: d30726c1678cc674f9c0b7289cc0767a, type: 3}
       propertyPath: m_Name
       value: Pistol PickUp (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4550185555111154665, guid: d30726c1678cc674f9c0b7289cc0767a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5440632238903800255, guid: d30726c1678cc674f9c0b7289cc0767a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -52693,6 +52733,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5353246235264116123, guid: 89f533047808af34fab98efa23140079, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -53625,6 +53669,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 916144694}
     m_Modifications:
+    - target: {fileID: 3913971768505890686, guid: 5ba1ae649eb66174ba9a3200668f5937, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5241557980337503723, guid: 5ba1ae649eb66174ba9a3200668f5937, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.001
@@ -57498,6 +57546,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 916144694}
     m_Modifications:
+    - target: {fileID: 3913971768505890686, guid: 5ba1ae649eb66174ba9a3200668f5937, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5241557980337503723, guid: 5ba1ae649eb66174ba9a3200668f5937, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.001
@@ -57671,6 +57723,10 @@ PrefabInstance:
     - target: {fileID: 2574026887304345406, guid: d30726c1678cc674f9c0b7289cc0767a, type: 3}
       propertyPath: m_Name
       value: Pistol PickUp (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4550185555111154665, guid: d30726c1678cc674f9c0b7289cc0767a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5440632238903800255, guid: d30726c1678cc674f9c0b7289cc0767a, type: 3}
       propertyPath: m_LocalScale.x
@@ -60011,6 +60067,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7114632736129026129, guid: 02cfe62b6dcecb84ea3fcc52d6dd8de3, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -60723,6 +60783,10 @@ PrefabInstance:
     - target: {fileID: 3181424859358627489, guid: d99f7952b38df2d4f93977af91503b26, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7386089869092624936, guid: d99f7952b38df2d4f93977af91503b26, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -61902,6 +61966,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 916144694}
     m_Modifications:
+    - target: {fileID: 3913971768505890686, guid: 5ba1ae649eb66174ba9a3200668f5937, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5241557980337503723, guid: 5ba1ae649eb66174ba9a3200668f5937, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.001
@@ -79911,6 +79979,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 916144694}
     m_Modifications:
+    - target: {fileID: 3913971768505890686, guid: 5ba1ae649eb66174ba9a3200668f5937, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5241557980337503723, guid: 5ba1ae649eb66174ba9a3200668f5937, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.001
@@ -106904,6 +106976,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7062706537585887005, guid: b54c739a751831446b397f3b023d586e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -110712,6 +110788,10 @@ PrefabInstance:
     - target: {fileID: 72417088088033304, guid: 8015a95a1b20597428cd38c6884bdba3, type: 3}
       propertyPath: m_Name
       value: ResPickup_PlantPaste
+      objectReference: {fileID: 0}
+    - target: {fileID: 1580971993206944544, guid: 8015a95a1b20597428cd38c6884bdba3, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3181424859358627489, guid: 8015a95a1b20597428cd38c6884bdba3, type: 3}
       propertyPath: m_LocalScale.x
@@ -120826,6 +120906,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Assault Rifle PickUp
       objectReference: {fileID: 0}
+    - target: {fileID: 5357134481326325411, guid: b32629ec71f96db439483f8c2bea2c14, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9192209424301111576, guid: b32629ec71f96db439483f8c2bea2c14, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -122131,6 +122215,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 361845097}
     m_Modifications:
+    - target: {fileID: 351966159637958616, guid: b88f518f93d32564f91b0910cb64d874, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1238229506013097442, guid: b88f518f93d32564f91b0910cb64d874, type: 3}
       propertyPath: m_Name
       value: Key Green
@@ -126425,6 +126513,10 @@ PrefabInstance:
     - target: {fileID: 3181424859358627489, guid: b8827a47aa7f9e545a8c2826982e6a4f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7596193216539915120, guid: b8827a47aa7f9e545a8c2826982e6a4f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -150473,6 +150565,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7386089869092624936, guid: d99f7952b38df2d4f93977af91503b26, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -153999,6 +154095,10 @@ PrefabInstance:
     - target: {fileID: 3181424859358627489, guid: 02cfe62b6dcecb84ea3fcc52d6dd8de3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7114632736129026129, guid: 02cfe62b6dcecb84ea3fcc52d6dd8de3, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -162438,6 +162538,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bat PickUp
       objectReference: {fileID: 0}
+    - target: {fileID: 5357134481326325411, guid: 6164f8b931d8a11488d8f75b829c9bc1, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9192209424301111576, guid: 6164f8b931d8a11488d8f75b829c9bc1, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5
@@ -169950,6 +170054,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 916144694}
     m_Modifications:
+    - target: {fileID: 3913971768505890686, guid: 5ba1ae649eb66174ba9a3200668f5937, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5241557980337503723, guid: 5ba1ae649eb66174ba9a3200668f5937, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.001
@@ -177998,6 +178106,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 361845097}
     m_Modifications:
+    - target: {fileID: 351966159637958616, guid: b88f518f93d32564f91b0910cb64d874, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1238229506013097442, guid: b88f518f93d32564f91b0910cb64d874, type: 3}
       propertyPath: m_Name
       value: Key Red
