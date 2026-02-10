@@ -22,6 +22,8 @@ public class TrapBehavior : MonoBehaviour
 
     SoundManager soundManager;
 
+    private Coroutine myCoroutine;
+
     void Start()
     {
         GameObject soundManagerObject = GameObject.Find("Sound Manager");
@@ -34,7 +36,11 @@ public class TrapBehavior : MonoBehaviour
         if (GetComponent<LureDevice>() != null)
         {
             luring = true;
-            PlayPitchedSound(activationSound);
+            //PlayPitchedSound(activationSound);
+            if (myCoroutine == null)
+            {
+                myCoroutine = StartCoroutine(PlayLureMusic());
+            }
         }
     }
 
@@ -136,6 +142,13 @@ public class TrapBehavior : MonoBehaviour
         {
             CancelInvoke();
         }
+    }
+
+    private IEnumerator PlayLureMusic()
+    {
+        yield return new WaitForSeconds(6.5f);
+        PlayPitchedSound(activationSound);
+        myCoroutine = null;
     }
 
     public void PlayPitchedSound(AudioClip sound)

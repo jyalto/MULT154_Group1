@@ -23,6 +23,8 @@ public class SoundManager : MonoBehaviour
     public GameObject alertRadio;
     public AudioClip wave4;
 
+    private int randomNum = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -79,7 +81,7 @@ public class SoundManager : MonoBehaviour
 
         /*if (disturbedPlayed)
         {
-            audioSources[7].Stop();
+            audioSources[randomNum].Stop();
         }*/
     }
 
@@ -91,9 +93,9 @@ public class SoundManager : MonoBehaviour
             {
                 audioSources[3].Stop();
             }
-            if (audioSources[7].isPlaying)
+            if (randomNum > 0 && audioSources[randomNum].isPlaying)
             {
-                audioSources[7].Stop();
+                audioSources[randomNum].Stop();
             }
             audioSources[5].Stop();
             audioSources[2].Play();
@@ -122,13 +124,18 @@ public class SoundManager : MonoBehaviour
     {
         if (disturbedDelay)
         {
-            if (!audioSources[7].isPlaying && !disturbedPlayed)
+            if (randomNum == 0)
+            {
+                randomNum = Random.Range(9, 13);
+            }
+
+            if (!audioSources[randomNum].isPlaying && !disturbedPlayed)
             {
                 audioSources[3].Stop();
-                audioSources[7].Play();
+                audioSources[randomNum].Play();
                 disturbedPlayed = true;
             }
-            else if (!audioSources[7].isPlaying && disturbedPlayed)
+            else if (!audioSources[randomNum].isPlaying && disturbedPlayed)
             {
                 if (!audioSources[3].isPlaying && !helicopterSpawned)
                 {
@@ -142,12 +149,12 @@ public class SoundManager : MonoBehaviour
 
     public void BearTrap()
     {
-        audioSources[8].Play();
+        audioSources[7].Play();
     }
 
     public void BearTrapBreak()
     {
-        audioSources[9].Play();
+        audioSources[8].Play();
     }
 
     private IEnumerator DisturbedDelayTime()
@@ -159,7 +166,7 @@ public class SoundManager : MonoBehaviour
 
     private IEnumerator HelicopterDelayTime()
     {
-        yield return new WaitForSeconds(35f);
+        yield return new WaitForSeconds(34f);
         helicopter.SetActive(true);
         helicopterSpawned = true;
         myCoroutine = null;

@@ -28,7 +28,7 @@ public class LureDevice : MonoBehaviour
 
     private IEnumerator DestroySelf()
     {
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(12f);
         Instantiate(explosion, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }

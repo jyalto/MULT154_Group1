@@ -266,7 +266,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator WaveFourSpawnEnemy()
     {
-        while (enemyCount < 200)
+        while (enemyCount < 150)
         {
             if (bigEnemyCount < 15)
             {
