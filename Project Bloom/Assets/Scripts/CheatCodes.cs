@@ -30,7 +30,7 @@ public class CheatCodes : MonoBehaviour
 
     void Update()
     {
-        if (cheatActive) return;
+        if ((cheatActive) || gameManager.delay) return;
 
         // Catch ANY key/button pressed this frame
         foreach (KeyCode key in System.Enum.GetValues(typeof(KeyCode)))

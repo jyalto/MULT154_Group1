@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     public bool rpgDrop = false;
     public bool flamethrowerDrop = false;
 
-    private bool delay = true;
+    public bool delay = true;
 
     private int randomBigSpawn = 0;
 
@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
 
     public TMP_Text waveText;
     public TMP_Text ammoText;
+    public TMP_Text killsText;
     public Image bulletImage;
     public Image skullImage;
 
@@ -82,6 +83,8 @@ public class GameManager : MonoBehaviour
         if (!delay)
         {
             barricade.SetActive(false);
+            killsText.SetText("Kills: " + killedEnemies);
+
             if (wave == 1)
             {
                 if (enemyCount < 10 && killedEnemies < 35 && myCoroutine == null)
@@ -130,6 +133,18 @@ public class GameManager : MonoBehaviour
                     wave = 5;
                 }*/
             }
+
+            if (wave != 4)
+            {
+                waveText.SetText("Wave: " + wave);
+                skullImage.gameObject.SetActive(false);
+            }
+            else
+            {
+                soundManager.Disturbed();
+                waveText.SetText("Wave: ");
+                skullImage.gameObject.SetActive(true);
+            }
         }
 
         else
@@ -140,24 +155,11 @@ public class GameManager : MonoBehaviour
                 myCoroutine = StartCoroutine(StartDelay());
             }
         }
-        
-
-        if (wave != 4)
-        {
-            waveText.SetText("Wave: " + wave);
-            skullImage.gameObject.SetActive(false);
-        }
-        else
-        {
-            soundManager.Disturbed();
-            waveText.SetText("Wave: ");
-            skullImage.gameObject.SetActive(true);
-        }
     }
 
     private IEnumerator StartDelay()
     {
-        yield return new WaitForSeconds(60f);
+        yield return new WaitForSeconds(55f);
         delay = false;
         myCoroutine = null;
     }

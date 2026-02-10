@@ -122,7 +122,7 @@ public class SoundManager : MonoBehaviour
 
     public void Disturbed()
     {
-        if (disturbedDelay)
+        if (disturbedDelay && !death)
         {
             if (randomNum == 0)
             {
